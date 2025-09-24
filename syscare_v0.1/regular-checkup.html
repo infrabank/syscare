@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정기 점검 서비스 - SYSCARE</title>
+    <meta name="description" content="체계적인 정기 점검으로 시스템 안정성과 성능을 보장하는 SYSCARE의 전문 서비스">
+    
+    <!-- Pretendard Font -->
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <!-- CSS Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#solution" class="text-gray-700 hover:text-blue-600 transition-colors">솔루션</a>
+                <a href="index.html#values" class="text-gray-700 hover:text-blue-600 transition-colors">차별화</a>
+                <a href="index.html#results" class="text-gray-700 hover:text-blue-600 transition-colors">효과</a>
+                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
+            </div>
+            <a href="diagnosis.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <i class="fas fa-stethoscope mr-2"></i>무료 진단
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center bg-blue-500/20 px-6 py-2 rounded-full mb-6">
+                    <i class="fas fa-tools text-blue-200 mr-2"></i>
+                    <span class="text-blue-200">SYSCARE 핵심 서비스</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    정기 점검 서비스
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    체계적이고 전문적인 정기 점검으로<br>
+                    시스템의 안정성과 성능을 보장합니다
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="diagnosis.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all shadow-lg">
+                        <i class="fas fa-stethoscope mr-2"></i>
+                        무료 진단 신청
+                    </a>
+                    <a href="#details" class="bg-blue-500/30 backdrop-blur-sm text-white px-8 py-4 rounded-lg text-lg font-semibold border border-white/30 hover:bg-blue-500/50 transition-all">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        서비스 상세보기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="py-20 bg-white" id="overview">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6 text-gray-900">왜 정기 점검이 필요한가요?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        전산 시스템은 살아있는 생명체와 같습니다. 정기적인 건강검진 없이는 
+                        언제 어떤 문제가 발생할지 예측할 수 없습니다.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-red-50 p-8 rounded-xl border-l-4 border-red-500">
+                        <div class="text-red-600 text-4xl mb-4">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-red-700">점검 없는 시스템</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><i class="fas fa-times text-red-500 mr-2"></i>예기치 못한 장애 발생</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i>성능 저하로 인한 생산성 감소</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i>보안 취약점 노출</li>
+                            <li><i class="fas fa-times text-red-500 mr-2"></i>데이터 손실 위험</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-8 rounded-xl border-l-4 border-yellow-500">
+                        <div class="text-yellow-600 text-4xl mb-4">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-yellow-700">SYSCARE 정기점검</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><i class="fas fa-check text-yellow-500 mr-2"></i>체계적인 점검 절차</li>
+                            <li><i class="fas fa-check text-yellow-500 mr-2"></i>전문가의 종합 분석</li>
+                            <li><i class="fas fa-check text-yellow-500 mr-2"></i>맞춤형 개선 방안</li>
+                            <li><i class="fas fa-check text-yellow-500 mr-2"></i>투명한 결과 리포트</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 p-8 rounded-xl border-l-4 border-green-500">
+                        <div class="text-green-600 text-4xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-green-700">안정적인 시스템</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>99.9% 시스템 가용성</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>최적화된 성능</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>강화된 보안</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>예측 가능한 운영</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="py-20 bg-gray-50" id="details">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6 text-gray-900">SYSCARE 정기 점검 프로세스</h2>
+                    <p class="text-xl text-gray-600">
+                        10년 이상의 경험을 바탕으로 한 체계적이고 전문적인 점검 서비스
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- 점검 프로세스 -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-900">
+                            <i class="fas fa-clipboard-check text-blue-600 mr-2"></i>
+                            점검 프로세스
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-bold">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">사전 분석 및 계획 수립</h4>
+                                    <p class="text-gray-600">현재 시스템 구성 분석 및 맞춤형 점검 계획 수립</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-bold">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">종합 시스템 점검</h4>
+                                    <p class="text-gray-600">하드웨어, 소프트웨어, 네트워크, 보안 전 영역 점검</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-bold">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">성능 분석 및 최적화</h4>
+                                    <p class="text-gray-600">시스템 성능 측정 및 최적화 방안 도출</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-bold">4</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2">상세 리포트 작성</h4>
+                                    <p class="text-gray-600">점검 결과 및 개선 권고안이 담긴 종합 리포트 제공</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 점검 항목 -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-900">
+                            <i class="fas fa-list-check text-blue-600 mr-2"></i>
+                            주요 점검 항목
+                        </h3>
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-3 text-blue-600">
+                                        <i class="fas fa-server mr-2"></i>하드웨어 점검
+                                    </h4>
+                                    <ul class="text-gray-600 space-y-1 pl-6">
+                                        <li>• 서버 하드웨어 상태 진단</li>
+                                        <li>• 스토리지 용량 및 성능 분석</li>
+                                        <li>• 네트워크 장비 점검</li>
+                                        <li>• 전원 및 쿨링 시스템 확인</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-3 text-blue-600">
+                                        <i class="fas fa-code mr-2"></i>소프트웨어 점검
+                                    </h4>
+                                    <ul class="text-gray-600 space-y-1 pl-6">
+                                        <li>• 운영체제 업데이트 상태</li>
+                                        <li>• 애플리케이션 버전 관리</li>
+                                        <li>• 라이선스 만료 여부</li>
+                                        <li>• 데이터베이스 최적화</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-3 text-blue-600">
+                                        <i class="fas fa-shield-alt mr-2"></i>보안 점검
+                                    </h4>
+                                    <ul class="text-gray-600 space-y-1 pl-6">
+                                        <li>• 방화벽 및 보안 정책</li>
+                                        <li>• 바이러스/멀웨어 검사</li>
+                                        <li>• 취약점 스캔 및 분석</li>
+                                        <li>• 접근 권한 관리</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6 text-gray-900">정기 점검 서비스 요금</h2>
+                <p class="text-xl text-gray-600 mb-12">
+                    투명하고 합리적인 요금으로 전문적인 정기 점검 서비스를 제공합니다
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900">기본형</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-6">월 30만원</div>
+                        <ul class="text-left space-y-3 text-gray-600 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>환경 분석(방문)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>월 1회 원격 정기 점검</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>기본 성능 분석</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>간단한 리포트 제공</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>원격 지원</li>
+                        </ul>
+                        <a href="diagnosis.html" class="block w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            신청하기
+                        </a>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-8 border-2 border-blue-500 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">추천</span>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900">표준형</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-6">월 50만원</div>
+                        <ul class="text-left space-y-3 text-gray-600 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>환경 분석(방문)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>월 2회 정기 점검</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>상세 성능 분석</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>종합 리포트 제공</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>전화/이메일 지원</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>긴급 상황 지원</li>
+                        </ul>
+                        <a href="diagnosis.html" class="block w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            신청하기
+                        </a>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900">프리미엄</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-6">월 90만원</div>
+                        <ul class="text-left space-y-3 text-gray-600 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>환경 분석(방문)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>주 1회 정기 점검</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>실시간 모니터링</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>맞춤형 최적화</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>24/7 지원</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>전담 엔지니어 배정</li>
+                        </ul>
+                        <a href="diagnosis.html" class="block w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            신청하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6">
+                    지금 바로 무료 진단을 받아보세요
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    현재 시스템 상태를 정확히 파악하고<br>
+                    맞춤형 정기 점검 계획을 제안해드립니다
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="diagnosis.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all shadow-lg">
+                        <i class="fas fa-stethoscope mr-2"></i>
+                        무료 진단 신청하기
+                    </a>
+                    <a href="tel:070-8015-8079" class="bg-blue-500/30 backdrop-blur-sm text-white px-8 py-4 rounded-lg text-lg font-semibold border border-white/30 hover:bg-blue-500/50 transition-all">
+                        <i class="fas fa-phone mr-2"></i>
+                        전화 상담 (070-8015-8079)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="text-2xl font-bold text-white mb-4">SYSCARE</div>
+                        <p class="text-gray-400 mb-4">
+                            복구가 아니라, 애초에 막는 게<br>전산의 일입니다.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-white mb-4">연락처</h3>
+                        <div class="space-y-2">
+                            <p><i class="fas fa-phone mr-2"></i>070-8015-8079</p>
+                            <p><i class="fas fa-envelope mr-2"></i>jhw@mlkit.co.kr</p>
+                            <p><i class="fas fa-map-marker-alt mr-2"></i>세종특별자치시 집현중앙7로 6,<br>B동 609호(지식산업센터)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                    <p>&copy; 2024 SYSCARE. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

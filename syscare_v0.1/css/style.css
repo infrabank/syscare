@@ -1,0 +1,639 @@
+/* SYSCARE Landing Page - Custom CSS */
+
+/* Font Configuration */
+body {
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    line-height: 1.6;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+    animation: gradientShift 10s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+    }
+    100% {
+        background: 
+            radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+    }
+}
+
+.shield-effect {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+/* Glass effect for hero buttons */
+.hero-section button {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.hero-section button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Solution Cards Animation */
+.solution-card {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.solution-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Value Cards Animation */
+.value-card {
+    transition: all 0.3s ease;
+    transform: translateY(0) scale(1);
+}
+
+.value-card:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Statistics Cards */
+.stat-card {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Navigation Styling */
+nav {
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart Container */
+#costChart {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+/* Form Elements Styling */
+select, input[type="text"], input[type="email"], input[type="tel"], textarea, .assessment-input {
+    color: #374151 !important;
+    background-color: #ffffff !important;
+}
+
+select option {
+    color: #374151 !important;
+    background-color: #ffffff !important;
+    padding: 8px 12px;
+}
+
+/* Select dropdown styling */
+select, .assessment-input {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Input focus states */
+select:focus, input:focus, textarea:focus, .assessment-input:focus {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Ensure text visibility in all form elements */
+input, select, textarea {
+    -webkit-text-fill-color: #374151 !important;
+}
+
+/* Override any conflicting styles */
+select:not([multiple]):not([size]) {
+    background-color: #ffffff !important;
+    color: #374151 !important;
+}
+
+/* Form labels and checkbox/radio labels */
+label {
+    color: #374151 !important;
+}
+
+label span {
+    color: #374151 !important;
+}
+
+/* Checkbox and radio label text */
+input[type="checkbox"] + span,
+input[type="radio"] + span,
+label span {
+    color: #374151 !important;
+}
+
+/* Assessment form specific styles */
+.assessment-section label {
+    color: #374151 !important;
+}
+
+.assessment-section label span {
+    color: #374151 !important;
+}
+
+/* Checkbox labels - more specific targeting */
+input[name="issues"] + span,
+input[name="os"] + span,
+input[name="concerns"] + span {
+    color: #374151 !important;
+}
+
+/* All span elements in labels within assessment sections */
+.assessment-section .space-y-3 label span,
+.assessment-section .space-y-2 label span,
+.assessment-section .grid label span {
+    color: #374151 !important;
+}
+
+/* General label text color fix */
+.flex.items-center span {
+    color: #374151 !important;
+}
+
+/* Comprehensive text color fixes for all interactive elements */
+.cursor-pointer span,
+.hover\:bg-gray-50 span,
+label.flex span {
+    color: #374151 !important;
+}
+
+/* Ensure all text in form sections is visible */
+form span,
+form label,
+form .text-gray-700,
+.bg-white span {
+    color: #374151 !important;
+}
+
+/* Override any Tailwind classes that might set white text */
+.text-white span {
+    color: white !important; /* Keep white text where intended */
+}
+
+/* But ensure form elements are dark */
+.bg-white .text-white span {
+    color: #374151 !important;
+}
+
+/* Specific fix for checkbox and radio labels */
+input[type="checkbox"] ~ span,
+input[type="radio"] ~ span,
+input[type="checkbox"] + span,
+input[type="radio"] + span {
+    color: #374151 !important;
+}
+
+/* Fix for form sections specifically */
+form label span,
+.bg-white label span,
+.assessment-section span {
+    color: #374151 !important;
+}
+
+/* Target specific problem areas */
+.space-y-2 span,
+.space-y-3 span,
+.grid span:not(.text-white):not(.text-blue-600):not(.text-green-600):not(.text-red-600) {
+    color: #374151 !important;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+    select, input, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        color: #374151 !important;
+        background-color: #ffffff !important;
+    }
+    
+    label, label span {
+        color: #374151 !important;
+    }
+}
+
+/* Scroll Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Trust Elements */
+.trust-element {
+    transition: all 0.3s ease;
+}
+
+.trust-element:hover {
+    transform: scale(1.05);
+}
+
+/* Button Hover Effects */
+button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .shield-effect {
+        width: 200px;
+        height: 200px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    .solution-card,
+    .value-card,
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.loading {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus States for Accessibility */
+button:focus,
+a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .hero-section {
+        background: #3b82f6 !important;
+        color: white !important;
+    }
+    
+    nav,
+    .shield-effect {
+        display: none;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .hero-section {
+        background: #000080;
+    }
+    
+    .solution-card,
+    .value-card,
+    .stat-card {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+    .bg-white {
+        background-color: #1f2937;
+        color: white;
+    }
+    
+    .bg-gray-50 {
+        background-color: #111827;
+    }
+    
+    .text-gray-700 {
+        color: #d1d5db;
+    }
+    
+    .text-gray-600 {
+        color: #9ca3af;
+    }
+}
+
+/* Performance Optimizations */
+.solution-card,
+.value-card,
+.stat-card {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Counter Animation */
+.counter {
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+}
+
+/* Section Spacing */
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Enhanced Button Styles */
+.cta-button {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(45deg, #1d4ed8, #1e40af);
+}
+
+/* Pulse Glow Animation */
+.pulse-glow {
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.3);
+    }
+}
+
+/* Intense Pulse Animation */
+.pulse-intense {
+    animation: pulse-intense 1.5s infinite;
+}
+
+@keyframes pulse-intense {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(234, 179, 8, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(234, 179, 8, 0.7), 0 0 50px rgba(234, 179, 8, 0.3);
+    }
+}
+
+/* Counter Animation */
+.counter-animate {
+    transition: all 0.3s ease;
+}
+
+/* Threat Status Section Animations */
+#threat-status .grid > div {
+    animation: threatPulse 3s infinite ease-in-out;
+}
+
+#threat-status .grid > div:nth-child(1) { animation-delay: 0s; }
+#threat-status .grid > div:nth-child(2) { animation-delay: 0.5s; }
+#threat-status .grid > div:nth-child(3) { animation-delay: 1s; }
+#threat-status .grid > div:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes threatPulse {
+    0%, 100% {
+        border-color: rgba(239, 68, 68, 0.3);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        border-color: rgba(239, 68, 68, 0.8);
+        background-color: rgba(0, 0, 0, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+/* Limited Offer Progress Bar Animation */
+.progress-bar-animate {
+    animation: progressDecrease 300s linear infinite;
+}
+
+@keyframes progressDecrease {
+    from { width: 23%; }
+    to { width: 0%; }
+}
+
+/* Countdown Timer Styles */
+#days, #hours, #minutes, #seconds {
+    font-variant-numeric: tabular-nums;
+    transition: all 0.3s ease;
+}
+
+/* Urgency Indicators */
+.urgent-blink {
+    animation: urgentBlink 1s infinite;
+}
+
+@keyframes urgentBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.5; }
+}
+
+/* Industry Card Hover Effects */
+.industry-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.industry-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.industry-card:hover::before {
+    opacity: 1;
+    animation: shine 0.8s ease-in-out;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.hero-section h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 800;
+}
+
+/* Grid Enhancements */
+.grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Image Placeholders */
+.img-placeholder {
+    background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Loading States */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

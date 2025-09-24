@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무료 진단 신청 관리 - SYSCARE</title>
+    <meta name="description" content="SYSCARE 무료 예방 진단 신청 관리 시스템">
+    
+    <!-- Pretendard Font -->
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <!-- CSS Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+                <span class="ml-4 text-gray-600">관리자</span>
+            </div>
+            <div class="flex space-x-4">
+                <button onclick="loadDiagnoses()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-sync-alt mr-1"></i>새로고침
+                </button>
+                <button onclick="exportAllToCSV()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    <i class="fas fa-download mr-1"></i>전체 내보내기
+                </button>
+                <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                    <i class="fas fa-sign-out-alt mr-1"></i>로그아웃
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">
+                <i class="fas fa-stethoscope text-blue-600 mr-2"></i>
+                무료 예방 진단 신청 관리
+            </h1>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-blue-600" id="totalCount">-</div>
+                    <div class="text-sm text-blue-700">전체 신청</div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-yellow-600" id="pendingCount">-</div>
+                    <div class="text-sm text-yellow-700">처리 대기</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-green-600" id="completedCount">-</div>
+                    <div class="text-sm text-green-700">처리 완료</div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-purple-600" id="todayCount">-</div>
+                    <div class="text-sm text-purple-700">오늘 신청</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900">필터</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">상태</label>
+                    <select id="statusFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                        <option value="">전체</option>
+                        <option value="신청접수">신청접수</option>
+                        <option value="일정조율">일정조율</option>
+                        <option value="진단예정">진단예정</option>
+                        <option value="진단완료">진단완룼</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">기간 (시작)</label>
+                    <input type="date" id="startDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">기간 (종료)</label>
+                    <input type="date" id="endDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div class="flex items-end">
+                    <button onclick="applyFilters()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-filter mr-1"></i>필터 적용
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="bg-white rounded-xl shadow-lg">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900">진단 신청 목록</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">신청일시</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">회사명</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">담당자</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">연락처</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">희망시기</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작업</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody" class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>데이터 로딩 중...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="mt-8 flex justify-center">
+            <!-- Pagination will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-90vh overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-900">예약 상세정보</h2>
+                <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="detailContent" class="p-6">
+                <!-- Detail content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        let totalPages = 1;
+        let allDiagnoses = [];
+
+        // Admin authentication
+        function checkAdminAccess() {
+            const adminPassword = "syscare2024!";
+            let attempts = 0;
+            const maxAttempts = 3;
+
+            while (attempts < maxAttempts) {
+                const enteredPassword = prompt(`관리자 비밀번호를 입력하세요 (${attempts + 1}/${maxAttempts}):`);
+                
+                if (enteredPassword === null) {
+                    // 사용자가 취소를 누른 경우
+                    alert("접근이 취소되었습니다.");
+                    window.location.href = "index.html";
+                    return false;
+                }
+                
+                if (enteredPassword === adminPassword) {
+                    // 인증 성공 - 세션에 저장
+                    sessionStorage.setItem('syscare_admin_auth', 'true');
+                    return true;
+                }
+                
+                attempts++;
+                if (attempts < maxAttempts) {
+                    alert(`비밀번호가 틀렸습니다. ${maxAttempts - attempts}회 더 시도할 수 있습니다.`);
+                }
+            }
+            
+            // 최대 시도 횟수 초과
+            alert("접근 권한이 없습니다. 메인 페이지로 이동합니다.");
+            window.location.href = "index.html";
+            return false;
+        }
+
+        // Check authentication on page load
+        function verifyAccess() {
+            const isAuthenticated = sessionStorage.getItem('syscare_admin_auth') === 'true';
+            
+            if (!isAuthenticated) {
+                return checkAdminAccess();
+            }
+            return true;
+        }
+
+        // Load diagnoses on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // 먼저 접근 권한 확인
+            if (!verifyAccess()) {
+                return;
+            }
+            loadDiagnoses();
+            
+            // Set default date range (last 30 days)
+            const today = new Date();
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(today.getDate() - 30);
+            
+            document.getElementById('startDate').value = thirtyDaysAgo.toISOString().split('T')[0];
+            document.getElementById('endDate').value = today.toISOString().split('T')[0];
+        });
+
+        // Load diagnoses from database
+        async function loadDiagnoses(page = 1) {
+            try {
+                const response = await fetch(`tables/diagnosis_requests?page=${page}&limit=50&sort=created_at`);
+                const data = await response.json();
+                
+                allDiagnoses = data.data;
+                currentPage = data.page;
+                totalPages = Math.ceil(data.total / data.limit);
+                
+                updateDashboard(data.data);
+                renderDiagnosesTable(data.data);
+                renderPagination();
+                
+            } catch (error) {
+                console.error('Error loading diagnoses:', error);
+                document.getElementById('bookingsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="8" class="px-6 py-4 text-center text-red-500">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>데이터 로딩 실패
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Update dashboard statistics
+        function updateDashboard(diagnoses) {
+            const total = diagnoses.length;
+            const pending = diagnoses.filter(d => d.status === '신청접수').length;
+            const completed = diagnoses.filter(d => d.status === '진단완료').length;
+            
+            const today = new Date().toISOString().split('T')[0];
+            const todayDiagnoses = diagnoses.filter(d => 
+                new Date(d.request_date).toISOString().split('T')[0] === today
+            ).length;
+            
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('todayCount').textContent = todayDiagnoses;
+        }
+
+        // Render diagnoses table
+        function renderDiagnosesTable(diagnoses) {
+            const tbody = document.getElementById('bookingsTableBody');
+            
+            if (diagnoses.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="px-6 py-4 text-center text-gray-500">
+                            진단 신청 데이터가 없습니다.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = diagnoses.map(diagnosis => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        ${new Date(diagnosis.request_date).toLocaleString('ko-KR')}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        ${diagnosis.company_name}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        ${diagnosis.contact_name}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <a href="tel:${diagnosis.phone}" class="text-blue-600 hover:text-blue-800">
+                            ${diagnosis.phone}
+                        </a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        ${diagnosis.employees}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        ${diagnosis.preferred_timing}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <select onchange="updateStatus('${diagnosis.id}', this.value)" 
+                                class="text-xs px-2 py-1 rounded-full border-0 ${getStatusClass(diagnosis.status)}">
+                            <option value="신청접수" ${diagnosis.status === '신청접수' ? 'selected' : ''}>신청접수</option>
+                            <option value="일정조율" ${diagnosis.status === '일정조율' ? 'selected' : ''}>일정조율</option>
+                            <option value="진단예정" ${diagnosis.status === '진단예정' ? 'selected' : ''}>진단예정</option>
+                            <option value="진단완료" ${diagnosis.status === '진단완료' ? 'selected' : ''}>진단완료</option>
+                        </select>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                        <button onclick="viewDetails('${diagnosis.id}')" 
+                                class="text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button onclick="exportSingle('${diagnosis.id}')" 
+                                class="text-green-600 hover:text-green-800">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button onclick="deleteDiagnosis('${diagnosis.id}')" 
+                                class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Get status class for styling
+        function getStatusClass(status) {
+            switch(status) {
+                case '신청접수': return 'bg-yellow-100 text-yellow-800';
+                case '일정조율': return 'bg-blue-100 text-blue-800';
+                case '진단예정': return 'bg-purple-100 text-purple-800';
+                case '진단완료': return 'bg-green-100 text-green-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Update diagnosis status
+        async function updateStatus(diagnosisId, newStatus) {
+            try {
+                const response = await fetch(`tables/diagnosis_requests/${diagnosisId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                
+                if (response.ok) {
+                    loadDiagnoses(currentPage); // Reload current page
+                } else {
+                    alert('상태 업데이트에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('상태 업데이트 중 오류가 발생했습니다.');
+            }
+        }
+
+        // View diagnosis details
+        async function viewDetails(diagnosisId) {
+            try {
+                const response = await fetch(`tables/diagnosis_requests/${diagnosisId}`);
+                const diagnosis = await response.json();
+                
+                document.getElementById('detailContent').innerHTML = `
+                    <div class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">회사명</label>
+                                <p class="text-gray-900">${diagnosis.company_name}</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">담당자명</label>
+                                <p class="text-gray-900">${diagnosis.contact_name}</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">연락처</label>
+                                <p class="text-gray-900">
+                                    <a href="tel:${diagnosis.phone}" class="text-blue-600 hover:text-blue-800">
+                                        ${diagnosis.phone}
+                                    </a>
+                                </p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">이메일</label>
+                                <p class="text-gray-900">
+                                    <a href="mailto:${diagnosis.email}" class="text-blue-600 hover:text-blue-800">
+                                        ${diagnosis.email}
+                                    </a>
+                                </p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">회사 주소</label>
+                                <p class="text-gray-900">${diagnosis.company_address}</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">직원수</label>
+                                <p class="text-gray-900">${diagnosis.employees}</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">희망 진단 시기</label>
+                                <p class="text-gray-900">${diagnosis.preferred_timing}</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700">신청일시</label>
+                                <p class="text-gray-900">${new Date(diagnosis.request_date).toLocaleString('ko-KR')}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700">우려되는 부분</label>
+                            <p class="text-gray-900">${diagnosis.concerns ? diagnosis.concerns.join(', ') : '없음'}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700">추가 요청사항</label>
+                            <p class="text-gray-900 bg-gray-50 p-3 rounded">${diagnosis.additional_notes || '없음'}</p>
+                        </div>
+                        <div class="border-t pt-4 flex space-x-4">
+                            <button onclick="exportSingle('${diagnosis.id}')" 
+                                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                                <i class="fas fa-download mr-2"></i>CSV 내보내기
+                            </button>
+                            <button onclick="closeDetailModal()" 
+                                    class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                                닫기
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('detailModal').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error loading details:', error);
+                alert('상세 정보 로딩 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Close detail modal
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        // Export single diagnosis to CSV
+        async function exportSingle(diagnosisId) {
+            try {
+                const response = await fetch(`tables/diagnosis_requests/${diagnosisId}`);
+                const diagnosis = await response.json();
+                
+                const csvContent = createCSVContent([diagnosis]);
+                downloadCSV(csvContent, `진단신청_${diagnosis.company_name}_${new Date().toISOString().split('T')[0]}.csv`);
+            } catch (error) {
+                console.error('Error exporting single diagnosis:', error);
+                alert('내보내기 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Export all diagnoses to CSV
+        async function exportAllToCSV() {
+            try {
+                const response = await fetch('tables/diagnosis_requests?limit=1000');
+                const data = await response.json();
+                
+                const csvContent = createCSVContent(data.data);
+                downloadCSV(csvContent, `전체진단신청목록_${new Date().toISOString().split('T')[0]}.csv`);
+            } catch (error) {
+                console.error('Error exporting all diagnoses:', error);
+                alert('전체 내보내기 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Create CSV content
+        function createCSVContent(diagnoses) {
+            const headers = ['신청일시', '회사명', '담당자명', '연락처', '이메일', '회사주소', '직원수', '희망시기', '우려부분', '추가요청사항', '상태', '신청번호'];
+            
+            const rows = diagnoses.map(diagnosis => [
+                new Date(diagnosis.request_date).toLocaleString('ko-KR'),
+                diagnosis.company_name,
+                diagnosis.contact_name,
+                diagnosis.phone,
+                diagnosis.email,
+                diagnosis.company_address,
+                diagnosis.employees,
+                diagnosis.preferred_timing,
+                diagnosis.concerns ? diagnosis.concerns.join(', ') : '',
+                diagnosis.additional_notes || '',
+                diagnosis.status,
+                diagnosis.id
+            ]);
+            
+            const csvContent = [headers, ...rows]
+                .map(row => row.map(cell => `"${cell}"`).join(','))
+                .join('\n');
+                
+            return csvContent;
+        }
+
+        // Download CSV file
+        function downloadCSV(content, filename) {
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const status = document.getElementById('statusFilter').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            let filteredDiagnoses = allDiagnoses;
+            
+            if (status) {
+                filteredDiagnoses = filteredDiagnoses.filter(d => d.status === status);
+            }
+            
+            if (startDate) {
+                filteredDiagnoses = filteredDiagnoses.filter(d => 
+                    new Date(d.request_date) >= new Date(startDate)
+                );
+            }
+            
+            if (endDate) {
+                const endDateTime = new Date(endDate);
+                endDateTime.setHours(23, 59, 59, 999);
+                filteredDiagnoses = filteredDiagnoses.filter(d => 
+                    new Date(d.request_date) <= endDateTime
+                );
+            }
+            
+            renderDiagnosesTable(filteredDiagnoses);
+            updateDashboard(filteredDiagnoses);
+        }
+
+        // Delete diagnosis
+        async function deleteDiagnosis(diagnosisId) {
+            if (!confirm('정말로 이 진단 신청을 삭제하시겠습니까?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`tables/diagnosis_requests/${diagnosisId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadDiagnoses(currentPage);
+                } else {
+                    alert('삭제에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Error deleting diagnosis:', error);
+                alert('삭제 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Render pagination
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '<div class="flex space-x-2">';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<button onclick="loadDiagnoses(${currentPage - 1})" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">이전</button>`;
+            }
+            
+            // Page numbers
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                const isActive = i === currentPage;
+                paginationHTML += `
+                    <button onclick="loadDiagnoses(${i})" 
+                            class="px-4 py-2 border rounded-lg ${isActive ? 'bg-blue-600 text-white border-blue-600' : 'border-gray-300 hover:bg-gray-50'}">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<button onclick="loadDiagnoses(${currentPage + 1})" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">다음</button>`;
+            }
+            
+            paginationHTML += '</div>';
+            pagination.innerHTML = paginationHTML;
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                sessionStorage.removeItem('syscare_admin_auth');
+                alert('로그아웃되었습니다.');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

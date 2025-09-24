@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무료 예방 진단 - SYSCARE</title>
+    <meta name="description" content="30분 무료 진단으로 전산 시스템의 위험 요소를 미리 발견하세요. SYSCARE 전문가가 직접 진단합니다.">
+    
+    <!-- Pretendard Font -->
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <!-- CSS Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#solution" class="text-gray-700 hover:text-blue-600 transition-colors">솔루션</a>
+                <a href="booking.html" class="text-gray-700 hover:text-blue-600 transition-colors">예방 점검</a>
+                <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-colors">무료 상담</a>
+                <a href="system-check.html" class="text-gray-700 hover:text-blue-600 transition-colors">상태 확인</a>
+                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
+            </div>
+            <a href="index.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                홈으로
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                        무료 <span class="text-blue-600">예방 진단</span>
+                    </h1>
+                    <p class="text-xl text-gray-700 mb-8">
+                        30분 진단으로 비용 절감 가능성을 확인하세요.
+                    </p>
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fas fa-gift text-blue-600 text-3xl mr-3"></i>
+                            <span class="text-2xl font-bold text-blue-800">완전 무료!</span>
+                        </div>
+                        <p class="text-blue-700">
+                            전문가가 직접 방문하여 현장 진단을 실시합니다. 
+                            어떠한 비용도 발생하지 않으며, 강제 계약도 없습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Process Steps -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">진단 프로세스</h2>
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <span class="text-2xl font-bold text-blue-600">1</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900">신청 접수</h3>
+                            <p class="text-sm text-gray-600">온라인 또는 전화로 진단 신청</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <span class="text-2xl font-bold text-green-600">2</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900">일정 조율</h3>
+                            <p class="text-sm text-gray-600">편리한 시간에 방문 일정 조율</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <span class="text-2xl font-bold text-purple-600">3</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900">현장 진단</h3>
+                            <p class="text-sm text-gray-600">전문가가 직접 방문하여 30분 진단</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <span class="text-2xl font-bold text-orange-600">4</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900">결과 보고</h3>
+                            <p class="text-sm text-gray-600">즉석 결과 설명 및 개선방안 제시</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What We Check -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">진단 항목</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-6 text-gray-900">
+                                <i class="fas fa-server text-blue-600 mr-3"></i>
+                                시스템 인프라
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">서버 상태 점검</h4>
+                                        <p class="text-sm text-gray-600">CPU, 메모리, 디스크 사용률 분석</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">네트워크 구성</h4>
+                                        <p class="text-sm text-gray-600">네트워크 토폴로지 및 성능 분석</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">운영체제</h4>
+                                        <p class="text-sm text-gray-600">OS 버전, 패치 현황 확인</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-6 text-gray-900">
+                                <i class="fas fa-shield-alt text-red-600 mr-3"></i>
+                                보안 및 백업
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">보안 취약점</h4>
+                                        <p class="text-sm text-gray-600">방화벽, 백신, 보안 정책 점검</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">백업 시스템</h4>
+                                        <p class="text-sm text-gray-600">백업 주기, 복구 가능성 테스트</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">데이터 보호</h4>
+                                        <p class="text-sm text-gray-600">중요 데이터 암호화 및 접근 제어</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">진단 후 얻는 것</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl text-center">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-file-alt text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">상세 진단 보고서</h3>
+                            <p class="text-gray-700">현재 시스템 상태와 위험 요소를 정리한 전문 보고서</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl text-center">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-lightbulb text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">맞춤형 개선 방안</h3>
+                            <p class="text-gray-700">회사 규모와 예산에 맞는 실질적인 개선 계획</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl text-center">
+                            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-calculator text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">비용 절감 계획</h3>
+                            <p class="text-gray-700">예방 관리를 통한 구체적인 비용 절감 방안</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Form -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-16">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">무료 진단 신청</h2>
+                        <p class="text-gray-600">아래 정보를 입력하시면 담당자가 연락드려 일정을 조율합니다.</p>
+                    </div>
+                    
+                    <form id="diagnosisForm" class="max-w-2xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">회사명 *</label>
+                                <input type="text" name="company_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">담당자명 *</label>
+                                <input type="text" name="contact_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">연락처 *</label>
+                                <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">이메일 *</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">회사 주소 *</label>
+                            <input type="text" name="company_address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="방문 진단을 위한 회사 주소를 입력해주세요">
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">직원 수</label>
+                                <select name="employees" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">선택하세요</option>
+                                    <option value="1-10">1-10명</option>
+                                    <option value="11-50">11-50명</option>
+                                    <option value="51-100">51-100명</option>
+                                    <option value="100+">100명 이상</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">희망 진단 시기</label>
+                                <select name="preferred_timing" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">선택하세요</option>
+                                    <option value="asap">가능한 빨리</option>
+                                    <option value="this-week">이번 주</option>
+                                    <option value="next-week">다음 주</option>
+                                    <option value="flexible">일정 협의</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">현재 가장 우려되는 부분</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="concerns" value="security" class="mr-2 text-blue-600">
+                                    <span class="text-gray-700">보안 문제</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="concerns" value="backup" class="mr-2 text-blue-600">
+                                    <span class="text-gray-700">백업 및 데이터 손실 우려</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="concerns" value="performance" class="mr-2 text-blue-600">
+                                    <span class="text-gray-700">시스템 성능 저하</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="concerns" value="downtime" class="mr-2 text-blue-600">
+                                    <span class="text-gray-700">예상치 못한 시스템 다운</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="concerns" value="cost" class="mr-2 text-blue-600">
+                                    <span class="text-gray-700">관리 비용 부담</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">추가 요청사항</label>
+                            <textarea name="additional_notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="특별히 점검하고 싶은 부분이나 궁금한 점이 있으시면 적어주세요."></textarea>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <button type="submit" class="bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-lg">
+                                <i class="fas fa-calendar-check mr-2"></i>
+                                무료 진단 신청하기
+                            </button>
+                            <p class="text-sm text-gray-500 mt-4">
+                                * 신청 후 24시간 내에 연락드려 일정을 조율합니다.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- FAQ -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-8 text-center text-gray-900">자주 묻는 질문</h2>
+                    
+                    <div class="space-y-6 max-w-4xl mx-auto">
+                        <div class="border-b border-gray-200 pb-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
+                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                                정말 완전 무료인가요?
+                            </h3>
+                            <p class="text-gray-700 pl-8">
+                                네, 진단 비용은 일체 받지 않습니다. 교통비, 출장비 등 어떠한 비용도 청구하지 않으며, 
+                                진단 후 계약을 강요하지도 않습니다.
+                            </p>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 pb-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
+                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                                진단 시간은 얼마나 걸리나요?
+                            </h3>
+                            <p class="text-gray-700 pl-8">
+                                일반적으로 30분에서 1시간 정도 소요됩니다. 시스템 규모에 따라 차이가 있을 수 있으며, 
+                                정확한 소요시간은 사전 전화 상담 시 안내해드립니다.
+                            </p>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 pb-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
+                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                                어느 지역까지 방문 가능한가요?
+                            </h3>
+                            <p class="text-gray-700 pl-8">
+                                수도권(서울, 경기남부) 및 대전/세종/충청 지역은 무료 방문 진단이 가능하며, 
+                                그 외 지역은 별도 협의를 통해 진행됩니다.
+                            </p>
+                        </div>
+                        
+                        <div class="pb-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
+                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                                진단 결과 보고서는 언제 받을 수 있나요?
+                            </h3>
+                            <p class="text-gray-700 pl-8">
+                                현장에서 즉시 결과를 설명해드리며, 상세한 분석 보고서는 진단 완료 후 
+                                2-3일 내에 이메일로 발송해드립니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-2xl font-bold text-blue-400 mb-4">SYSCARE</div>
+            <p class="text-gray-400 mb-4">복구가 아니라 예방으로 당신의 전산을 지켜드립니다.</p>
+            <div class="text-gray-500">
+                <p>&copy; 2024 SYSCARE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('diagnosisForm');
+        
+        // 전화번호 형식 처리
+        const phoneInput = document.querySelector('input[type="tel"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/[^0-9]/g, '');
+                let formatted = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+                e.target.value = formatted;
+            });
+        }
+        
+        // Formspree로 폼 제출
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+
+            // 로딩 상태 표시
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>처리 중...';
+            button.disabled = true;
+
+            try {
+                // 폼 데이터 수집
+                const formData = new FormData(form);
+
+                // 체크박스 데이터 처리
+                const concerns = Array.from(formData.getAll('concerns'));
+
+                // Formspree 전송용 데이터 준비 (JSON 형태)
+                const payload = {
+                    company_name: formData.get('company_name'),
+                    contact_name: formData.get('contact_name'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email'),
+                    company_address: formData.get('company_address'),
+                    employees: formData.get('employees'),
+                    preferred_timing: formData.get('preferred_timing'),
+                    concerns: concerns.join(', '), // 배열을 문자열로 변환
+                    additional_notes: formData.get('additional_notes') || '',
+                    submitted_at: new Date().toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        timeZone: 'Asia/Seoul'
+                    }),
+                    form_type: 'diagnosis_request'
+                };
+
+                console.log('Sending payload to Formspree:', payload);
+
+                // Method 1: JSON 방식으로 전송 (선호하는 방식)
+                let response = await fetch('https://formspree.io/f/xldprrkd', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // JSON이 실패하면 form-encoded 방식으로 재시도
+                if (!response.ok) {
+                    console.log('JSON submission failed, trying form-encoded...');
+
+                    const formEncodedData = new FormData();
+                    Object.keys(payload).forEach(key => {
+                        formEncodedData.append(key, payload[key]);
+                    });
+
+                    response = await fetch('https://formspree.io/f/xldprrkd', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: formEncodedData
+                    });
+                }
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Formspree response:', result);
+
+                    // 성공 메시지 표시
+                    button.innerHTML = '<i class="fas fa-check mr-2"></i>신청 완료!';
+                    button.className = 'bg-green-600 text-white px-10 py-4 rounded-lg text-xl font-semibold cursor-not-allowed';
+
+                    // 성공 페이지로 리다이렉트 또는 알림 메시지
+                    setTimeout(() => {
+                        if (window.location.pathname.includes('diagnosis.html')) {
+                            window.location.href = 'diagnosis_success.html';
+                        } else {
+                            alert('무료 진단 신청이 정상적으로 접수되었습니다!\n24시간 내에 담당자가 연락드려 일정을 조율하겠습니다.\n연락처: 070-8015-8079');
+                        }
+                    }, 1000);
+
+                    // 폼 초기화
+                    form.reset();
+
+                } else {
+                    const errorText = await response.text();
+                    console.error('Formspree error response:', response.status, errorText);
+                    throw new Error(`서버 응답 오류: ${response.status} - ${errorText}`);
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                button.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>오류 발생';
+                button.className = 'bg-red-600 text-white px-10 py-4 rounded-lg text-xl font-semibold';
+
+                const errorMessage = error.message.includes('fetch')
+                    ? '네트워크 연결을 확인해주세요.'
+                    : `오류 상세: ${error.message}`;
+
+                alert(`진단 신청 중 오류가 발생했습니다.\n${errorMessage}\n\n잠시 후 다시 시도하시거나 전화(070-8015-8079)로 문의해주세요.`);
+
+                // 버튼 상태 복원
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.className = 'bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-lg';
+                    button.disabled = false;
+                }, 3000);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
