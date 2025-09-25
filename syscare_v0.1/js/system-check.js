@@ -1,16 +1,26 @@
 // System Check Assessment JavaScript
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeAssessment();
-});
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeAssessment();
+    });
+}
 
 function initializeAssessment() {
     const form = document.getElementById('systemAssessment');
     const inputs = document.querySelectorAll('.assessment-input, input[type="checkbox"]');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
-    
-    let totalQuestions = 20; // 총 질문 수
+
+    const questionNames = Array.from(new Set(Array.from(inputs)
+        .map(input => input.name)
+        .filter(Boolean)));
+    const totalQuestions = questionNames.length;
+    const completionThreshold = Math.max(1, Math.ceil(totalQuestions * 0.75));
+
+    if (progressText) {
+        progressText.textContent = `0 / ${totalQuestions} 완료`;
+    }
     
     // Track progress
     function updateProgress() {
@@ -23,14 +33,18 @@ function initializeAssessment() {
         
         // Remove duplicates for checkbox groups
         const uniqueNames = [...new Set(filledInputs.map(input => input.name))];
-        const progress = (uniqueNames.length / totalQuestions) * 100;
-        
-        progressBar.style.width = progress + '%';
-        progressText.textContent = `${uniqueNames.length} / ${totalQuestions} 완료`;
-        
+        const progress = totalQuestions === 0 ? 0 : (uniqueNames.length / totalQuestions) * 100;
+
+        if (progressBar) {
+            progressBar.style.width = progress + '%';
+        }
+        if (progressText) {
+            progressText.textContent = `${uniqueNames.length} / ${totalQuestions} 완료`;
+        }
+
         // Enable submit button when all required fields are filled
         const submitBtn = document.getElementById('submitBtn');
-        if (uniqueNames.length >= 15) { // At least 15 questions answered
+        if (uniqueNames.length >= completionThreshold) { // At least 75% questions answered
             submitBtn.disabled = false;
             submitBtn.classList.remove('disabled:bg-gray-400', 'disabled:cursor-not-allowed');
         } else {
@@ -44,6 +58,9 @@ function initializeAssessment() {
         input.addEventListener('change', updateProgress);
         input.addEventListener('input', updateProgress);
     });
+
+    // Initialize progress state on load
+    updateProgress();
     
     // Handle checkbox exclusivity for "none" option in issues
     const issueCheckboxes = document.querySelectorAll('input[name="issues"]');
@@ -376,6 +393,12 @@ function displayResults(results, data) {
             alert(`상세한 분석 리포트가 ${data.email}로 발송되었습니다.`);
         }, 2000);
     }
+}
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = {
+        calculateScore
+    };
 }
 
 function createScoreChart(score) {
