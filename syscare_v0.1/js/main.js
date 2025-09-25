@@ -43,7 +43,7 @@ function initScrollAnimations() {
                 
                 // Animate counters when they come into view
                 if (entry.target.classList.contains('stat-card')) {
-                    animateCounter(entry.target);
+                    animateStatCounter(entry.target);
                 }
             }
         });
@@ -195,50 +195,76 @@ function initSafetyCounter() {
 }
 
 // Number animation function
-function animateNumber(element, start, end, duration) {
+function animateNumber(element, start, end, duration, options = {}) {
     const range = end - start;
     const startTime = performance.now();
-    
+    const { formatter, decimals = 0 } = options;
+
     function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
+
         // Easing function for smooth animation
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(start + (range * easeOutCubic));
-        
-        element.textContent = current.toLocaleString('ko-KR');
-        
+        const currentRaw = start + (range * easeOutCubic);
+
+        let displayValue;
+        if (decimals > 0) {
+            displayValue = parseFloat(currentRaw.toFixed(decimals));
+        } else {
+            displayValue = Math.round(currentRaw);
+        }
+
+        if (formatter) {
+            element.textContent = formatter(displayValue);
+        } else {
+            element.textContent = displayValue.toLocaleString('ko-KR', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            });
+        }
+
         if (progress < 1) {
             requestAnimationFrame(update);
         }
     }
-    
+
     requestAnimationFrame(update);
 }
 
 // Counter animation for statistics
-function animateCounter(element) {
+function animateStatCounter(element) {
     const numberElement = element.querySelector('.text-4xl');
     if (!numberElement) return;
-    
+
     const finalValue = numberElement.textContent;
-    const isPercentage = finalValue.includes('%');
-    const hasPlus = finalValue.includes('+');
-    
-    let numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
-    
-    if (isPercentage) {
-        animateNumber(numberElement, 0, numericValue, 1500);
-        setTimeout(() => {
-            numberElement.textContent = (hasPlus ? '+' : '') + numericValue + '%';
-        }, 1500);
-    } else {
-        animateNumber(numberElement, 0, numericValue, 1500);
-        setTimeout(() => {
-            numberElement.textContent = (hasPlus ? '+' : '') + numericValue + '%';
-        }, 1500);
-    }
+    const numberMatch = finalValue.match(/[+-]?\d[\d.,]*/);
+    if (!numberMatch) return;
+
+    const prefix = finalValue.slice(0, numberMatch.index);
+    const numericPart = numberMatch[0];
+    const suffix = finalValue.slice(numberMatch.index + numericPart.length);
+
+    const normalizedNumber = parseFloat(numericPart.replace(/,/g, ''));
+    if (Number.isNaN(normalizedNumber)) return;
+
+    const hasPlus = numericPart.trim().startsWith('+');
+    const decimalMatch = numericPart.split('.')[1];
+    const decimals = decimalMatch ? decimalMatch.replace(/[^0-9]/g, '').length : 0;
+
+    const formatter = (value) => {
+        const formattedNumber = value.toLocaleString('ko-KR', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
+        const sign = hasPlus && value >= 0 ? '+' : '';
+        return `${prefix}${sign}${formattedNumber}${suffix}`;
+    };
+
+    animateNumber(numberElement, 0, normalizedNumber, 1500, {
+        decimals,
+        formatter
+    });
 }
 
 // CTA Button functionality
@@ -522,10 +548,20 @@ function initThreatAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
-                const target = parseInt(element.dataset.target);
+                const target = parseFloat(element.dataset.target);
+                const start = element.dataset.start ? parseFloat(element.dataset.start) : 0;
+                const decimals = element.dataset.decimals ? parseInt(element.dataset.decimals, 10) : 0;
+                const prefix = element.dataset.prefix || '';
+                const suffix = element.dataset.suffix || '';
+                const showPlus = element.dataset.showPlus === 'true';
 
-                if (target) {
-                    animateCounter(element, 0, target, 2000);
+                if (!Number.isNaN(target) && !Number.isNaN(start)) {
+                    animateCounter(element, start, target, 2000, {
+                        decimals,
+                        prefix,
+                        suffix,
+                        showPlus
+                    });
                     observer.unobserve(element);
                 }
             }
@@ -535,31 +571,40 @@ function initThreatAnimations() {
     counterElements.forEach(el => observer.observe(el));
 }
 
-// Enhanced counter animation
-function animateCounter(element, start, end, duration) {
-    const range = end - start;
+// Enhanced counter animation with formatting options
+function animateCounter(element, start, end, duration, options = {}) {
+    const { prefix = '', suffix = '', decimals = 0, showPlus = false } = options;
+
+    const formatter = (value) => {
+        const formattedNumber = value.toLocaleString('ko-KR', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
+        const sign = showPlus && value > 0 ? '+' : '';
+        return `${prefix}${sign}${formattedNumber}${suffix}`;
+    };
+
+    animateNumber(element, start, end, duration, {
+        decimals,
+        formatter
+    });
+
+    // Add subtle scaling animation for visual feedback
     const startTime = performance.now();
 
-    function update(currentTime) {
+    function updateScale(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
-        // Different easing for different types of counters
-        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(start + (range * easeOutCubic));
-
-        element.textContent = current.toLocaleString('ko-KR');
-
-        // Add visual feedback during animation
         if (progress < 1) {
             element.style.transform = `scale(${1 + 0.1 * Math.sin(progress * Math.PI)})`;
-            requestAnimationFrame(update);
+            requestAnimationFrame(updateScale);
         } else {
             element.style.transform = 'scale(1)';
         }
     }
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(updateScale);
 }
 
 // Urgency elements management
