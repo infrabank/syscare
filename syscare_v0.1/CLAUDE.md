@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SYSCARE is a Korean IT system management service landing page focused on prevention rather than recovery ("복구가 아니라, 애초에 막는 게 전산의 일입니다"). It's a static website built with HTML5, CSS3, and vanilla JavaScript, using Tailwind CSS for styling and Chart.js for data visualization.
+SYSCARE is a Korean IT system management service landing page focused on prevention rather than recovery ("복구가 아니라, 애초에 막는 게 전산의 일입니다"). Static website built with HTML5, CSS3, vanilla JavaScript, Tailwind CSS, and Chart.js.
 
 ## Development Commands
 
-This project requires no build process - it's pure HTML/CSS/JS ready for static hosting.
+No build process required - pure static HTML/CSS/JS.
 
 ### Local Development
 ```bash
@@ -18,144 +18,263 @@ npx serve .
 # Then open http://localhost:8000
 ```
 
-### Testing
-- Manual browser testing across devices required
-- Test all form submissions with both Formspree and RESTful API backends
-- Validate responsive design at breakpoints: 768px (tablet), 1024px (desktop)
-- Test admin dashboard CRUD operations with RESTful Table API
-- Verify Chart.js visualizations render correctly across browsers
+### Testing Checklist
+- Form submissions: Test both Formspree and REST API backends complete successfully
+- Responsive design: Validate at 768px (tablet) and 1024px (desktop) breakpoints
+- Admin dashboard: Test all CRUD operations (GET, POST, PATCH, DELETE) against RESTful Table API
+- Chart.js: Verify cost comparison and risk analysis charts render correctly
+- Cross-browser: Chrome, Safari, Firefox, Edge
 
 ## Architecture & Key Files
 
-### Core Pages (Conversion Flow)
-- `index.html` - Main landing page with hero section and Chart.js cost comparison
-- `diagnosis.html` - Primary CTA target with unified diagnosis form (main conversion funnel)
-- `diagnosis_success.html` - Conversion success page
-- `system-check.html` - Interactive 20-question assessment tool with risk analysis and Chart.js visualization
+### Conversion Flow (Active Pages)
+- **index.html** - Main landing page with hero section and Chart.js cost comparison chart
+- **diagnosis.html** - **PRIMARY CONVERSION FUNNEL** - All major CTAs lead here (unified diagnosis form)
+- **diagnosis_success.html** - Post-submission success page
+- **system-check.html** - Interactive 20-question self-assessment with risk scoring and Chart.js visualization
 
-### Admin & Management
-- `admin-bookings.html` - Full CRUD dashboard for managing diagnosis requests with RESTful Table API
-- `security-report-sample.html` - Sample report for customer trust building (PDF-ready)
-- `regular-checkup.html` - Service pricing page
+### Admin & Support Pages
+- **admin-bookings.html** - Full CRUD dashboard for managing diagnosis requests via RESTful Table API
+- **security-report-sample.html** - Sample security report (PDF-ready) for customer trust building
+- **regular-checkup.html** - Service pricing page
 
-### Legacy Pages (No Longer Used)
-- `booking.html` - Legacy booking form (replaced by unified diagnosis.html)
-- `consultation.html` - Legacy consultation form (replaced by unified diagnosis.html)
+### Legacy Pages (DO NOT USE)
+- ~~booking.html~~ - Replaced by diagnosis.html
+- ~~consultation.html~~ - Replaced by diagnosis.html
 
 ### Core Assets
-- `css/style.css` - Custom animations and component styles
-- `js/main.js` - Landing page functionality and Chart.js integration
-- `js/system-check.js` - Assessment tool logic with progress tracking
+- **css/style.css** - Custom animations, ripple effects, brand-specific component styles
+- **js/main.js** - Landing page functionality, Chart.js integration, scroll animations, counter animations
+- **js/system-check.js** - Assessment tool logic with progress tracking and score calculation
 
 ## Technical Stack
 
 ### Dependencies (CDN-based)
-- **Tailwind CSS**: Main styling framework via CDN
-- **Chart.js**: Cost comparison and risk analysis visualizations
-- **Font Awesome 6.4.0**: Icons throughout the interface
-- **Pretendard Font**: Korean-optimized typography
+- **Tailwind CSS** - Main styling framework (CDN config in each HTML file)
+- **Chart.js** - Data visualizations (cost comparison bar charts, risk analysis charts)
+- **Font Awesome 6.4.0** - Icons
+- **Pretendard Font** - Korean-optimized web font
 
-### Backend Integration
-- **Formspree**: Form handling (endpoints: xldprrkd, xeqyrkrw) for backup form submission
-- **RESTful Table API**: Primary backend for admin dashboard data persistence
-  - Base URL: Use environment-specific API endpoints
-  - Tables: `diagnosis_requests` (active), `booking_requests` (legacy)
-  - Full CRUD operations: GET, POST, PATCH, DELETE
-  - Dual submission strategy: Forms submit to both Formspree and REST API for reliability
+### Backend Integration - Dual Submission Strategy
 
-## Business Logic Patterns
+**IMPORTANT**: All forms use dual submission for reliability:
+
+1. **Formspree** (Backup/Email notification)
+   - Primary endpoint: `https://formspree.io/f/xldprrkd` (diagnosis form)
+   - Secondary endpoint: `https://formspree.io/f/xeqyrkrw` (legacy forms)
+
+2. **RESTful Table API** (Primary data storage for admin dashboard)
+   - Base URL: Relative paths from document root (e.g., `tables/diagnosis_requests`)
+   - Active table: `diagnosis_requests`
+   - Legacy table: `booking_requests` (no longer used)
+   - Operations: GET (with filters), POST, PATCH, DELETE
+   - No authentication shown in code (likely handled via API key in production)
+
+### Form Submission Pattern
+```javascript
+// Standard dual submission pattern used across the site
+try {
+  // 1. Submit to Formspree for email notification
+  await fetch('https://formspree.io/f/xldprrkd', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  // 2. Submit to REST API for admin dashboard
+  await fetch('tables/diagnosis_requests', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  });
+} catch (error) {
+  // Fallback: Retry Formspree if REST API fails
+}
+```
+
+## Business Logic & Data Flow
 
 ### Unified CTA Strategy
-All major call-to-actions lead to `diagnosis.html` - this is the primary conversion funnel. Maintain this pattern when adding new features.
+**CRITICAL**: All major call-to-actions throughout the site lead to `diagnosis.html` - this is the single conversion funnel. Do NOT create new booking/consultation forms. Maintain this consolidated approach when adding features.
 
-### Status Workflow (Admin Dashboard)
-Diagnosis requests follow 4-stage workflow:
-1. `신청접수` (Application Received)
-2. `일정조율` (Scheduling)
-3. `진단예정` (Diagnosis Scheduled)
-4. `진단완료` (Diagnosis Complete)
+### Admin Dashboard Workflow
+Diagnosis requests move through 4 stages:
+1. **신청접수** (Application Received) - Initial submission
+2. **일정조율** (Scheduling) - Coordinating visit time
+3. **진단예정** (Diagnosis Scheduled) - Appointment confirmed
+4. **진단완료** (Diagnosis Complete) - Visit completed
 
-### Data Schema (Active)
+### Data Schema - diagnosis_requests
 ```javascript
-diagnosis_requests {
+{
+  id: auto-generated,
   company_name: string,
   contact_name: string,
   phone: string,
   email: string,
   company_address: string,
-  employees: string,
-  preferred_timing: string,
-  concerns: array,
+  employees: string (e.g., "10-50명"),
+  preferred_timing: string (e.g., "이번 주 내"),
+  concerns: array (e.g., ["보안 취약점", "백업 문제"]),
   additional_notes: text,
-  status: enum
+  status: enum ("신청접수"|"일정조율"|"진단예정"|"진단완료"),
+  created_at: timestamp (auto),
+  updated_at: timestamp (auto)
 }
 ```
 
 ## Code Conventions
 
 ### Language Strategy
-- **Interface Text**: Korean (all user-facing content)
-- **Code/Variables**: English (HTML attributes, CSS classes, JavaScript)
-- **Comments**: Korean for business logic, English for technical implementation
+- **User-facing text**: 100% Korean (buttons, labels, headings, descriptions)
+- **Code (variables, functions, classes)**: English
+- **HTML attributes/CSS classes**: English
+- **Comments**: Korean for business logic explanations, English for technical implementation notes
+
+### JavaScript Architecture
+- Vanilla ES6+ JavaScript (no frameworks)
+- Progressive enhancement (core functionality works without JS)
+- Chart.js initialized in `initCostChart()` with custom Korean labels and tooltips
+- Intersection Observer API for scroll animations and lazy loading
+- Counter animations use `requestAnimationFrame` with easeOutCubic easing
 
 ### CSS Architecture
-- Utility-first approach with Tailwind CSS
-- Custom animations in `style.css` for brand-specific interactions
-- Mobile-first responsive design with consistent breakpoints
+- Tailwind CSS utility-first approach (inline classes)
+- Custom animations in `css/style.css`:
+  - `.fade-in-up` - Scroll-triggered entrance animations
+  - Ripple effects for button interactions
+  - Smooth hover transforms and shadows
+- Mobile-first responsive design
+- Consistent breakpoints: `md:` (768px), `lg:` (1024px)
 
-### JavaScript Patterns
-- Vanilla JS with modern ES6+ features
-- Progressive enhancement (functionality works without JS)
-- Chart.js for all data visualizations
-- Form validation on both client and server side
+### Main.js Module Pattern
+```javascript
+// All functions initialized on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+  initNavigation();        // Scrolled nav background
+  initScrollAnimations();  // Intersection Observer for cards
+  initCostChart();         // Chart.js cost comparison
+  initSafetyCounter();     // Animated day counter
+  initCTAButtons();        // Ripple effects
+  initMobileMenu();        // Mobile hamburger menu
+  initSmoothScrolling();   // Anchor link scrolling
+  initPerformanceOptimizations(); // Lazy loading
+  initRealTimeCounters();  // Live threat counters
+  initCountdownTimer();    // Limited offer timer
+  initThreatAnimations();  // Threat status animations
+  initUrgencyElements();   // Exit intent detection
+});
+```
 
 ## Key Business Requirements
 
 ### Contact Information
-- Phone: 070-8015-8079
-- Email: jhw@mlkit.co.kr
-- Service Area: 수도권/세종시 (free on-site visits)
+- Phone: **070-8015-8079**
+- Email: **jhw@mlkit.co.kr**
+- Service Area: 수도권/세종시 (free on-site diagnostic visits)
 
-### Value Proposition
-Prevention cost (100만원) vs Recovery cost (300만원) - maintain this 1/3 cost advantage messaging throughout the site.
+### Core Value Proposition
+**Prevention vs Recovery Cost Ratio**: Maintain the "1/3 cost" messaging throughout the site:
+- Recovery cost: 300만원 (shown in red)
+- Prevention cost: 100만원 (shown in green)
+- Chart.js visualization shows this comparison on index.html
 
-### Conversion Tracking
-All forms submit to dual backends (Formspree + REST API) for reliability and admin management.
+### Chart.js Implementation
+Two main chart types used:
+1. **Cost Comparison** (index.html) - Bar chart showing 300만원 vs 100만원
+2. **Risk Analysis** (system-check.html) - Radar/bar chart showing security assessment scores
+
+## Design System
+
+### Color Palette
+```css
+/* Primary Brand Colors */
+--blue-primary: #3b82f6;
+--blue-dark: #1e3a8a;
+--blue-light: #60a5fa;
+
+/* Status Colors */
+--success: #22c55e;
+--error: #ef4444;
+--warning: #8b5cf6;
+
+/* Neutrals */
+--gray-dark: #374151;
+--gray-medium: #6b7280;
+--gray-light: #f3f4f6;
+```
+
+### Animation Patterns
+- **Scroll animations**: Fade-in-up with Intersection Observer (100ms stagger)
+- **Button hovers**: `transform: translateY(-2px)` + shadow increase
+- **Counters**: easeOutCubic easing from 0 to target value over 2000ms
+- **Ripples**: Circular expand animation on button click (600ms duration)
+
+## Admin Dashboard Implementation
+
+### CRUD Operations Pattern
+```javascript
+// GET - List with filters
+fetch('tables/diagnosis_requests?page=1&limit=50&sort=created_at')
+
+// POST - Create new
+fetch('tables/diagnosis_requests', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(diagnosisData)
+})
+
+// PATCH - Update status
+fetch(`tables/diagnosis_requests/${id}`, {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ status: '진단완료' })
+})
+
+// DELETE - Remove entry
+fetch(`tables/diagnosis_requests/${id}`, {
+  method: 'DELETE'
+})
+```
+
+### Dashboard Features
+- Real-time statistics cards (total, pending, completed, today)
+- Status filter dropdown + date range filters
+- Pagination (50 records per page)
+- CSV export for Google Sheets integration
+- Modal detail view with full request information
+- Inline status updates with color-coded badges
 
 ## Performance Considerations
 
-- All external resources load from fast CDNs (jsDelivr, Google Fonts)
-- Minimize JavaScript execution on page load
-- Optimize images for Korean market (faster loading in Korea)
-- Maintain Lighthouse scores above 90 for all core pages
-- Chart.js animations are optimized for mobile performance
-- Admin dashboard uses pagination for large datasets
+- All external resources from CDNs (jsDelivr for Pretendard, Font Awesome CDN)
+- Chart.js uses `maintainAspectRatio: false` for responsive sizing
+- Lazy image loading via Intersection Observer
+- Minimal JavaScript execution on initial page load
+- Mobile-optimized Chart.js animations (reduced motion on small screens)
+- Admin dashboard pagination prevents loading thousands of records
 
-## Color Palette & Design System
+## Common Maintenance Tasks
 
-### Primary Colors
-- **Blue Gradient**: #3b82f6, #1e3a8a, #60a5fa (main brand colors)
-- **Success Green**: #22c55e
-- **Error Red**: #ef4444
-- **Warning Purple**: #8b5cf6
-- **Neutral Grays**: #374151, #6b7280, #f3f4f6
+### Adding a New Form Field to diagnosis.html
+1. Add HTML input in diagnosis.html form
+2. Update form submission handler to include new field in JSON payload
+3. Update admin-bookings.html detail modal to display new field
+4. Update data schema documentation above
 
-### Animation Standards
-- **Scroll Animations**: fade-in-up effects using Intersection Observer
-- **Hover Effects**: transform and shadow transitions on cards/buttons
-- **Counter Animations**: easeOutCubic easing for numerical displays
-- **Ripple Effects**: Custom button interaction animations
+### Modifying Chart.js Visualizations
+- Cost comparison chart config: `js/main.js` - `initCostChart()`
+- Risk analysis chart: `js/system-check.js` - search for `new Chart()`
+- Always use Korean labels and format numbers with `toLocaleString('ko-KR')`
 
-## Form Integration Details
+### Changing CTA Destinations
+- All major CTAs point to `diagnosis.html` (青diagnosis icon: `fa-stethoscope`)
+- Update href attributes: `<a href="diagnosis.html">무료 예방 진단 받기</a>`
+- Modal handlers in `js/main.js` - `handleCTAClick()` function
 
-### Formspree Configuration
-- Primary endpoint: `xldprrkd` (diagnosis form)
-- Secondary endpoint: `xeqyrkrw` (fallback/legacy forms)
-- All forms implement dual submission for reliability
-
-### RESTful Table API Schema
-- **GET /tables/diagnosis_requests**: Retrieve diagnosis requests with filtering
-- **POST /tables/diagnosis_requests**: Create new diagnosis request
-- **PATCH /tables/diagnosis_requests/{id}**: Update request status/details
-- **DELETE /tables/diagnosis_requests/{id}**: Remove diagnosis request
-- **CSV Export**: Admin dashboard supports Google Sheets integration
+### Updating Contact Information
+Files to update when contact details change:
+- index.html (footer, contact section)
+- diagnosis.html (support info)
+- admin-bookings.html (emergency contact)
+- security-report-sample.html (24/7 support section)
