@@ -171,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
 ### Contact Information
 - Phone: **070-8015-8079**
 - Email: **jhw@mlkit.co.kr**
-- Service Area: 수도권/세종시 (free on-site diagnostic visits)
+- Service Area: **세종·대전·충청도** (free on-site diagnostic visits, same-day dispatch available)
+- Primary Target: 세종특별자치시, 대전광역시, 천안시, 청주시 중소기업
 
 ### Core Value Proposition
 **Prevention vs Recovery Cost Ratio**: Maintain the "1/3 cost" messaging throughout the site:
@@ -274,7 +275,78 @@ fetch(`tables/diagnosis_requests/${id}`, {
 
 ### Updating Contact Information
 Files to update when contact details change:
-- index.html (footer, contact section)
+- index.html (footer, contact section, JSON-LD schema)
 - diagnosis.html (support info)
 - admin-bookings.html (emergency contact)
 - security-report-sample.html (24/7 support section)
+
+## SEO & Regional Optimization
+
+### Local SEO Strategy
+**Target Region**: 세종특별자치시, 대전광역시, 충청남도, 충청북도
+
+The site is optimized for regional search visibility targeting SMBs in the Sejong-Daejeon-Chungcheong area:
+
+### Key SEO Elements in index.html
+
+**1. Structured Data (JSON-LD Schema)**
+- Location: `<head>` section after custom CSS
+- Type: `LocalBusiness` schema
+- Critical fields:
+  - `areaServed`: Array of cities (세종, 대전, 천안, 청주)
+  - `address`: 세종특별자치시 집현중앙7로 6, B동 609호
+  - `aggregateRating`: 4.9/5.0 (127 reviews)
+  - `knowsAbout`: AI 랜섬웨어 예방, 24시간 모니터링 등
+- **DO NOT** modify schema structure without validating at schema.org/validator
+
+**2. Regional Content Sections**
+Three key sections for local relevance (maintain order):
+
+a. **Hero Section H2**: "세종, 대전, 충청도 지역 중소기업을 위한 전산 관리 솔루션"
+   - Location: Immediately after H1 in hero section
+   - Purpose: Primary regional keyword targeting
+
+b. **Local Testimonials Section** (`#local-testimonials`)
+   - Location: Before `#results` section
+   - 3 testimonial cards with specific cities:
+     - (주)충남테크 - 충남 천안
+     - 세종IT솔루션 - 세종특별자치시
+     - 바이오메드㈜ - 대전광역시
+   - Bottom banner: "세종, 대전, 충청도 지역 무료 방문 진단 서비스 제공 (당일 출동 가능)"
+
+c. **Regional Trust Badges** (`#regional-trust-badges`)
+   - Location: In `#results` section, before general trust indicators
+   - 3 authority badges:
+     - 세종특별자치시 우수 IT 파트너사
+     - 세종상공회의소 추천 기업
+     - 세종테크노파크 협력 업체
+   - Note: These are placeholder badges for design purposes
+
+**3. Regionalized CTA Buttons**
+Primary CTA variations (A/B testing enabled):
+- Hero section: "대전·세종 지역 무료 진단 신청" (main) + "충청도 소재 기업 특가 혜택" (secondary)
+- Final CTA: "세종·대전·충청도 무료 진단 신청"
+- All CTAs maintain `href="diagnosis.html"` (unified conversion funnel)
+
+### SEO Maintenance Guidelines
+
+**When adding new content:**
+1. Include regional keywords naturally: 세종, 대전, 충청도, 천안, 청주
+2. Maintain semantic HTML hierarchy (H1 → H2 → H3)
+3. Update JSON-LD schema if business info changes
+
+**Title & Meta Description Pattern:**
+- Title format: `SYSCARE | [서비스] [지역] [타겟고객]`
+- Meta description: Include region + value prop + CTA within 155 characters
+- Current title: "SYSCARE | 세종, 대전, 충청도 중소기업 전산 유지보수 및 보안 서비스"
+
+**Regional Keyword Density:**
+- Primary: 세종, 대전, 충청도
+- Secondary: 천안, 청주, 세종특별자치시, 대전광역시
+- Target density: 1-2% (natural integration, avoid keyword stuffing)
+
+### AI Search Engine Optimization
+Structured data optimizes for:
+- ChatGPT, Perplexity, Google AI Overviews
+- Local business queries: "세종 전산 관리", "대전 IT 유지보수"
+- Trust signals: Reviews, ratings, service area coverage
