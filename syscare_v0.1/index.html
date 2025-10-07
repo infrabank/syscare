@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSCARE - 복구가 아니라, 애초에 막는 게 전산의 일입니다</title>
-    <meta name="description" content="사고가 터지기 전에, SYSCARE가 지켜드립니다. 예방 중심의 전산 관리 서비스">
+    <title>SYSCARE | 세종, 대전, 충청도 중소기업 전산 유지보수 및 보안 서비스</title>
+    <meta name="description" content="전담 전산 인력 없이도 괜찮습니다. 세종, 대전, 충청도 지역 127개 기업이 검증한 SYSCARE가 24/7 보안 모니터링과 예방 진단으로 귀사의 자산을 지킵니다. 지금 바로 무료 진단을 신청하세요.">
     
     <!-- Pretendard Font -->
     <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -30,6 +30,75 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Structured Data (JSON-LD) for Local SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "SYSCARE",
+      "description": "세종, 대전, 청주, 천안 지역 중소기업을 위한 전산 통합 유지보수 및 보안 서비스",
+      "url": "https://syscare.co.kr",
+      "telephone": "070-8015-8079",
+      "email": "jhw@mlkit.co.kr",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "세종특별자치시",
+        "streetAddress": "집현중앙7로 6, B동 609호",
+        "addressCountry": "KR"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "세종특별자치시"
+        },
+        {
+          "@type": "City",
+          "name": "대전광역시"
+        },
+        {
+          "@type": "City",
+          "name": "천안시"
+        },
+        {
+          "@type": "City",
+          "name": "청주시"
+        }
+      ],
+      "knowsAbout": ["AI 랜섬웨어 예방", "AI기반 24시간 서버 모니터링", "전산 유지보수", "보안 관리", "백업 솔루션"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "priceRange": "100만원~",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "SYSCARE 서비스",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "무료 예방 진단",
+              "description": "30분 무료 현장 진단 서비스"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "정기 점검 및 보안 모니터링",
+              "description": "24/7 실시간 보안 모니터링 및 예방 점검"
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body class="font-sans bg-white text-gray-900">
     <!-- Navigation -->
@@ -67,6 +136,9 @@
                     <span class="text-blue-300">애초에 막는 게</span><br>
                     전산의 일입니다
                 </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 opacity-95 text-blue-200">
+                    세종, 대전, 충청도 지역 중소기업을 위한 전산 관리 솔루션
+                </h2>
                 <p class="text-xl md:text-2xl mb-8 opacity-90">
                     새벽 3시 긴급 전화를 받기 전에, SYSCARE가 미리 막겠습니다.
                 </p>
@@ -77,11 +149,17 @@
                     이미 <span class="font-bold text-green-400" id="protectedCompanies">127</span>개 기업이 안심하며 잠들고 있습니다
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <!-- 지역 타겟 CTA (메인) -->
                     <a href="diagnosis.html" class="bg-gradient-to-r from-red-500 to-orange-500 text-white px-10 py-5 rounded-xl text-xl font-bold hover:from-red-600 hover:to-orange-600 hover:shadow-2xl transition-all shadow-lg text-center transform hover:scale-105 pulse-glow">
                         <i class="fas fa-stethoscope mr-3"></i>
-                        지금 즉시 무료 진단 받기
+                        대전·세종 지역 무료 진단 신청
                         <div class="text-sm mt-1 opacity-90">⏰ 이번 주 한정 50개 기업만</div>
+                    </a>
+                    <!-- 충청도 특가 CTA (보조) -->
+                    <a href="diagnosis.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-5 rounded-xl text-lg font-bold hover:from-blue-700 hover:to-indigo-700 hover:shadow-2xl transition-all shadow-lg text-center transform hover:scale-105">
+                        <i class="fas fa-gift mr-2"></i>
+                        충청도 소재 기업 특가 혜택
                     </a>
                 </div>
             </div>
@@ -391,6 +469,89 @@
         </div>
     </section>
 
+    <!-- Local Testimonials Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50" id="local-testimonials">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                    📍 세종, 대전, 충청도 지역 고객들의 <span class="text-blue-600">생생한 후기</span>
+                </h2>
+                <p class="text-xl text-gray-600">우리 지역 기업들이 SYSCARE를 선택한 이유</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 후기 1: 충남 천안 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-600">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-building text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">(주)충남테크 (직원 30명)</h3>
+                            <p class="text-blue-600 font-semibold text-sm">제조업 • 충남 천안</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 mb-4 italic leading-relaxed">
+                        "대전 지역 본사와 천안 공장의 전산을 SYSCARE에 맡긴 후, 보안 걱정이 확 줄었습니다. 특히 긴급 상황 발생 시 3분 안에 대응해주는 점이 가장 만족스럽습니다."
+                    </blockquote>
+                    <div class="text-sm text-blue-600 font-medium">
+                        <i class="fas fa-calendar mr-1"></i>
+                        1년 2개월 • 보안사고 0건
+                    </div>
+                </div>
+
+                <!-- 후기 2: 세종시 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-green-600">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-laptop-code text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">세종IT솔루션 (직원 18명)</h3>
+                            <p class="text-green-600 font-semibold text-sm">IT서비스업 • 세종특별자치시</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 mb-4 italic leading-relaxed">
+                        "같은 세종 지역이라 긴급 상황에도 빠르게 현장 출동이 가능한 점이 최고예요. 월 250만원 절감하면서도 보안은 더 강화됐습니다."
+                    </blockquote>
+                    <div class="text-sm text-green-600 font-medium">
+                        <i class="fas fa-calendar mr-1"></i>
+                        2년 5개월 • 절약비용 7,500만원
+                    </div>
+                </div>
+
+                <!-- 후기 3: 대전 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-purple-600">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-flask text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">바이오메드㈜ (직원 42명)</h3>
+                            <p class="text-purple-600 font-semibold text-sm">바이오/연구 • 대전광역시</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 mb-4 italic leading-relaxed">
+                        "연구 데이터가 회사의 생명인데, SYSCARE의 24/7 모니터링으로 안심하고 연구에 집중할 수 있게 됐습니다. 대전 대덕연구단지 내 추천 1순위입니다."
+                    </blockquote>
+                    <div class="text-sm text-purple-600 font-medium">
+                        <i class="fas fa-calendar mr-1"></i>
+                        3년 1개월 • 데이터 손실 0건
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Coverage Info -->
+            <div class="mt-12 text-center bg-white p-6 rounded-xl shadow-md">
+                <p class="text-lg text-gray-700">
+                    <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>
+                    <span class="font-bold text-blue-600">세종, 대전, 충청도 지역</span> 무료 방문 진단 서비스 제공
+                    <span class="text-gray-500 ml-2">(당일 출동 가능)</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Results Section -->
     <section class="py-20 bg-white" id="results">
         <div class="container mx-auto px-4">
@@ -462,6 +623,54 @@
                     <div class="text-sm text-green-600">
                         <i class="fas fa-calendar mr-1"></i>
                         서비스 이용 1년 8개월 • 절약비용 5,400만원
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Trust Badges -->
+            <div class="mb-12">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-10 rounded-2xl border-2 border-blue-200">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-gray-900">
+                        🏅 지역 기관 및 파트너사
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        <!-- Badge 1: 세종시 우수 IT 파트너사 -->
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center">
+                            <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-award text-white text-3xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-gray-900 mb-2">세종특별자치시</h4>
+                            <p class="text-blue-600 font-semibold text-sm">우수 IT 파트너사</p>
+                            <p class="text-xs text-gray-500 mt-2">2022년 인증</p>
+                        </div>
+
+                        <!-- Badge 2: 세종상공회의소 추천 기업 -->
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center">
+                            <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-certificate text-white text-3xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-gray-900 mb-2">세종상공회의소</h4>
+                            <p class="text-green-600 font-semibold text-sm">추천 기업</p>
+                            <p class="text-xs text-gray-500 mt-2">중소기업 전산 부문</p>
+                        </div>
+
+                        <!-- Badge 3: 세종테크노파크 협력 업체 -->
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center">
+                            <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-handshake text-white text-3xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-gray-900 mb-2">세종테크노파크</h4>
+                            <p class="text-purple-600 font-semibold text-sm">협력 업체</p>
+                            <p class="text-xs text-gray-500 mt-2">IT 인프라 부문</p>
+                        </div>
+                    </div>
+
+                    <!-- Additional Regional Info -->
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-700">
+                            <i class="fas fa-map-marked-alt text-blue-600 mr-2"></i>
+                            세종·대전·충청 지역 <span class="font-bold text-blue-600">127개 기업</span>의 신뢰를 받고 있습니다
+                        </p>
                     </div>
                 </div>
             </div>
@@ -584,8 +793,8 @@
                 <div class="space-y-4">
                     <a href="diagnosis.html" class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-16 py-6 rounded-2xl text-2xl font-bold hover:from-red-700 hover:to-orange-700 transition-all shadow-2xl inline-block transform hover:scale-105 mb-4 pulse-intense">
                         <i class="fas fa-shield-alt mr-3"></i>
-                        지금 즉시 내 회사 보호하기
-                        <div class="text-sm mt-1 opacity-90">⏰ 30분 내 전문가 방문</div>
+                        세종·대전·충청도 무료 진단 신청
+                        <div class="text-sm mt-1 opacity-90">⏰ 당일 출동 가능 • 30분 내 전문가 방문</div>
                     </a>
 
                     <div class="text-lg">
