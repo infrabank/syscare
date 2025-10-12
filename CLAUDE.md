@@ -108,5 +108,44 @@ When adding tests for new features in `syscare_v0.1/`:
   - Admin dashboard CRUD operations
   - SEO and regional optimization strategy
   - Complete file structure and page descriptions
+  - **Analytics & Performance Tracking** (GA4, Search Console setup and monitoring)
 - Tests use CommonJS (`require`) while production code uses ES6 modules
 - Test data should reflect real-world Korean business scenarios
+
+## Analytics Implementation
+
+### Status: ✅ Fully Implemented (2025-01-15)
+
+The SYSCARE website now has comprehensive analytics tracking:
+
+**Google Analytics 4 (GA4)**:
+- Tracking code installed in all HTML files
+- Custom events: `generate_lead`, `cta_click`, `assessment_completed`, `form_submit_start`
+- Enhanced measurement enabled for form interactions, scrolls, outbound clicks
+- Location: `syscare_v0.1/` - all HTML files have GA4 in `<head>` section
+
+**Google Search Console**:
+- Verification meta tag ready in all HTML files (replace placeholder with actual code)
+- [sitemap.xml](syscare_v0.1/sitemap.xml) created with all active pages
+- [robots.txt](syscare_v0.1/robots.txt) configured to exclude admin/legacy pages
+
+**Key Files Modified**:
+- `syscare_v0.1/index.html` - GA4 + GSC verification tag added
+- `syscare_v0.1/diagnosis.html` - GA4 + conversion tracking (`generate_lead`)
+- `syscare_v0.1/system-check.html` - GA4 tracking
+- `syscare_v0.1/js/main.js` - CTA click tracking added to `initCTAButtons()`
+- `syscare_v0.1/js/system-check.js` - Assessment completion tracking in `processAssessment()`
+- All other HTML files updated with GA4 + GSC tags
+
+**Next Steps** (After deployment):
+1. Create GA4 property at [analytics.google.com](https://analytics.google.com)
+2. Replace `G-XXXXXXXXXX` with actual Measurement ID in all HTML files
+3. Enable Enhanced Measurement in GA4 console
+4. Mark `generate_lead` as conversion event in GA4
+5. Verify site ownership in [Google Search Console](https://search.google.com/search-console)
+6. Replace `PASTE_YOUR_VERIFICATION_CODE_HERE` with actual GSC verification code
+7. Submit sitemap: `https://yourdomain.com/sitemap.xml` to GSC
+
+**Documentation**:
+- [ANALYTICS_IMPLEMENTATION_GUIDE.md](ANALYTICS_IMPLEMENTATION_GUIDE.md) - Complete setup and optimization guide
+- [syscare_v0.1/CLAUDE.md](syscare_v0.1/CLAUDE.md) - Analytics section with technical details

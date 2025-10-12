@@ -24,7 +24,24 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2000F04S4D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2000F04S4D', {
+        'send_page_view': true,
+        'allow_google_signals': true,
+        'allow_enhanced_conversions': true
+      });
+    </script>
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="PASTE_YOUR_VERIFICATION_CODE_HERE" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -397,6 +414,15 @@
             button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>처리 중...';
             button.disabled = true;
 
+            // GA4 이벤트 전송 - 폼 제출 시작
+            if (typeof gtag === 'function') {
+                gtag('event', 'form_submit_start', {
+                    'event_category': 'form_interaction',
+                    'event_label': 'diagnosis_form',
+                    'form_type': 'diagnosis_request'
+                });
+            }
+
             try {
                 // 폼 데이터 수집
                 const formData = new FormData(form);
@@ -459,6 +485,17 @@
                 if (response.ok) {
                     const result = await response.json();
                     console.log('Formspree response:', result);
+
+                    // GA4 전환 이벤트 전송 - 진단 신청 완료
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'conversion',
+                            'event_label': 'diagnosis_form_submission',
+                            'value': 1,
+                            'currency': 'KRW',
+                            'form_type': 'diagnosis_request'
+                        });
+                    }
 
                     // 성공 메시지 표시
                     button.innerHTML = '<i class="fas fa-check mr-2"></i>신청 완료!';

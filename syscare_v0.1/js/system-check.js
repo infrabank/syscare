@@ -96,7 +96,7 @@ function initializeAssessment() {
 function processAssessment() {
     const formData = new FormData(document.getElementById('systemAssessment'));
     const data = {};
-    
+
     // Process form data
     for (let [key, value] of formData.entries()) {
         if (data[key]) {
@@ -109,9 +109,21 @@ function processAssessment() {
             data[key] = value;
         }
     }
-    
+
     // Calculate score and generate results
     const results = calculateScore(data);
+
+    // GA4 이벤트 전송 - 전산 상태 확인 완료
+    if (typeof gtag === 'function') {
+        gtag('event', 'assessment_completed', {
+            'event_category': 'engagement',
+            'event_label': 'system_check',
+            'risk_level': results.riskLevel,
+            'score': results.score,
+            'has_contact_info': !!(data.phone && data.email)
+        });
+    }
+
     displayResults(results, data);
 }
 

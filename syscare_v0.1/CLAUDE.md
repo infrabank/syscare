@@ -350,3 +350,245 @@ Structured data optimizes for:
 - ChatGPT, Perplexity, Google AI Overviews
 - Local business queries: "세종 전산 관리", "대전 IT 유지보수"
 - Trust signals: Reviews, ratings, service area coverage
+
+---
+
+## Analytics & Performance Tracking
+
+### Google Analytics 4 (GA4) Implementation
+
+**Setup Status**: ✅ Implemented (2025-01-15)
+
+#### Tracking Code Location
+GA4 tracking code installed in `<head>` section of all HTML files:
+- index.html, diagnosis.html, system-check.html
+- diagnosis_success.html, regular-checkup.html
+- security-report-sample.html, admin-bookings.html
+
+**Measurement ID**: `G-XXXXXXXXXX` (replace with actual ID from GA4 console)
+
+#### Core Events Tracked
+
+**1. Conversion Events (Primary)**
+- `generate_lead` - Diagnosis form submission (diagnosis.html)
+  - Triggers: On successful Formspree submission
+  - Parameters: event_category, event_label, value, currency, form_type
+  - Location: diagnosis.html inline script (line ~490)
+
+**2. Engagement Events**
+- `cta_click` - CTA button clicks to diagnosis.html
+  - Triggers: Click on any `<a href="diagnosis.html">` link
+  - Parameters: event_label (button text), button_location (section ID)
+  - Location: js/main.js - `initCTAButtons()` function
+
+- `assessment_completed` - System check completion
+  - Triggers: After calculateScore() in system-check.js
+  - Parameters: risk_level, score, has_contact_info
+  - Location: js/system-check.js - `processAssessment()` function
+
+- `form_submit_start` - Diagnosis form submission initiated
+  - Triggers: On form submit (before API call)
+  - Location: diagnosis.html inline script (line ~418)
+
+**3. Automatic Events (Enhanced Measurement)**
+Enable in GA4 console:
+- Page views (automatic)
+- Scrolls (90% depth)
+- Outbound clicks
+- File downloads
+- Form interactions (form_start, form_submit)
+
+#### Custom Dimensions to Configure in GA4
+
+Recommended custom dimensions:
+1. **button_location** - Where on page CTA was clicked
+2. **risk_level** - System check risk level (low/medium/high)
+3. **form_type** - Type of form submitted
+4. **destination** - Target page for navigation events
+
+### Google Search Console
+
+**Setup Status**: ✅ Ready for verification
+
+#### Verification Methods
+
+**Option 1: DNS Verification** (Recommended for domain property)
+- Add TXT record to domain DNS settings
+- Covers all subdomains and protocols (http/https)
+
+**Option 2: HTML Meta Tag** (Already added)
+- Verification meta tag in `<head>` of all HTML files
+- Replace `PASTE_YOUR_VERIFICATION_CODE_HERE` with actual code from GSC
+
+#### Sitemap Configuration
+
+**Location**: `syscare_v0.1/sitemap.xml`
+
+**Included Pages**:
+- index.html (priority 1.0)
+- diagnosis.html (priority 0.9) - PRIMARY CONVERSION PAGE
+- system-check.html (priority 0.8)
+- regular-checkup.html (priority 0.7)
+- security-report-sample.html (priority 0.6)
+- diagnosis_success.html (priority 0.3)
+
+**Excluded Pages**:
+- admin-bookings.html (admin only)
+- booking.html (legacy, deprecated)
+- consultation.html (legacy, deprecated)
+
+**Submit to GSC**: `https://yourdomain.com/sitemap.xml`
+
+#### Robots.txt Configuration
+
+**Location**: `syscare_v0.1/robots.txt`
+
+**Disallowed paths**:
+- /admin-bookings.html (sensitive admin page)
+- /diagnosis_success.html (thank you page - no direct search traffic needed)
+- /booking.html (legacy page)
+- /consultation.html (legacy page)
+
+### Target Keywords & Tracking
+
+**Primary Keywords** (Monitor in GSC Performance report):
+1. 세종 전산 관리
+2. 대전 IT 유지보수
+3. 충청 전산 보안
+4. 세종 IT 관리
+5. 대전 전산 유지보수
+
+**Secondary Keywords**:
+- 세종 랜섬웨어 예방
+- 대전 서버 관리
+- 천안 IT 아웃소싱
+- 청주 전산실 관리
+- 세종 네트워크 보안
+
+**Long-tail Keywords**:
+- 세종 중소기업 전산 관리
+- 대전 전산 장애 예방
+- 충청도 IT 전문 업체
+- 세종시 무료 전산 진단
+
+### Regional Traffic Segmentation
+
+**Target Cities** (GA4 Custom Segment):
+- 세종특별자치시 (Sejong)
+- 대전광역시 (Daejeon)
+- 천안시 (Cheonan)
+- 청주시 (Cheongju)
+- 아산시, 공주시, 논산시, 계룡시
+
+**GA4 Segment Configuration**:
+1. Explore > Create custom segment
+2. Name: "타겟 지역 (세종·대전·충청)"
+3. Condition: City matches any of [above cities]
+4. Use in all funnel and exploration reports
+
+### Key Performance Indicators (KPIs)
+
+**Traffic Goals**:
+- Total monthly visitors: 3,000-5,000
+- Target region visitors: 40-50% of total
+- Organic search traffic: 60%+
+
+**Conversion Goals**:
+- Diagnosis form submissions: 30-50/month
+- Overall conversion rate: 2-3%
+- Phone inquiries: 10-15/month
+
+**Engagement Goals**:
+- Average session duration: 2m 30s+
+- Bounce rate: <50%
+- Pages per session: 2.5+
+
+**Keyword Goals**:
+- Top 5 ranking: 5-7 keywords
+- Top 10 ranking: 15-20 keywords
+- Average CTR: 5%+
+
+### Monitoring Schedule
+
+**Daily** (10 min):
+- GA4 Realtime report (anomaly detection)
+- Form submission count (target: 5+ per day)
+- Check error notifications
+
+**Weekly** (30 min, Mondays):
+- GSC keyword ranking spreadsheet update
+- Regional traffic comparison (week-over-week)
+- Conversion funnel analysis
+- Identify 3 action items
+
+**Monthly** (2 hours, first week):
+- Regional ROI analysis
+- Content performance evaluation (CTR, rankings)
+- User behavior patterns (path exploration)
+- Technical SEO audit (Core Web Vitals, indexing)
+
+**Quarterly** (4 hours, first week):
+- Goal achievement evaluation
+- Competitor analysis
+- New content planning (data-driven topics)
+- Strategy adjustment for next quarter
+
+### Useful Dashboards
+
+**Looker Studio Templates**:
+1. Regional Performance Dashboard
+   - Map: Users by city
+   - Table: City, users, conversions, conversion rate
+   - Time series: Daily trend by region
+
+2. Conversion Funnel Dashboard
+   - Funnel: Landing → CTA click → Diagnosis page → Form start → Conversion
+   - Breakdown by: Device, source, region
+
+3. Keyword Performance Dashboard
+   - GSC data: Keyword, impressions, clicks, CTR, position
+   - Trend: Ranking changes over time
+   - Opportunities: High impressions + low CTR
+
+### Debug Mode
+
+**Enable GA4 Debug Mode** (for testing):
+```javascript
+gtag('config', 'G-XXXXXXXXXX', {
+  'debug_mode': true
+});
+```
+
+View events in: GA4 Console > Admin > DebugView
+
+**Test Checklist**:
+1. Page view events firing on all pages
+2. `cta_click` event when clicking diagnosis CTA
+3. `form_submit_start` when submitting form
+4. `generate_lead` after successful submission
+5. `assessment_completed` after system check
+
+### Troubleshooting
+
+**If data not appearing in GA4**:
+1. Check browser console for JavaScript errors
+2. Verify gtag.js loads (Network tab)
+3. Confirm Measurement ID is correct
+4. Check ad blockers disabled
+5. Wait 48-72 hours for initial data processing
+
+**If GSC not indexing**:
+1. Verify robots.txt allows crawling
+2. Submit individual URLs via URL Inspection tool
+3. Check sitemap.xml format is valid
+4. Ensure server allows Googlebot
+5. Wait 1-2 weeks for new sites
+
+### Documentation Reference
+
+See **ANALYTICS_IMPLEMENTATION_GUIDE.md** (root directory) for:
+- Detailed setup instructions
+- Code snippets for custom events
+- Advanced tracking (call tracking, heatmaps, UTM parameters)
+- Optimization strategies
+- Complete troubleshooting guide

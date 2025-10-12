@@ -270,9 +270,24 @@ function animateStatCounter(element) {
 // CTA Button functionality
 function initCTAButtons() {
     const ctaButtons = document.querySelectorAll('button, a[href$=".html"]');
-    
+
     ctaButtons.forEach(button => {
         button.addEventListener('click', function(e) {
+            // GA4 이벤트 전송 - diagnosis.html로 가는 링크만 추적
+            if (this.tagName === 'A' && this.getAttribute('href') === 'diagnosis.html') {
+                if (typeof gtag === 'function') {
+                    const buttonText = this.textContent.trim();
+                    const buttonLocation = this.closest('section')?.id || 'unknown';
+
+                    gtag('event', 'cta_click', {
+                        'event_category': 'engagement',
+                        'event_label': buttonText,
+                        'button_location': buttonLocation,
+                        'destination': 'diagnosis_page'
+                    });
+                }
+            }
+
             // Add ripple effect for buttons only
             if (this.tagName === 'BUTTON') {
                 createRipple(e);

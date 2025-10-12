@@ -1,0 +1,23 @@
+# SYSCARE 웹사이트 크롤링 규칙
+
+User-agent: *
+Allow: /
+
+# 관리자 페이지는 검색 엔진에서 제외
+Disallow: /admin-bookings.html
+
+# Success 페이지는 직접 검색 결과에서 제외 (이메일 링크로만 접근)
+Disallow: /diagnosis_success.html
+
+# Legacy 페이지 제외
+Disallow: /booking.html
+Disallow: /consultation.html
+
+# CSS, JS, 이미지 파일은 크롤링 허용
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /assets/
+
+# Sitemap 위치
+Sitemap: https://yourdomain.com/sitemap.xml
