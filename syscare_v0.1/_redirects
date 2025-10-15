@@ -1,0 +1,16 @@
+# SYSCARE Netlify 리디렉션 규칙
+# Google Search Console 색인 이슈 해결을 위한 설정
+
+# www 있는 도메인을 www 없는 도메인으로 통일 (301 영구 리디렉션)
+https://www.syscare.co.kr/*  https://syscare.co.kr/:splat  301!
+http://www.syscare.co.kr/*   https://syscare.co.kr/:splat  301!
+
+# Legacy 페이지를 새 페이지로 리디렉션
+/booking.html              /diagnosis.html           301
+/consultation.html         /diagnosis.html           301
+
+# Trailing slash 처리 (선택사항 - 일관성 유지)
+# 슬래시 있는 URL을 슬래시 없는 URL로 통일
+/diagnosis.html/           /diagnosis.html           301
+/system-check.html/        /system-check.html        301
+/regular-checkup.html/     /regular-checkup.html     301

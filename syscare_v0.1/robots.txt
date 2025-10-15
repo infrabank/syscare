@@ -20,4 +20,4 @@ Allow: /images/
 Allow: /assets/
 
 # Sitemap 위치
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://syscare.co.kr/sitemap.xml
