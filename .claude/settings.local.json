@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(find:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix Google Search Console redirect issues\n\n- Add Netlify _redirects file for www unification\n  - Redirect www.syscare.co.kr to syscare.co.kr (301)\n  - Redirect legacy pages (booking/consultation) to diagnosis\n- Add canonical tags to all HTML pages for SEO\n  - index.html, diagnosis.html, system-check.html\n  - regular-checkup.html, security-report-sample.html\n  - diagnosis_success.html\n- Update robots.txt sitemap URL to syscare.co.kr\n\nResolves: GSC indexing issues caused by redirect chains\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
