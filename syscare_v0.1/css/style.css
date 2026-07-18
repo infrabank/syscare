@@ -133,12 +133,6 @@ nav.scrolled {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Chart Container */
-#costChart {
-    width: 100% !important;
-    height: 400px !important;
-}
-
 /* Form Elements Styling */
 select, input[type="text"], input[type="email"], input[type="tel"], textarea, .assessment-input {
     color: #374151 !important;
@@ -495,75 +489,6 @@ section {
     50% {
         box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.3);
     }
-}
-
-/* Intense Pulse Animation */
-.pulse-intense {
-    animation: pulse-intense 1.5s infinite;
-}
-
-@keyframes pulse-intense {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 8px 25px rgba(234, 179, 8, 0.4);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 12px 40px rgba(234, 179, 8, 0.7), 0 0 50px rgba(234, 179, 8, 0.3);
-    }
-}
-
-/* Counter Animation */
-.counter-animate {
-    transition: all 0.3s ease;
-}
-
-/* Threat Status Section Animations */
-#threat-status .grid > div {
-    animation: threatPulse 3s infinite ease-in-out;
-}
-
-#threat-status .grid > div:nth-child(1) { animation-delay: 0s; }
-#threat-status .grid > div:nth-child(2) { animation-delay: 0.5s; }
-#threat-status .grid > div:nth-child(3) { animation-delay: 1s; }
-#threat-status .grid > div:nth-child(4) { animation-delay: 1.5s; }
-
-@keyframes threatPulse {
-    0%, 100% {
-        border-color: rgba(239, 68, 68, 0.3);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-    50% {
-        border-color: rgba(239, 68, 68, 0.8);
-        background-color: rgba(0, 0, 0, 0.6);
-        transform: scale(1.02);
-    }
-}
-
-/* Limited Offer Progress Bar Animation */
-.progress-bar-animate {
-    animation: progressDecrease 300s linear infinite;
-}
-
-@keyframes progressDecrease {
-    from { width: 23%; }
-    to { width: 0%; }
-}
-
-/* Countdown Timer Styles */
-#days, #hours, #minutes, #seconds {
-    font-variant-numeric: tabular-nums;
-    transition: all 0.3s ease;
-}
-
-/* Urgency Indicators */
-.urgent-blink {
-    animation: urgentBlink 1s infinite;
-}
-
-@keyframes urgentBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.5; }
 }
 
 /* Industry Card Hover Effects */

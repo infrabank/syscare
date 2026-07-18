@@ -153,37 +153,38 @@ Diagnosis requests move through 4 stages:
 document.addEventListener('DOMContentLoaded', function() {
   initNavigation();        // Scrolled nav background
   initScrollAnimations();  // Intersection Observer for cards
-  initCostChart();         // Chart.js cost comparison
-  initSafetyCounter();     // Animated day counter
-  initCTAButtons();        // Ripple effects
+  initCTAButtons();        // Ripple effects + GA4 CTA tracking
   initMobileMenu();        // Mobile hamburger menu
   initSmoothScrolling();   // Anchor link scrolling
   initPerformanceOptimizations(); // Lazy loading
-  initRealTimeCounters();  // Live threat counters
-  initCountdownTimer();    // Limited offer timer
-  initThreatAnimations();  // Threat status animations
-  initUrgencyElements();   // Exit intent detection
 });
 ```
+
+**IMPORTANT — Removed on purpose (2026-07 신뢰성 개편, do NOT re-add):**
+- Fake real-time threat counters, countdown timers, "남은 슬롯" gauges, exit-intent popups
+- Unverifiable stats (127개 기업, 무사고 일수, 만족도 98.7%, 응답시간 3분 등)
+- Fabricated testimonials/company names and unverified institution badges
+- 24/7·당일 출동·30분 방문 등 이행을 보장할 수 없는 약속
+- "50% 할인" 등 근거 없는 가격 표시
 
 ## Key Business Requirements
 
 ### Contact Information
-- Phone: **070-8015-8079**
+- Phone: **070-8015-8079** (평일 09:00~18:00)
 - Email: **jhw@mlkit.co.kr**
-- Service Area: **세종·대전·충청도** (free on-site diagnostic visits, same-day dispatch available)
+- Service Area: **세종·대전·충청권** (원격지원 우선, 충청권 방문지원 병행)
 - Primary Target: 세종특별자치시, 대전광역시, 천안시, 청주시 중소기업
 
 ### Core Value Proposition
-**Prevention vs Recovery Cost Ratio**: Maintain the "1/3 cost" messaging throughout the site:
-- Recovery cost: 300만원 (shown in red)
-- Prevention cost: 100만원 (shown in green)
-- Chart.js visualization shows this comparison on index.html
+경력 엔지니어가 직접 운영하는 충청권 중소기업 전산 유지보수 서비스:
+- 상담한 엔지니어가 직접 진단·작업·보고서 작성
+- PC·서버·네트워크·NAS·백업 통합 점검, 백업 복구검증
+- 월간 점검표·장애보고서 등 문서화된 결과물 제공
+- 검증 불가능한 수치·후기·인증은 게시하지 않음 (증빙 확보 후에만 추가)
 
 ### Chart.js Implementation
-Two main chart types used:
-1. **Cost Comparison** (index.html) - Bar chart showing 300만원 vs 100만원
-2. **Risk Analysis** (system-check.html) - Radar/bar chart showing security assessment scores
+1. **Risk Analysis** (system-check.html) - Doughnut chart showing self-assessment score
+- index.html의 비용 비교 차트는 근거 없는 수치(300만원 vs 100만원)로 2026-07 개편에서 제거됨
 
 ## Design System
 
@@ -278,7 +279,8 @@ Files to update when contact details change:
 - index.html (footer, contact section, JSON-LD schema)
 - diagnosis.html (support info)
 - admin-bookings.html (emergency contact)
-- security-report-sample.html (24/7 support section)
+- security-report-sample.html (지원 안내 section)
+- privacy.html (개인정보 보호책임자 연락처)
 
 ## SEO & Regional Optimization
 
@@ -295,38 +297,24 @@ The site is optimized for regional search visibility targeting SMBs in the Sejon
 - Critical fields:
   - `areaServed`: Array of cities (세종, 대전, 천안, 청주)
   - `address`: 세종특별자치시 집현중앙7로 6, B동 609호
-  - `aggregateRating`: 4.9/5.0 (127 reviews)
-  - `knowsAbout`: AI 랜섬웨어 예방, 24시간 모니터링 등
+  - `openingHours`: Mo-Fr 09:00-18:00
+  - `knowsAbout`: 전산 유지보수, 서버 점검, 네트워크 관리, 백업 및 복구검증
+- **DO NOT** add `aggregateRating` or review counts without real, verifiable review data
 - **DO NOT** modify schema structure without validating at schema.org/validator
 
-**2. Regional Content Sections**
-Three key sections for local relevance (maintain order):
+**2. Regional Content Sections** (2026-07 개편 이후 구조)
+- Hero: H1 "전산담당자가 없어도 서버와 백업은 멈추지 않아야 합니다" + 지역·서비스 범위 설명
+- `#fit`: 이런 기업에 필요합니다 (체크리스트)
+- `#services`: PC/서버·가상화/네트워크·보안/백업·복구검증 관리 범위
+- `#support`, `#deliverables`, `#engineer`, `#pricing`, `#process`, `#faq`, `#cta`
+- 가상 후기·기관 배지 섹션은 제거됨. 실제 고객 동의를 받은 후기와 증빙 가능한
+  인증만 추가할 것 (익명 사례는 "익명 사례"임을 명시)
 
-a. **Hero Section H2**: "세종, 대전, 충청도 지역 중소기업을 위한 전산 관리 솔루션"
-   - Location: Immediately after H1 in hero section
-   - Purpose: Primary regional keyword targeting
-
-b. **Local Testimonials Section** (`#local-testimonials`)
-   - Location: Before `#results` section
-   - 3 testimonial cards with specific cities:
-     - (주)충남테크 - 충남 천안
-     - 세종IT솔루션 - 세종특별자치시
-     - 바이오메드㈜ - 대전광역시
-   - Bottom banner: "세종, 대전, 충청도 지역 무료 방문 진단 서비스 제공 (당일 출동 가능)"
-
-c. **Regional Trust Badges** (`#regional-trust-badges`)
-   - Location: In `#results` section, before general trust indicators
-   - 3 authority badges:
-     - 세종특별자치시 우수 IT 파트너사
-     - 세종상공회의소 추천 기업
-     - 세종테크노파크 협력 업체
-   - Note: These are placeholder badges for design purposes
-
-**3. Regionalized CTA Buttons**
-Primary CTA variations (A/B testing enabled):
-- Hero section: "대전·세종 지역 무료 진단 신청" (main) + "충청도 소재 기업 특가 혜택" (secondary)
-- Final CTA: "세종·대전·충청도 무료 진단 신청"
-- All CTAs maintain `href="diagnosis.html"` (unified conversion funnel)
+**3. CTA Buttons**
+- Primary CTA: "현재 전산환경 상담하기" / "전산환경 상담 신청" → diagnosis.html
+- Secondary CTA: "월간 점검표 샘플 보기" → security-report-sample.html
+- All conversion CTAs maintain `href="diagnosis.html"` (unified conversion funnel)
+- 공포·긴급성 문구(마지막 기회, 한정 특가 등) 사용 금지
 
 ### SEO Maintenance Guidelines
 
@@ -338,7 +326,7 @@ Primary CTA variations (A/B testing enabled):
 **Title & Meta Description Pattern:**
 - Title format: `SYSCARE | [서비스] [지역] [타겟고객]`
 - Meta description: Include region + value prop + CTA within 155 characters
-- Current title: "SYSCARE | 세종, 대전, 충청도 중소기업 전산 유지보수 및 보안 서비스"
+- Current title: "세종·대전 중소기업 전산 유지보수·서버·백업 관리 | SYSCARE"
 
 **Regional Keyword Density:**
 - Primary: 세종, 대전, 충청도
@@ -349,7 +337,7 @@ Primary CTA variations (A/B testing enabled):
 Structured data optimizes for:
 - ChatGPT, Perplexity, Google AI Overviews
 - Local business queries: "세종 전산 관리", "대전 IT 유지보수"
-- Trust signals: Reviews, ratings, service area coverage
+- Trust signals: 검증 가능한 회사 정보, 서비스 지역, 실제 제공 범위 (가짜 평점·후기 금지)
 
 ---
 

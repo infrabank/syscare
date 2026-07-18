@@ -1,0 +1,12 @@
+# SYSCARE Netlify 헤더 규칙
+
+# 관리자 페이지: 검색엔진 색인 차단 (robots.txt에만 의존하지 않음)
+/admin-bookings.html
+  X-Robots-Tag: noindex, nofollow
+
+/admin-bookings
+  X-Robots-Tag: noindex, nofollow
+
+# 상담 완료 페이지: 색인 불필요
+/diagnosis_success.html
+  X-Robots-Tag: noindex

@@ -383,9 +383,9 @@ function displayResults(results, data) {
                     <p class="text-xs text-gray-600">정기적인 시스템 점검</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg text-center">
-                    <i class="fas fa-chart-line text-green-600 text-2xl mb-2"></i>
-                    <h5 class="font-semibold text-gray-900 mb-1">모니터링</h5>
-                    <p class="text-xs text-gray-600">24/7 시스템 감시</p>
+                    <i class="fas fa-rotate-left text-green-600 text-2xl mb-2"></i>
+                    <h5 class="font-semibold text-gray-900 mb-1">백업 복구검증</h5>
+                    <p class="text-xs text-gray-600">백업 점검과 복구 테스트</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg text-center">
                     <i class="fas fa-tools text-orange-600 text-2xl mb-2"></i>
@@ -398,13 +398,6 @@ function displayResults(results, data) {
     
     // Show modal
     modal.classList.remove('hidden');
-    
-    // Send results via email (placeholder)
-    if (data.email) {
-        setTimeout(() => {
-            alert(`상세한 분석 리포트가 ${data.email}로 발송되었습니다.`);
-        }, 2000);
-    }
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
