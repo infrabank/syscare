@@ -6,6 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 SYSCARE is a Korean IT system management service landing page focused on prevention rather than recovery ("복구가 아니라, 애초에 막는 게 전산의 일입니다"). Static website built with HTML5, CSS3, vanilla JavaScript, Tailwind CSS, and Chart.js.
 
+## Current Security State (Authoritative)
+
+- `admin-bookings.html` is intentionally disabled until server-side authentication and authorization protect every data operation. Do not re-add a client-side password or `sessionStorage` authentication gate.
+- The public site does not load GA4 or other analytics. Add analytics only with an accurate privacy disclosure and an explicit consent/default-denied design.
+- Placeholder Google Search Console verification tags are not shipped. Add only a real verification value.
+- Consultation submissions use Formspree. The former unauthenticated `tables/diagnosis_requests` admin flow is disabled and must not be restored without a protected backend.
+- Any later sections describing the old admin dashboard, GA4, GSC placeholder, or RESTful Table API are historical implementation notes, not active architecture.
+
 ## Development Commands
 
 No build process required - pure static HTML/CSS/JS.
@@ -34,7 +42,7 @@ npx serve .
 - **system-check.html** - Interactive 20-question self-assessment with risk scoring and Chart.js visualization
 
 ### Admin & Support Pages
-- **admin-bookings.html** - Full CRUD dashboard for managing diagnosis requests via RESTful Table API
+- **admin-bookings.html** - Disabled security notice. A real dashboard requires server-side authentication and per-operation authorization.
 - **security-report-sample.html** - Sample security report (PDF-ready) for customer trust building
 - **regular-checkup.html** - Service pricing page
 
