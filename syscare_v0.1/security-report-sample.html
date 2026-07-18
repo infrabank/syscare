@@ -3,319 +3,717 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%232563eb%27/%3E%3Ctext x=%2750%27 y=%2772%27 font-size=%2764%27 font-weight=%27bold%27 font-family=%27sans-serif%27 fill=%27white%27 text-anchor=%27middle%27%3ES%3C/text%3E%3C/svg%3E">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>월간 전산 유지보수 보고서 샘플 - SYSCARE</title>
-    <meta name="description" content="SYSCARE가 매월 제공하는 전산 유지보수 보고서의 샘플입니다. 서버·네트워크·백업 점검 결과와 처리 내역, 다음 달 권고사항을 확인하세요.">
+    <meta name="description" content="SYSCARE 월간 전산 유지보수 보고서 샘플. 경영 요약, 위험·우선순위, 백업 복구검증, 고객 결정사항까지 — 매월 고객사에 제출하는 관리 보고서 형식을 확인하세요.">
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
     <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-    <!-- CSS Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
-
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/security-report-sample.html">
 
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100 print:hidden">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html#services" class="text-gray-700 hover:text-blue-600 transition-colors">관리 범위</a>
-                <a href="diagnosis.html" class="text-gray-700 hover:text-blue-600 transition-colors">15분 상담 신청</a>
-                <a href="system-check.html" class="text-gray-700 hover:text-blue-600 transition-colors">상태 확인</a>
-                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
-            </div>
-            <a href="index.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                홈으로
-            </a>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <div class="pt-24 pb-8 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="mb-6">
-                    <i class="fas fa-file-lines text-6xl mb-4 opacity-80"></i>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                    월간 전산 유지보수 보고서
-                </h1>
-                <p class="text-xl mb-6 opacity-90">샘플 문서</p>
-                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg inline-block">
-                    <p class="text-sm">
-                        <strong>고객사:</strong> 샘플 고객사 &nbsp;&nbsp;
-                        <strong>보고 기간:</strong> 1개월 &nbsp;&nbsp;
-                        <strong>작성:</strong> SYSCARE 책임 엔지니어
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sample Disclaimer -->
-    <div class="bg-yellow-50 border-b border-yellow-200">
-        <div class="container mx-auto px-4 py-4">
-            <p class="text-center text-yellow-800 text-sm font-medium">
-                <i class="fas fa-triangle-exclamation mr-2"></i>
-                이 문서는 서비스 이해를 위한 가상 샘플이며 실제 고객 데이터가 아닙니다.
-            </p>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="py-12">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-
-                <!-- 1. 전체 상태 -->
-                <section class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                            <i class="fas fa-chart-pie text-blue-600 mr-2"></i>
-                            1. 전체 상태
-                        </h2>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm border border-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="border border-gray-200 px-4 py-3 text-left">영역</th>
-                                        <th class="border border-gray-200 px-4 py-3 text-left">상태</th>
-                                        <th class="border border-gray-200 px-4 py-3 text-left">핵심 내용</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border border-gray-200 px-4 py-3 font-medium">서버</td>
-                                        <td class="border border-gray-200 px-4 py-3"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">주의</span></td>
-                                        <td class="border border-gray-200 px-4 py-3">시스템 디스크 여유 공간 18%</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border border-gray-200 px-4 py-3 font-medium">네트워크</td>
-                                        <td class="border border-gray-200 px-4 py-3"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">정상</span></td>
-                                        <td class="border border-gray-200 px-4 py-3">장애 및 포트 오류 없음</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border border-gray-200 px-4 py-3 font-medium">백업</td>
-                                        <td class="border border-gray-200 px-4 py-3"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">주의</span></td>
-                                        <td class="border border-gray-200 px-4 py-3">NAS 백업 1회 실패 후 재실행</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border border-gray-200 px-4 py-3 font-medium">보안 업데이트</td>
-                                        <td class="border border-gray-200 px-4 py-3"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">정상</span></td>
-                                        <td class="border border-gray-200 px-4 py-3">중요 업데이트 적용 완료</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border border-gray-200 px-4 py-3 font-medium">인증서·라이선스</td>
-                                        <td class="border border-gray-200 px-4 py-3"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">예정</span></td>
-                                        <td class="border border-gray-200 px-4 py-3">VPN 인증서 45일 후 만료</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 2. 이번 달 처리 내역 -->
-                <section class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                            <i class="fas fa-list-check text-blue-600 mr-2"></i>
-                            2. 이번 달 처리 내역
-                        </h2>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i>직원 PC 2대 원격 장애 처리</li>
-                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i>파일서버 공유폴더 권한 정리</li>
-                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i>방화벽 관리자 계정 변경</li>
-                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i>NAS 백업 실패 원인 수정</li>
-                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-3 mt-1"></i>퇴사자 계정 3개 비활성화</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- 3. 백업·복구 확인 -->
-                <section class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                            <i class="fas fa-rotate-left text-blue-600 mr-2"></i>
-                            3. 백업·복구 확인
-                        </h2>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="font-semibold text-gray-900 mb-3">백업 작업 결과</h3>
-                                <ul class="text-sm text-gray-700 space-y-2">
-                                    <li>• 백업 작업 수: 90건</li>
-                                    <li>• 성공: 89건 / 실패: 1건</li>
-                                    <li>• 실패 원인: NAS 네트워크 연결 지연</li>
-                                    <li>• 재실행 결과: 성공</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-900 mb-3">복구 테스트</h3>
-                                <ul class="text-sm text-gray-700 space-y-2">
-                                    <li>• 복구 테스트: 파일 3건 복구 확인</li>
-                                    <li>• 평균 복구 시간: 8분</li>
-                                    <li>• 다음 복구 테스트 예정: 익월 정기 점검 시</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 4. 다음 달 조치 -->
-                <section class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                            <i class="fas fa-calendar-check text-blue-600 mr-2"></i>
-                            4. 다음 달 조치 예정
-                        </h2>
-                        <div class="space-y-3">
-                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <div class="font-semibold text-blue-800">서버 디스크 증설 검토</div>
-                                <div class="text-sm text-blue-700">시스템 디스크 여유 공간 18% → 증설 또는 데이터 정리 필요</div>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <div class="font-semibold text-blue-800">VPN 인증서 갱신</div>
-                                <div class="text-sm text-blue-700">만료 45일 전 갱신 진행</div>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <div class="font-semibold text-blue-800">노후 스위치 교체 견적</div>
-                                <div class="text-sm text-blue-700">보증기간 만료 장비 교체 여부 검토</div>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <div class="font-semibold text-blue-800">관리자 계정 다중인증 적용</div>
-                                <div class="text-sm text-blue-700">서버·방화벽 관리자 계정 대상</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 5. 고객 확인 필요 -->
-                <section class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                            <i class="fas fa-user-check text-blue-600 mr-2"></i>
-                            5. 고객 확인이 필요한 항목
-                        </h2>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start"><i class="fas fa-square-check text-orange-500 mr-3 mt-1"></i>퇴사 예정자 계정 목록 확인</li>
-                            <li class="flex items-start"><i class="fas fa-square-check text-orange-500 mr-3 mt-1"></i>신규 직원 PC 구매 일정 공유</li>
-                            <li class="flex items-start"><i class="fas fa-square-check text-orange-500 mr-3 mt-1"></i>백업 보존기간 변경 여부 결정</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Support Info -->
-                <section class="mb-12">
-                    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold mb-6 border-b border-white/20 pb-3">
-                            <i class="fas fa-headset mr-2"></i>
-                            지원 안내
-                        </h2>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="text-center">
-                                <i class="fas fa-phone text-3xl mb-3 opacity-80"></i>
-                                <h3 class="font-semibold mb-2">기술지원 전화</h3>
-                                <p class="text-blue-100 mb-2">010-3861-8079</p>
-                                <p class="text-sm opacity-75">평일 09:00~18:00</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-envelope text-3xl mb-3 opacity-80"></i>
-                                <h3 class="font-semibold mb-2">이메일 문의</h3>
-                                <p class="text-blue-100 mb-2">jhw@mlkit.co.kr</p>
-                                <p class="text-sm opacity-75">긴급 장애는 계약 등급에 따라 별도 대응</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-file-lines text-3xl mb-3 opacity-80"></i>
-                                <h3 class="font-semibold mb-2">월간 보고서</h3>
-                                <p class="text-blue-100 mb-2">매월 초 발송</p>
-                                <p class="text-sm opacity-75">점검 결과·처리 내역·권고사항 포함</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Download Options -->
-                <section class="print:hidden">
-                    <div class="text-center">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-900">이런 보고서를 매달 받고 싶다면</h2>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button onclick="window.print()" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-                                <i class="fas fa-print mr-2"></i>
-                                샘플 PDF로 저장
-                            </button>
-                            <a href="diagnosis.html" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                                <i class="fas fa-comments mr-2"></i>
-                                15분 상담 신청
-                            </a>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-4">
-                            보고서 항목은 고객 환경(서버·NAS·네트워크 구성)에 맞춰 조정됩니다.
-                        </p>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 print:hidden">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-2xl font-bold text-blue-400 mb-4">SYSCARE</div>
-            <p class="text-gray-400 mb-4">세종·대전·충청권 중소기업의 전산 유지보수와 백업을 관리합니다.</p>
-            <div class="text-gray-500 text-sm">
-                <p class="mb-2"><a href="privacy.html" class="text-gray-400 hover:text-white underline">개인정보처리방침</a></p>
-                <p class="mb-2 text-xs">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</p>
-                <p>&copy; 2025 SYSCARE. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Print Styles -->
     <style>
+        /* ============ 기본 ============ */
+        :root {
+            --navy: #1e293b;
+            --navy-line: #334155;
+            --ink: #111827;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --paper: #ffffff;
+            --bg: #f3f4f6;
+            --blue: #2563eb;
+            --ok: #15803d;
+            --watch: #475569;
+            --warn: #a16207;
+            --action: #c2410c;
+            --crit: #b91c1c;
+            color-scheme: light;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.5;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            font-size: 16px;
+        }
+        a { color: var(--blue); }
+
+        /* ============ 웹 전용 상단/하단 ============ */
+        .site-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,.95); backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--line);
+            padding-top: env(safe-area-inset-top);
+        }
+        .site-header .inner {
+            max-width: 1100px; margin: 0 auto; padding: 0 16px;
+            height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        }
+        .logo { font-size: min(1.25rem, 22px); font-weight: 800; color: var(--blue); text-decoration: none; }
+        .header-actions { display: flex; gap: 8px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            height: 44px; padding: 0 16px; border-radius: 10px;
+            font-weight: 700; text-decoration: none; font-size: min(0.875rem, 15px);
+        }
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-outline { border: 1px solid var(--line); color: #374151; background: #fff; }
+
+        .sample-banner {
+            background: #fefce8; border-bottom: 1px solid #fde68a;
+            color: #854d0e; font-size: 14px; text-align: center; padding: 10px 16px;
+        }
+
+        /* ============ 보고서 문서 ============ */
+        .report-wrap { max-width: 860px; margin: 24px auto 0; padding: 0 12px; }
+        .report-page {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 32px 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) { .report-page { padding: 48px 56px; } }
+
+        /* 표지 */
+        .cover { min-height: 520px; display: flex; flex-direction: column; }
+        .cover .brand { font-weight: 800; color: var(--navy); letter-spacing: .02em; }
+        .cover .doc-title { font-size: 30px; font-weight: 800; color: var(--navy); margin: 96px 0 8px; line-height: 1.25; }
+        .cover .doc-sub { color: var(--muted); font-size: 15px; margin-bottom: 56px; }
+        .cover-meta { width: 100%; max-width: 420px; border-top: 2px solid var(--navy); font-size: 14.5px; margin: 0; }
+        .cover-meta div { display: flex; border-bottom: 1px solid var(--line); padding: 9px 2px; }
+        .cover-meta dt { width: 110px; color: var(--muted); flex-shrink: 0; }
+        .cover-meta dd { margin: 0; font-weight: 600; }
+        .watermark {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-size: 110px; font-weight: 800; color: rgba(30, 41, 59, 0.06);
+            transform: rotate(-24deg); pointer-events: none; user-select: none; letter-spacing: .1em;
+        }
+        .cover-note { margin-top: auto; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+        /* 섹션 제목 */
+        .sec-title {
+            font-size: 20px; font-weight: 800; color: var(--navy);
+            border-bottom: 2px solid var(--navy); padding-bottom: 8px; margin: 0 0 6px;
+        }
+        .sec-caption { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+        .sub-title { font-size: 15px; font-weight: 700; color: var(--ink); margin: 26px 0 10px; }
+
+        /* 상태 배지: 색+아이콘+텍스트 (색상만으로 구분하지 않음) */
+        .badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px;
+            white-space: nowrap; border: 1px solid transparent;
+        }
+        .badge::before { font-size: 11px; }
+        .b-ok     { color: var(--ok);     background: #f0fdf4; border-color: #bbf7d0; } .b-ok::before     { content: "✓"; }
+        .b-watch  { color: var(--watch);  background: #f8fafc; border-color: #cbd5e1; } .b-watch::before  { content: "◎"; }
+        .b-warn   { color: var(--warn);   background: #fefce8; border-color: #fde68a; } .b-warn::before   { content: "!"; }
+        .b-action { color: var(--action); background: #fff7ed; border-color: #fed7aa; } .b-action::before { content: "▲"; }
+        .b-crit   { color: var(--crit);   background: #fef2f2; border-color: #fecaca; } .b-crit::before   { content: "✕"; }
+
+        .sev { font-weight: 700; }
+        .sev-high { color: var(--action); }
+        .sev-mid  { color: var(--warn); }
+        .sev-low  { color: var(--watch); }
+
+        /* 표 */
+        table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        thead { display: table-header-group; }
+        th {
+            text-align: left; background: #f8fafc; color: #334155;
+            font-weight: 700; padding: 8px 10px; border-top: 1.5px solid var(--navy-line);
+            border-bottom: 1px solid var(--line); font-size: 12.5px;
+        }
+        td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+        td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+        td.ctr, th.ctr { text-align: center; }
+        tr { break-inside: avoid; page-break-inside: avoid; }
+        .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+        .note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+        .callout {
+            border-left: 3px solid var(--navy); background: #f8fafc;
+            padding: 12px 16px; font-size: 14px; margin-top: 14px;
+        }
+
+        /* 웹: 기술 상세 섹션 기본 접힘 (인쇄 시엔 항상 펼침) */
+        .sec-toggle {
+            display: block; width: 100%; margin-top: 14px;
+            height: 44px; border: 1px dashed #cbd5e1; border-radius: 8px;
+            background: #f8fafc; color: #334155; font-weight: 700; font-size: 14px;
+            cursor: pointer; font-family: inherit;
+        }
+        .detail-sec:not(.open) .sec-body { display: none; }
+        .detail-sec.open .sec-toggle { display: none; }
+
+        /* 페이지 하단 문서 정보 (웹에서도 문서 느낌 유지) */
+        .page-foot {
+            margin-top: 28px; padding-top: 10px; border-top: 1px solid var(--line);
+            font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+        }
+
+        /* 승인 영역 */
+        .sign-box { border: 1px solid var(--line); margin-top: 14px; }
+        .sign-box > div { display: flex; border-bottom: 1px solid var(--line); }
+        .sign-box > div:last-child { border-bottom: 0; }
+        .sign-box dt { width: 120px; background: #f8fafc; padding: 12px 14px; font-size: 13px; color: #334155; font-weight: 700; flex-shrink: 0; }
+        .sign-box dd { margin: 0; padding: 12px 14px; flex: 1; min-height: 44px; font-size: 13.5px; color: var(--muted); }
+
+        /* 웹 CTA */
+        .cta-section { max-width: 860px; margin: 8px auto 48px; padding: 0 12px; }
+        .cta-inner {
+            background: var(--navy); border-radius: 12px; color: #fff;
+            padding: 32px 24px; text-align: center;
+        }
+        .cta-inner h2 { margin: 0 0 6px; font-size: 22px; }
+        .cta-inner p { margin: 0 0 20px; opacity: .85; font-size: 14.5px; }
+        .cta-buttons { display: flex; flex-direction: column; gap: 10px; max-width: 360px; margin: 0 auto; }
+        .cta-buttons .btn { height: 48px; font-size: 16px; }
+        .btn-white { background: #fff; color: var(--navy); }
+        .btn-ghost { border: 1px solid rgba(255,255,255,.45); color: #fff; }
+
+        .site-footer {
+            background: var(--navy); color: #94a3b8; text-align: center;
+            font-size: 13px; padding: 32px 16px; line-height: 1.7;
+        }
+        .site-footer a { color: #cbd5e1; }
+
+        /* ============ 모바일: 넓은 표 → 카드 전환 ============ */
+        @media (max-width: 639px) {
+            table.resp { font-size: 14px; }
+            table.resp thead { display: none; }
+            table.resp tr {
+                display: block; border: 1px solid var(--line); border-radius: 8px;
+                margin-bottom: 10px; padding: 6px 12px;
+            }
+            table.resp td {
+                display: flex; justify-content: space-between; gap: 12px;
+                border-bottom: 1px dashed #eef0f3; padding: 7px 0; text-align: right;
+            }
+            table.resp td:last-child { border-bottom: 0; }
+            table.resp td::before {
+                content: attr(data-label);
+                color: var(--muted); font-size: 12.5px; font-weight: 600;
+                flex-shrink: 0; text-align: left;
+            }
+            table.resp td.td-main { font-weight: 700; text-align: left; justify-content: flex-start; }
+            table.resp td.td-main::before { display: none; }
+        }
+
+        /* ============ 인쇄 / PDF ============ */
+        @page { size: A4; margin: 16mm 15mm; }
         @media print {
-            .print\:hidden {
-                display: none !important;
+            .site-header, .site-footer, .web-only, .cta-section, .sample-banner, .mobile-cta-bar { display: none !important; }
+            body { background: #fff; color: #111; font-size: 10pt; }
+            .report-wrap { max-width: none; margin: 0; padding: 0; }
+            .report-page {
+                border: 0; border-radius: 0; padding: 0; margin: 0;
+                break-after: page; overflow: visible;
             }
-
-            body {
-                background: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .container {
-                max-width: none !important;
-            }
-
-            .shadow-lg {
-                box-shadow: none !important;
-                border: 1px solid #e5e7eb !important;
-            }
+            .report-page:last-of-type { break-after: auto; }
+            .cover { min-height: 240mm; }
+            .cover .doc-title { font-size: 26pt; margin-top: 60mm; }
+            .sec-title { font-size: 14pt; }
+            table { font-size: 8.8pt; }
+            th { font-size: 8.3pt; }
+            .badge { font-size: 8pt; border: 1px solid #999; }
+            .detail-sec .sec-body { display: block !important; }
+            .sec-toggle { display: none !important; }
+            .watermark { color: rgba(30,41,59,0.07); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            th, .badge, .callout, .sign-box dt { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            a { color: inherit; text-decoration: none; }
+            .page-foot { display: none; }
         }
     </style>
+</head>
+<body>
+    <!-- 웹 전용 헤더 -->
+    <header class="site-header web-only">
+        <div class="inner">
+            <a href="index.html" class="logo">SYSCARE</a>
+            <div class="header-actions">
+                <a href="tel:010-3861-8079" class="btn btn-outline" aria-label="전화 상담 010-3861-8079">전화 상담</a>
+                <a href="diagnosis.html" class="btn btn-primary">15분 상담 신청</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 샘플 고지 -->
+    <div class="sample-banner web-only">
+        본 문서는 보고서 형식을 설명하기 위한 <strong>가상 샘플</strong>입니다. 회사명·장비명·수치·장애 내역은 실제 고객 데이터가 아닙니다.
+    </div>
+
+    <main class="report-wrap" id="report"><!-- JS가 REPORT_DATA로 렌더링 --></main>
+
+    <noscript>
+        <p style="max-width:860px;margin:24px auto;padding:0 16px;">
+            보고서 샘플을 표시하려면 JavaScript가 필요합니다.
+            <a href="files/syscare-monthly-report-sample.pdf">PDF 샘플 내려받기</a>
+        </p>
+    </noscript>
+
+    <!-- 웹 전용 CTA -->
+    <section class="cta-section web-only">
+        <div class="cta-inner">
+            <h2>이런 보고서를 매달 받고 싶다면</h2>
+            <p>보고서 항목은 고객 환경(서버·NAS·네트워크 구성)에 맞춰 조정됩니다.</p>
+            <div class="cta-buttons">
+                <a href="diagnosis.html" class="btn btn-white">15분 상담 신청</a>
+                <a href="files/syscare-monthly-report-sample.pdf" class="btn btn-ghost" download>샘플 PDF 내려받기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 웹 전용 푸터 -->
+    <footer class="site-footer web-only">
+        <div><strong style="color:#e2e8f0;">SYSCARE</strong> · 세종·대전·충청권 중소기업 전산 유지보수</div>
+        <div><a href="privacy.html">개인정보처리방침</a></div>
+        <div style="font-size:12px;">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</div>
+        <div style="font-size:12px;">&copy; 2025 SYSCARE. All rights reserved.</div>
+    </footer>
+
+    <script>
+    /* =====================================================================
+       보고서 데이터 모델
+       실운영: 이 객체(또는 동일 구조의 JSON)만 월별로 교체하면
+       웹 화면과 인쇄용 PDF가 함께 생성됩니다. 모든 값은 가상 샘플입니다.
+    ===================================================================== */
+    const REPORT_DATA = {
+        meta: {
+            customer: "샘플 주식회사",
+            report_period: "2026.06.01 ~ 2026.06.30",
+            period_label: "2026년 6월",
+            report_number: "SC-MR-2026-06-SAMPLE",
+            author: "SYSCARE 책임 엔지니어",
+            issue_date: "2026.07.03",
+            document_class: "고객사 내부용",
+            document_version: "v1.0",
+            inspection_basis: "점검 기준: 2026.06.30 17:00 / 수치는 최근 30일 최대값",
+            is_sample: true
+        },
+        // 1. 경영 요약
+        overall: [
+            { area: "서버",      status: "warn",   note: "시스템 디스크 여유 공간 부족" },
+            { area: "네트워크",  status: "ok",     note: "장애 및 오류 증가 없음" },
+            { area: "백업",      status: "warn",   note: "NAS 백업 1회 실패 후 정상화" },
+            { area: "계정·보안", status: "ok",     note: "퇴사자 계정 정리 완료" },
+            { area: "수명·만료", status: "action", note: "VPN 인증서 45일 후 만료" }
+        ],
+        highlights: [
+            "백업 실패 원인 조치",
+            "퇴사자 계정 3개 비활성화",
+            "공유폴더 권한 정리",
+            "방화벽 관리자 계정 변경"
+        ],
+        risks: [
+            { severity: "높음", subject: "서버 디스크 18% 잔여", impact: "ERP 중단 가능성", recommendation: "30일 이내 정리·증설" },
+            { severity: "높음", subject: "VPN 인증서 만료 예정", impact: "외부접속 중단", recommendation: "만료 30일 전 갱신" },
+            { severity: "중간", subject: "노후 스위치 보증 만료", impact: "장애 시 복구 지연", recommendation: "교체 예산 검토" }
+        ],
+        decisions: [
+            { subject: "서버 디스크 증설", due_date: "2026.07.15", options: "데이터 정리 / 디스크 증설" },
+            { subject: "백업 보존기간",   due_date: "2026.07.20", options: "30일 / 90일 / 1년" },
+            { subject: "노후 스위치 교체", due_date: "2026.07.31", options: "유지 / 예비장비 / 교체" }
+        ],
+        // 2. 서비스 수행 현황
+        activity_summary: [
+            { category: "사용자 요청", count: 7,  done: 7,  open: 0, note: "PC·프린터·계정" },
+            { category: "장애 처리",   count: 3,  done: 3,  open: 0, note: "서버·NAS·네트워크" },
+            { category: "정기 점검",   count: 12, done: 12, open: 0, note: "계획 대비 100%" },
+            { category: "변경 작업",   count: 4,  done: 4,  open: 0, note: "권한·계정·방화벽" },
+            { category: "미결 과제",   count: 3,  done: 0,  open: 3, note: "고객 결정 대기" }
+        ],
+        tickets: [
+            { date: "06.05", target: "직원 PC",  subject: "ERP 실행 오류", cause: "로컬 캐시 손상", action: "캐시 초기화",    status: "완료" },
+            { date: "06.12", target: "NAS 백업", subject: "백업 실패",     cause: "네트워크 지연", action: "재연결·재실행",  status: "완료" },
+            { date: "06.18", target: "파일서버", subject: "권한 요청",     cause: "조직 변경",     action: "그룹 권한 수정", status: "완료" },
+            { date: "06.24", target: "방화벽",   subject: "관리자 변경",   cause: "담당자 퇴사",   action: "계정 변경",      status: "완료" }
+        ],
+        // 3. 자산
+        assets: [
+            { type: "업무용 PC", count: 28, inspected: 28, note: "Windows 11" },
+            { type: "물리 서버", count: 2,  inspected: 2,  note: "ERP·파일서버" },
+            { type: "가상머신",  count: 5,  inspected: 5,  note: "VMware" },
+            { type: "NAS",       count: 1,  inspected: 1,  note: "백업 저장소" },
+            { type: "방화벽",    count: 1,  inspected: 1,  note: "VPN 포함" },
+            { type: "스위치",    count: 3,  inspected: 3,  note: "1대 보증 만료" }
+        ],
+        asset_changes: [
+            { item: "사용자 계정",  before: "42", after: "39", reason: "퇴사자 3명 정리" },
+            { item: "업무용 PC",    before: "27", after: "28", reason: "신규 입사자" },
+            { item: "백업 대상 VM", before: "4",  after: "5",  reason: "신규 서비스 추가" }
+        ],
+        // 4. 인프라 상태
+        servers: [
+            { host: "ERP-SRV01",  status: "warn", cpu: "32%", mem: "68%", disk: "18% 잔여", note: "디스크 증설 검토" },
+            { host: "FILE-SRV01", status: "ok",   cpu: "14%", mem: "42%", disk: "53% 잔여", note: "이상 없음" },
+            { host: "VMHOST01",   status: "ok",   cpu: "38%", mem: "61%", disk: "46% 잔여", note: "경고 없음" }
+        ],
+        network: [
+            { item: "인터넷 회선",      status: "ok",    result: "주요 단절 없음",   action: "없음" },
+            { item: "스위치 포트 오류", status: "ok",    result: "오류 증가 없음",   action: "없음" },
+            { item: "VPN",              status: "warn",  result: "인증서 만료 45일", action: "갱신 예정" },
+            { item: "방화벽 관리자",    status: "ok",    result: "퇴사자 계정 제거", action: "완료" },
+            { item: "외부 노출",        status: "watch", result: "불필요 포트 없음", action: "유지" }
+        ],
+        security: [
+            { item: "퇴사자 계정",   status: "ok",   result: "3개 비활성화" },
+            { item: "관리자 계정",   status: "warn", result: "MFA 미적용 — 7월 적용 계획" },
+            { item: "공유폴더 권한", status: "ok",   result: "부서 변경 반영" },
+            { item: "보안 업데이트", status: "ok",   result: "중요 업데이트 완료" },
+            { item: "백신",          status: "ok",   result: "미적용 단말 없음" }
+        ],
+        // 5. 백업·복구검증
+        backup_jobs: [
+            { job: "ERP 일일백업",  target: "ERP-SRV01",  schedule: "매일", success: 30, failure: 0, last_success: "06.30 23:10", status: "ok" },
+            { job: "파일서버 백업", target: "FILE-SRV01", schedule: "매일", success: 29, failure: 1, last_success: "06.30 23:40", status: "watch" },
+            { job: "VM 전체백업",   target: "VM 5대",     schedule: "주간", success: 4,  failure: 0, last_success: "06.28 02:00", status: "ok" }
+        ],
+        backup_failures: [
+            { when: "06.12", job: "파일서버 백업", cause: "NAS 연결 지연", retry: "06.12 08:30", result: "성공", prevention: "네트워크 시간초과 조정" }
+        ],
+        restore_tests: [
+            { date: "06.21", target: "파일 3건", type: "파일 복구",    goal: "30분 이내",   actual: "8분",  result: "정상" },
+            { date: "06.21", target: "ERP DB",   type: "샘플 DB 복구", goal: "무결성 확인", actual: "22분", result: "정상" }
+        ],
+        restore_verdict: [
+            "파일 단위 복구는 정상 확인.",
+            "전체 서버 재해복구는 이번 달 미실시.",
+            "분기 복구훈련 예정일: 2026.09.20."
+        ],
+        // 6. 수명·만료·예산
+        lifecycle: [
+            { item: "인증서",       target: "VPN",     due: "2026.08.15", impact: "외부접속 중단",  when: "07.15 이전", plan: "갱신 (즉시)" },
+            { item: "보증기간",     target: "SW-03",   due: "2026.07.31", impact: "장애 복구 지연", when: "07월",       plan: "교체 검토 (3개월 이내 · 견적 필요)" },
+            { item: "라이선스",     target: "백업 SW", due: "2026.10.30", impact: "백업 중단",      when: "09월",       plan: "갱신 (6개월 이내)" },
+            { item: "OS 지원 종료", target: "SRV-02",  due: "2027.01",    impact: "보안·지원 제한", when: "2026 Q4",    plan: "업그레이드 (차년도 계획)" }
+        ],
+        // 7. 미결 과제·다음 계획
+        open_items: [
+            { id: "A-01", subject: "ERP 디스크 정리",  severity: "높음", owner: "SYSCARE", due_date: "07.10", status: "진행",      blocker: "없음" },
+            { id: "A-02", subject: "디스크 증설 승인", severity: "높음", owner: "고객사",  due_date: "07.15", status: "결정 대기", blocker: "예산 승인" },
+            { id: "A-03", subject: "MFA 적용",         severity: "중간", owner: "공동",    due_date: "07.31", status: "계획",      blocker: "사용자 공지" }
+        ],
+        next_plans: [
+            "VPN 인증서 갱신",
+            "서버 디스크 정리",
+            "관리자 MFA 적용",
+            "노후 스위치 견적",
+            "분기 복구훈련 준비"
+        ],
+        // 8. 고객 확인
+        confirmations: [
+            { item: "백업 보존기간",    options: "30일 / 90일 / 별도" },
+            { item: "서버 디스크 증설", options: "승인 / 보류" },
+            { item: "스위치 교체",      options: "견적 요청 / 유지" },
+            { item: "MFA 적용 일정",    options: "즉시 / 다음 달" }
+        ]
+    };
+
+    /* ================= 렌더링 ================= */
+    const STATUS = {
+        ok:     { cls: "b-ok",     label: "정상" },
+        watch:  { cls: "b-watch",  label: "관찰" },
+        warn:   { cls: "b-warn",   label: "주의" },
+        action: { cls: "b-action", label: "조치 필요" },
+        crit:   { cls: "b-crit",   label: "긴급" }
+    };
+    const badge = s => `<span class="badge ${STATUS[s].cls}">${STATUS[s].label}</span>`;
+    const sev = s => `<span class="sev ${s === '높음' ? 'sev-high' : s === '중간' ? 'sev-mid' : 'sev-low'}">${s}</span>`;
+
+    function pageFoot(m, label) {
+        return `<div class="page-foot"><span>${m.customer} · ${m.period_label} 월간 전산 유지보수 보고서</span><span>${m.report_number} · ${m.document_class} · ${label}</span></div>`;
+    }
+
+    function render() {
+        const m = REPORT_DATA.meta;
+        const d = REPORT_DATA;
+        const html = `
+        <!-- 0. 표지 -->
+        <section class="report-page cover">
+            ${m.is_sample ? '<div class="watermark" aria-hidden="true">SAMPLE</div>' : ''}
+            <div class="brand">SYSCARE</div>
+            <h1 class="doc-title">월간 전산 유지보수 보고서</h1>
+            <p class="doc-sub">인프라 상태 · 수행 내역 · 위험 · 다음 조치</p>
+            <dl class="cover-meta">
+                <div><dt>고객사</dt><dd>${m.customer}</dd></div>
+                <div><dt>보고 기간</dt><dd>${m.report_period}</dd></div>
+                <div><dt>보고서 번호</dt><dd>${m.report_number}</dd></div>
+                <div><dt>작성일</dt><dd>${m.issue_date}</dd></div>
+                <div><dt>작성자</dt><dd>${m.author}</dd></div>
+                <div><dt>문서 등급</dt><dd>${m.document_class}</dd></div>
+                <div><dt>버전</dt><dd>${m.document_version}</dd></div>
+            </dl>
+            <p class="cover-note">
+                ${m.is_sample ? '본 문서는 SYSCARE 월간 유지보수 보고서의 형식을 설명하기 위한 가상 샘플입니다. 회사명·장비명·수치·장애 내역은 실제 고객 데이터가 아닙니다.<br>' : ''}
+                문의: SYSCARE · 010-3861-8079 · jhw@mlkit.co.kr
+            </p>
+        </section>
+
+        <!-- 1. 경영 요약 -->
+        <section class="report-page">
+            <h2 class="sec-title">1. 경영 요약</h2>
+            <p class="sec-caption">이 페이지만으로 현재 상태와 필요한 결정을 파악할 수 있습니다.</p>
+
+            <h3 class="sub-title">1.1 종합 상태</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th style="width:22%">영역</th><th style="width:20%" class="ctr">상태</th><th>핵심 판단</th></tr></thead>
+                <tbody>${d.overall.map(r => `<tr><td><strong>${r.area}</strong></td><td class="ctr">${badge(r.status)}</td><td>${r.note}</td></tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">1.2 이번 달 핵심 요약</h3>
+            <div class="avoid-break"><table>
+                <tbody>${d.highlights.map((h, i) => `<tr><td style="width:36px" class="ctr">${i + 1}</td><td>${h}</td></tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">1.3 주요 위험 (최대 3건)</h3>
+            <div class="avoid-break"><table class="resp">
+                <thead><tr><th style="width:14%">우선순위</th><th style="width:28%">위험</th><th style="width:26%">업무 영향</th><th>권고</th></tr></thead>
+                <tbody>${d.risks.map(r => `<tr>
+                    <td data-label="우선순위">${sev(r.severity)}</td>
+                    <td class="td-main" data-label="위험">${r.subject}</td>
+                    <td data-label="업무 영향">${r.impact}</td>
+                    <td data-label="권고">${r.recommendation}</td>
+                </tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">1.4 고객 결정사항</h3>
+            <div class="avoid-break"><table class="resp">
+                <thead><tr><th style="width:30%">결정 요청</th><th style="width:20%">권장 기한</th><th>선택안</th></tr></thead>
+                <tbody>${d.decisions.map(r => `<tr>
+                    <td class="td-main" data-label="결정 요청">${r.subject}</td>
+                    <td data-label="권장 기한">${r.due_date}</td>
+                    <td data-label="선택안">${r.options}</td>
+                </tr>`).join('')}</tbody>
+            </table></div>
+            ${pageFoot(m, '경영 요약')}
+        </section>
+
+        <!-- 2. 서비스 수행 현황 -->
+        <section class="report-page">
+            <h2 class="sec-title">2. 서비스 수행 현황</h2>
+            <p class="sec-caption">${m.is_sample ? '아래 수치는 가상 데이터입니다.' : ''}</p>
+
+            <h3 class="sub-title">2.1 월간 활동 요약</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th>구분</th><th class="num">건수</th><th class="num">완료</th><th class="num">진행</th><th>비고</th></tr></thead>
+                <tbody>${d.activity_summary.map(r => `<tr>
+                    <td><strong>${r.category}</strong></td><td class="num">${r.count}</td><td class="num">${r.done}</td><td class="num">${r.open}</td><td>${r.note}</td>
+                </tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">2.2 주요 처리 내역</h3>
+            <table class="resp">
+                <thead><tr><th style="width:10%">일자</th><th style="width:14%">대상</th><th style="width:20%">요청·증상</th><th style="width:18%">원인</th><th style="width:22%">조치</th><th style="width:10%" class="ctr">상태</th></tr></thead>
+                <tbody>${d.tickets.map(r => `<tr>
+                    <td data-label="일자">${r.date}</td>
+                    <td class="td-main" data-label="대상">${r.target}</td>
+                    <td data-label="요청·증상">${r.subject}</td>
+                    <td data-label="원인">${r.cause}</td>
+                    <td data-label="조치">${r.action}</td>
+                    <td class="ctr" data-label="상태">${r.status}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+            ${pageFoot(m, '수행 현황')}
+        </section>
+
+        <!-- 3. 점검 대상과 자산 현황 (웹: 기본 접힘) -->
+        <section class="report-page detail-sec">
+            <h2 class="sec-title">3. 점검 대상과 자산 현황</h2>
+            <p class="sec-caption">SYSCARE가 이번 달 점검·관리한 범위입니다.</p>
+            <button type="button" class="sec-toggle web-only">자산 현황 상세 펼치기</button>
+            <div class="sec-body">
+            <h3 class="sub-title">3.1 관리 대상 요약</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th>자산 유형</th><th class="num">수량</th><th class="num">점검 대상</th><th>비고</th></tr></thead>
+                <tbody>${d.assets.map(r => `<tr><td><strong>${r.type}</strong></td><td class="num">${r.count}</td><td class="num">${r.inspected}</td><td>${r.note}</td></tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">3.2 전월 대비 변동 내역</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th>구분</th><th class="num">변경 전</th><th class="num">변경 후</th><th>사유</th></tr></thead>
+                <tbody>${d.asset_changes.length
+                    ? d.asset_changes.map(r => `<tr><td><strong>${r.item}</strong></td><td class="num">${r.before}</td><td class="num">${r.after}</td><td>${r.reason}</td></tr>`).join('')
+                    : '<tr><td colspan="4">변동 없음</td></tr>'}</tbody>
+            </table></div>
+            </div>
+            ${pageFoot(m, '자산 현황')}
+        </section>
+
+        <!-- 4. 인프라 상태 상세 (웹: 기본 접힘) -->
+        <section class="report-page detail-sec">
+            <h2 class="sec-title">4. 인프라 상태 상세</h2>
+            <p class="sec-caption">${m.inspection_basis}</p>
+            <button type="button" class="sec-toggle web-only">인프라 상태 상세 펼치기</button>
+            <div class="sec-body">
+            <h3 class="sub-title">4.1 서버·가상화</h3>
+            <table class="resp">
+                <thead><tr><th style="width:20%">대상</th><th style="width:14%" class="ctr">상태</th><th class="num" style="width:10%">CPU</th><th class="num" style="width:12%">메모리</th><th class="num" style="width:14%">디스크</th><th>핵심 내용</th></tr></thead>
+                <tbody>${d.servers.map(r => `<tr>
+                    <td class="td-main" data-label="대상">${r.host}</td>
+                    <td class="ctr" data-label="상태">${badge(r.status)}</td>
+                    <td class="num" data-label="CPU">${r.cpu}</td>
+                    <td class="num" data-label="메모리">${r.mem}</td>
+                    <td class="num" data-label="디스크">${r.disk}</td>
+                    <td data-label="핵심 내용">${r.note}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+
+            <h3 class="sub-title">4.2 네트워크·방화벽</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th style="width:26%">항목</th><th style="width:16%" class="ctr">상태</th><th>결과</th><th style="width:20%">조치</th></tr></thead>
+                <tbody>${d.network.map(r => `<tr><td><strong>${r.item}</strong></td><td class="ctr">${badge(r.status)}</td><td>${r.result}</td><td>${r.action}</td></tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">4.3 계정·권한·보안</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th style="width:26%">항목</th><th style="width:16%" class="ctr">상태</th><th>결과</th></tr></thead>
+                <tbody>${d.security.map(r => `<tr><td><strong>${r.item}</strong></td><td class="ctr">${badge(r.status)}</td><td>${r.result}</td></tr>`).join('')}</tbody>
+            </table></div>
+            </div>
+            ${pageFoot(m, '인프라 상태')}
+        </section>
+
+        <!-- 5. 백업·복구검증 -->
+        <section class="report-page">
+            <h2 class="sec-title">5. 백업·복구검증</h2>
+            <p class="sec-caption">백업 성공과 복구 가능성은 별도로 검증합니다.</p>
+
+            <h3 class="sub-title">5.1 백업 작업 현황</h3>
+            <table class="resp">
+                <thead><tr><th style="width:18%">백업 작업</th><th style="width:15%">대상</th><th style="width:9%">주기</th><th class="num" style="width:9%">성공</th><th class="num" style="width:9%">실패</th><th style="width:16%">최근 성공</th><th class="ctr" style="width:12%">상태</th></tr></thead>
+                <tbody>${d.backup_jobs.map(r => `<tr>
+                    <td class="td-main" data-label="백업 작업">${r.job}</td>
+                    <td data-label="대상">${r.target}</td>
+                    <td data-label="주기">${r.schedule}</td>
+                    <td class="num" data-label="성공">${r.success}</td>
+                    <td class="num" data-label="실패">${r.failure}</td>
+                    <td data-label="최근 성공">${r.last_success}</td>
+                    <td class="ctr" data-label="상태">${badge(r.status)}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+
+            <h3 class="sub-title">5.2 실패 작업 상세</h3>
+            <table class="resp">
+                <thead><tr><th style="width:10%">일시</th><th style="width:18%">작업</th><th style="width:18%">원인</th><th style="width:14%">재처리</th><th style="width:10%">결과</th><th>재발 방지</th></tr></thead>
+                <tbody>${d.backup_failures.length
+                    ? d.backup_failures.map(r => `<tr>
+                        <td data-label="일시">${r.when}</td>
+                        <td class="td-main" data-label="작업">${r.job}</td>
+                        <td data-label="원인">${r.cause}</td>
+                        <td data-label="재처리">${r.retry}</td>
+                        <td data-label="결과">${r.result}</td>
+                        <td data-label="재발 방지">${r.prevention}</td>
+                    </tr>`).join('')
+                    : '<tr><td colspan="6">해당 없음</td></tr>'}</tbody>
+            </table>
+
+            <h3 class="sub-title">5.3 복구 테스트</h3>
+            <table class="resp">
+                <thead><tr><th style="width:14%">테스트 일자</th><th style="width:16%">대상</th><th style="width:20%">복구 유형</th><th style="width:18%">목표</th><th class="num" style="width:14%">실제 시간</th><th>검증 결과</th></tr></thead>
+                <tbody>${d.restore_tests.map(r => `<tr>
+                    <td data-label="테스트 일자">${r.date}</td>
+                    <td class="td-main" data-label="대상">${r.target}</td>
+                    <td data-label="복구 유형">${r.type}</td>
+                    <td data-label="목표">${r.goal}</td>
+                    <td class="num" data-label="실제 시간">${r.actual}</td>
+                    <td data-label="검증 결과">${r.result}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+
+            <h3 class="sub-title">5.4 복구 판단</h3>
+            <div class="callout avoid-break">${d.restore_verdict.map(v => `<div>· ${v}</div>`).join('')}</div>
+            ${pageFoot(m, '백업·복구검증')}
+        </section>
+
+        <!-- 6. 수명·만료·예산 계획 (웹: 기본 접힘) -->
+        <section class="report-page detail-sec">
+            <h2 class="sec-title">6. 수명·만료·예산 계획</h2>
+            <p class="sec-caption">예산 등급: 즉시 · 3개월 이내 · 6개월 이내 · 차년도 계획 (가격 미확정 항목은 "견적 필요")</p>
+            <button type="button" class="sec-toggle web-only">수명·만료 상세 펼치기</button>
+            <div class="sec-body">
+            <table class="resp">
+                <thead><tr><th style="width:14%">항목</th><th style="width:12%">대상</th><th style="width:13%">예정일</th><th style="width:18%">영향</th><th style="width:13%">권고 시점</th><th>예상 조치</th></tr></thead>
+                <tbody>${d.lifecycle.map(r => `<tr>
+                    <td class="td-main" data-label="항목">${r.item}</td>
+                    <td data-label="대상">${r.target}</td>
+                    <td data-label="예정일">${r.due}</td>
+                    <td data-label="영향">${r.impact}</td>
+                    <td data-label="권고 시점">${r.when}</td>
+                    <td data-label="예상 조치">${r.plan}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+            </div>
+            ${pageFoot(m, '수명·만료·예산')}
+        </section>
+
+        <!-- 7. 미결 과제와 개선계획 -->
+        <section class="report-page">
+            <h2 class="sec-title">7. 미결 과제·다음 계획</h2>
+            <p class="sec-caption">미결 과제는 담당·기한·차단 요인까지 추적합니다.</p>
+
+            <h3 class="sub-title">7.1 미결 과제</h3>
+            <table class="resp">
+                <thead><tr><th style="width:9%">번호</th><th style="width:24%">항목</th><th style="width:11%" class="ctr">위험도</th><th style="width:12%">담당</th><th style="width:11%">목표일</th><th style="width:13%">상태</th><th>차단 요인</th></tr></thead>
+                <tbody>${d.open_items.map(r => `<tr>
+                    <td data-label="번호">${r.id}</td>
+                    <td class="td-main" data-label="항목">${r.subject}</td>
+                    <td class="ctr" data-label="위험도">${sev(r.severity)}</td>
+                    <td data-label="담당">${r.owner}</td>
+                    <td data-label="목표일">${r.due_date}</td>
+                    <td data-label="상태">${r.status}</td>
+                    <td data-label="차단 요인">${r.blocker}</td>
+                </tr>`).join('')}</tbody>
+            </table>
+
+            <h3 class="sub-title">7.2 다음 달 계획 (최대 5개)</h3>
+            <div class="avoid-break"><table>
+                <tbody>${d.next_plans.map((p, i) => `<tr><td style="width:36px" class="ctr">${i + 1}</td><td>${p}</td></tr>`).join('')}</tbody>
+            </table></div>
+            ${pageFoot(m, '미결 과제·계획')}
+        </section>
+
+        <!-- 8. 고객 확인·승인 -->
+        <section class="report-page">
+            <h2 class="sec-title">8. 고객 확인·승인</h2>
+            <p class="sec-caption">아래 항목은 고객사의 회신이 필요한 내용입니다. 이 문서의 확인란은 서면 기록용이며 전자 승인 기능이 아닙니다.</p>
+
+            <h3 class="sub-title">8.1 고객 확인사항</h3>
+            <div class="avoid-break"><table>
+                <thead><tr><th style="width:34%">항목</th><th>고객 답변 (해당 항목에 표시)</th></tr></thead>
+                <tbody>${d.confirmations.map(r => `<tr><td><strong>${r.item}</strong></td><td>${r.options}</td></tr>`).join('')}</tbody>
+            </table></div>
+
+            <h3 class="sub-title">8.2 확인 영역</h3>
+            <dl class="sign-box avoid-break">
+                <div><dt>고객 담당자</dt><dd></dd></div>
+                <div><dt>확인일</dt><dd></dd></div>
+                <div><dt>의견</dt><dd></dd></div>
+            </dl>
+            ${pageFoot(m, '고객 확인')}
+        </section>`;
+
+        document.getElementById('report').innerHTML = html;
+
+        // 웹: 접힌 기술 상세 섹션 펼치기
+        document.getElementById('report').addEventListener('click', e => {
+            const btn = e.target.closest('.sec-toggle');
+            if (btn) btn.closest('.detail-sec').classList.add('open');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', render);
+    </script>
 </body>
 </html>

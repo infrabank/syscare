@@ -287,7 +287,16 @@ Files to update when contact details change:
 - index.html (footer, contact section, JSON-LD schema)
 - diagnosis.html (support info)
 - admin-bookings.html (emergency contact)
-- security-report-sample.html (지원 안내 section)
+- security-report-sample.html (표지 cover-note — 연락처는 표지에만 1회 표기)
+
+### Monthly Report Template (security-report-sample.html, 2026-07 재설계)
+- 데이터 기반 템플릿: 페이지 내 `REPORT_DATA` 객체만 월별로 교체하면 웹·PDF 동시 생성
+- 구성(고정): 표지 → 1.경영 요약 → 2.수행 현황 → 3.자산 → 4.인프라 상세 → 5.백업·복구검증 → 6.수명·만료 → 7.미결 과제 → 8.고객 확인 (A4 9페이지)
+- 웹에서는 3·4·6장이 기본 접힘(.detail-sec), 인쇄 시 자동 펼침 — 이 동작을 제거하지 말 것
+- PDF 생성: 인쇄 CSS + puppeteer page.pdf (headerTemplate/footerTemplate로 페이지 번호) → files/syscare-monthly-report-sample.pdf
+- 샘플에는 SAMPLE 워터마크·가상 데이터 고지 필수. 실고객 데이터로 쓸 때 meta.is_sample=false
+- 상태 표기는 색+아이콘+텍스트 배지(정상/관찰/주의/조치 필요/긴급) — 색상만으로 구분 금지
+- 보고서 본문에 상담 CTA·연락처 반복 금지 (웹 전용 .web-only 영역에만)
 - privacy.html (개인정보 보호책임자 연락처)
 
 ## SEO & Regional Optimization
