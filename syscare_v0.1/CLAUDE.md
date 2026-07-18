@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ## Key Business Requirements
 
 ### Contact Information
-- Phone: **070-8015-8079** (평일 09:00~18:00)
+- Phone: **010-3861-8079** (평일 09:00~18:00)
 - Email: **jhw@mlkit.co.kr**
 - Service Area: **세종·대전·충청권** (원격지원 우선, 충청권 방문지원 병행)
 - Primary Target: 세종특별자치시, 대전광역시, 천안시, 청주시 중소기업
@@ -324,7 +324,7 @@ The site is optimized for regional search visibility targeting SMBs in the Sejon
 
 **3. CTA Buttons** (이름 통일 — 혼용 금지)
 - Primary CTA: **"15분 상담 신청"** → diagnosis.html (유일한 전환 CTA 명칭)
-- Secondary CTA: **"전화 상담"** → tel:070-8015-8079
+- Secondary CTA: **"전화 상담"** → tel:010-3861-8079
 - 배치: Hero · 신뢰 구역 이후 1회 · 최종 구역 · 모바일 하단 바 (모든 카드에 CTA 금지)
 - 공포·긴급성 문구(마지막 기회, 한정 특가 등) 사용 금지
 
