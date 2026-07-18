@@ -13,55 +13,6 @@ body {
     overflow: hidden;
 }
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
-    animation: gradientShift 10s ease-in-out infinite alternate;
-}
-
-@keyframes gradientShift {
-    0% {
-        background: 
-            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
-    }
-    100% {
-        background: 
-            radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
-    }
-}
-
-.shield-effect {
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: float 6s ease-in-out infinite;
-    opacity: 0.7;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-20px) scale(1.1);
-    }
-}
-
 /* Glass effect for hero buttons */
 .hero-section button {
     backdrop-filter: blur(10px);
@@ -325,24 +276,81 @@ button:hover::before {
 }
 
 /* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    .hero {
+        min-height: auto;
+    }
+
+    .hero h1,
     .hero-section h1 {
-        font-size: 2.5rem;
-        line-height: 1.2;
+        font-size: clamp(2rem, 9vw, 2.75rem);
+        line-height: 1.15;
+        letter-spacing: -0.04em;
     }
-    
-    .shield-effect {
-        width: 200px;
-        height: 200px;
-        top: 5%;
-        right: 5%;
+
+    .hero p {
+        line-height: 1.55;
     }
-    
-    .solution-card,
-    .value-card,
-    .stat-card {
-        margin-bottom: 1rem;
+
+    /* 하단 고정 CTA에 본문이 가리지 않도록 여백 확보 (바가 있는 페이지만) */
+    body.has-cta-bar main {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
     }
+    body.has-cta-bar footer {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+}
+
+/* 한글 줄바꿈: 단어 단위 유지 */
+body,
+h1, h2, h3, h4, h5, h6 {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* Sticky header: Safe Area 반영 */
+.site-header {
+    padding-top: env(safe-area-inset-top);
+}
+
+/* 대형 글꼴 설정(125~200%)에서도 헤더·하단바가 한 줄을 유지하도록 크기 상한 고정 */
+@media (max-width: 767px) {
+    .site-header .header-logo {
+        font-size: min(1.25rem, 22px);
+    }
+    .site-header .header-phone {
+        width: 44px;
+        height: 44px;
+        flex: none;
+    }
+    .site-header .header-cta {
+        font-size: min(0.875rem, 15px);
+        height: 44px;
+        padding: 0 12px;
+    }
+    .mobile-cta-bar a {
+        font-size: min(1rem, 17px);
+        height: 48px;
+    }
+}
+
+/* 모바일 하단 고정 CTA 바 */
+.mobile-cta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* FAQ Accordion (details/summary) */
+.faq-item summary::-webkit-details-marker {
+    display: none;
 }
 
 /* Loading Animation */
@@ -424,24 +432,9 @@ a:focus {
     }
 }
 
-/* Dark Mode Support (future enhancement) */
-@media (prefers-color-scheme: dark) {
-    .bg-white {
-        background-color: #1f2937;
-        color: white;
-    }
-    
-    .bg-gray-50 {
-        background-color: #111827;
-    }
-    
-    .text-gray-700 {
-        color: #d1d5db;
-    }
-    
-    .text-gray-600 {
-        color: #9ca3af;
-    }
+/* Dark mode: Tailwind 유틸리티를 뒤집으면 대비가 깨지므로 라이트 고정 */
+:root {
+    color-scheme: light;
 }
 
 /* Performance Optimizations */
@@ -458,9 +451,10 @@ a:focus {
     font-variant-numeric: tabular-nums;
 }
 
-/* Section Spacing */
-section {
-    scroll-margin-top: 80px;
+/* Section Spacing: sticky header 아래로 앵커 안착 */
+section,
+h2[id] {
+    scroll-margin-top: 84px;
 }
 
 /* Enhanced Button Styles */

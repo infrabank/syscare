@@ -310,18 +310,22 @@ The site is optimized for regional search visibility targeting SMBs in the Sejon
 - **DO NOT** add `aggregateRating` or review counts without real, verifiable review data
 - **DO NOT** modify schema structure without validating at schema.org/validator
 
-**2. Regional Content Sections** (2026-07 개편 이후 구조)
-- Hero: H1 "전산담당자가 없어도 서버와 백업은 멈추지 않아야 합니다" + 지역·서비스 범위 설명
-- `#fit`: 이런 기업에 필요합니다 (체크리스트)
-- `#services`: PC/서버·가상화/네트워크·보안/백업·복구검증 관리 범위
-- `#support`, `#deliverables`, `#engineer`, `#pricing`, `#process`, `#faq`, `#cta`
+**2. Page Structure** (2026-07 모바일 전환형 개편 — Hero 포함 6구역 유지, 구역 추가 금지)
+- `#hero`: 라벨 + H1 "중소기업 전산 통합관리" + 배지 3개 + CTA 2개 (100vh 금지)
+- `#scope`: 관리 공백 진단 (문제 3 리스트 + 범위 4 카드)
+- `#trust`: 검증 가능한 운영 (근거 3 + 결과물 4 + 신뢰 후 CTA 1회)
+- `#support`: 지원 방식 4 + 비용 기준 요약 (상세는 regular-checkup.html)
+- `#process`: 상담 절차 3단계 + FAQ 4개 (`<details>` 아코디언, id="faq")
+- `#cta`: 최종 CTA. 그 외 sticky 헤더(.site-header) + 모바일 하단 고정 바(.mobile-cta-bar)
+- 헤더는 `position: sticky` — fixed로 되돌리면 Hero 가림 버그 재발
 - 가상 후기·기관 배지 섹션은 제거됨. 실제 고객 동의를 받은 후기와 증빙 가능한
   인증만 추가할 것 (익명 사례는 "익명 사례"임을 명시)
+- 문구는 짧은 명사형 우선 (카드 설명 1줄, "관리합니다/제공합니다"형 서술 지양)
 
-**3. CTA Buttons**
-- Primary CTA: "현재 전산환경 상담하기" / "전산환경 상담 신청" → diagnosis.html
-- Secondary CTA: "월간 점검표 샘플 보기" → security-report-sample.html
-- All conversion CTAs maintain `href="diagnosis.html"` (unified conversion funnel)
+**3. CTA Buttons** (이름 통일 — 혼용 금지)
+- Primary CTA: **"15분 상담 신청"** → diagnosis.html (유일한 전환 CTA 명칭)
+- Secondary CTA: **"전화 상담"** → tel:070-8015-8079
+- 배치: Hero · 신뢰 구역 이후 1회 · 최종 구역 · 모바일 하단 바 (모든 카드에 CTA 금지)
 - 공포·긴급성 문구(마지막 기회, 한정 특가 등) 사용 금지
 
 ### SEO Maintenance Guidelines

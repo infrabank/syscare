@@ -2,10 +2,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>15분 전산환경 사전 상담 - SYSCARE</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%232563eb%27/%3E%3Ctext x=%2750%27 y=%2772%27 font-size=%2764%27 font-weight=%27bold%27 font-family=%27sans-serif%27 fill=%27white%27 text-anchor=%27middle%27%3ES%3C/text%3E%3C/svg%3E">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>15분 상담 신청 - SYSCARE</title>
     <meta name="description" content="회사 규모, 장비 수와 현재 불편한 점을 확인한 뒤 SYSCARE가 지원할 수 있는 범위를 안내합니다. 상담만으로 계약이 진행되거나 비용이 발생하지 않습니다.">
 
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
     <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -23,321 +25,275 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
 
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/diagnosis.html">
-
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+    <!-- Header -->
+    <header class="site-header sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="header-logo text-xl md:text-2xl font-bold text-blue-600 shrink-0">SYSCARE</a>
+            <div class="flex items-center gap-2">
+                <a href="tel:070-8015-8079" aria-label="전화 상담 070-8015-8079"
+                   class="header-phone flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 text-blue-600 hover:bg-blue-50 transition-colors">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                </a>
+                <a href="index.html" class="header-cta flex items-center h-11 px-4 border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors">
+                    홈으로
+                </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html#services" class="text-gray-700 hover:text-blue-600 transition-colors">관리 범위</a>
-                <a href="index.html#engineer" class="text-gray-700 hover:text-blue-600 transition-colors">대표 엔지니어</a>
-                <a href="system-check.html" class="text-gray-700 hover:text-blue-600 transition-colors">상태 확인</a>
-                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
-            </div>
-            <a href="index.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                홈으로
-            </a>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <!-- Header -->
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                        15분 <span class="text-blue-600">전산환경 사전 상담</span>
-                    </h1>
-                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                        회사 규모, 장비 수와 현재 불편한 점을 확인한 뒤<br class="hidden md:block">
-                        SYSCARE가 지원할 수 있는 범위를 안내합니다.
-                    </p>
-                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 max-w-3xl mx-auto">
-                        <p class="text-blue-800">
-                            <i class="fas fa-circle-info mr-2"></i>
-                            상담만으로 계약이 진행되거나 비용이 발생하지 않습니다.
-                            상담 후 계약을 강요하지 않습니다.
-                        </p>
+    <main class="pb-16">
+        <div class="max-w-2xl mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center pt-8 md:pt-12 mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-3">15분 상담 신청</h1>
+                <p class="text-gray-600">환경 확인 · 지원 범위 · 견적 기준</p>
+                <p class="mt-4 inline-block bg-blue-50 border border-blue-100 text-blue-800 text-sm rounded-lg px-4 py-2.5">
+                    상담 비용 없음 · 계약 강요 없음
+                </p>
+            </div>
+
+            <!-- Application Form -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 md:p-8 mb-10">
+                <form id="diagnosisForm" novalidate>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="f-company" class="block text-sm font-semibold text-gray-700 mb-1.5">회사명 *</label>
+                            <input id="f-company" type="text" name="company_name" required autocomplete="organization"
+                                   class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="f-name" class="block text-sm font-semibold text-gray-700 mb-1.5">담당자명 *</label>
+                            <input id="f-name" type="text" name="contact_name" required autocomplete="name"
+                                   class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="f-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">연락처 *</label>
+                            <input id="f-phone" type="tel" name="phone" required inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"
+                                   class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="f-region" class="block text-sm font-semibold text-gray-700 mb-1.5">사업장 지역 *</label>
+                            <select id="f-region" name="region" required
+                                    class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">선택하세요</option>
+                                <option value="세종">세종</option>
+                                <option value="대전">대전</option>
+                                <option value="청주">청주</option>
+                                <option value="천안">천안</option>
+                                <option value="충청권 기타">충청권 기타</option>
+                                <option value="그 외 지역">그 외 지역</option>
+                            </select>
+                        </div>
+                        <fieldset>
+                            <legend class="block text-sm font-semibold text-gray-700 mb-2">가장 불편한 문제 * <span class="font-normal text-gray-400">(복수 선택)</span></legend>
+                            <div class="space-y-1.5" id="concernGroup">
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="장애 반복" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>PC·서버 장애 반복</span>
+                                </label>
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="백업 불안" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>백업·복구 불확실</span>
+                                </label>
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="담당자 부재" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>전산담당자 부재·퇴사</span>
+                                </label>
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="네트워크 문제" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>인터넷·사내망 불안정</span>
+                                </label>
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="업체 불투명" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>기존 업체 보고 불투명</span>
+                                </label>
+                                <label class="flex items-center min-h-[44px] px-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" name="concerns" value="기타" class="mr-3 w-4 h-4 text-blue-600 concern-checkbox">
+                                    <span>기타</span>
+                                </label>
+                            </div>
+                            <p id="concernError" class="hidden text-sm text-red-600 mt-1.5">하나 이상 선택해주세요.</p>
+                        </fieldset>
                     </div>
-                </div>
 
-                <!-- Process Steps -->
-                <div class="mb-16">
-                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">진행 절차</h2>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                                <span class="text-xl font-bold text-blue-600">1</span>
-                            </div>
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">무료 사전 상담</h3>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• 전화 또는 화상, 약 15분</li>
-                                <li>• 회사 규모와 현재 문제 확인</li>
-                                <li>• 지원 가능 여부 판단</li>
-                                <li>• 준비할 자료 안내</li>
-                            </ul>
-                        </div>
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                                <span class="text-xl font-bold text-green-600">2</span>
-                            </div>
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">원격 기초 점검</h3>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• 장비 목록 확인</li>
-                                <li>• 서버·NAS·백업 현황 확인</li>
-                                <li>• 현재 장애 증상 파악</li>
-                                <li>• 유지보수 범위 산정</li>
-                            </ul>
-                        </div>
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                                <span class="text-xl font-bold text-purple-600">3</span>
-                            </div>
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">필요 시 현장 진단</h3>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• 원격으로 확인하기 어려운 경우 진행</li>
-                                <li>• 지역과 장비 규모에 따라 비용 안내</li>
-                                <li>• 유지보수 계약 시 진단비 차감 여부 협의</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Application Form -->
-                <div class="bg-white rounded-xl shadow-lg p-8 mb-16">
-                    <div class="text-center mb-8">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">사전 상담 신청</h2>
-                        <p class="text-gray-600">아래 정보를 입력하시면 담당 엔지니어가 연락드려 상담 일정을 조율합니다.</p>
-                    </div>
-
-                    <form id="diagnosisForm" class="max-w-2xl mx-auto">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">필수 정보</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
+                    <!-- 선택 정보 (Accordion) -->
+                    <details class="faq-item mt-6 border border-gray-200 rounded-xl">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold text-gray-700">
+                            추가 정보 <span class="font-normal text-sm text-gray-400">(선택)</span>
+                            <i class="fas fa-chevron-down text-gray-400 text-sm" aria-hidden="true"></i>
+                        </summary>
+                        <div class="px-4 pb-4 space-y-4">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">회사명 *</label>
-                                <input type="text" name="company_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <label for="f-email" class="block text-sm font-semibold text-gray-700 mb-1.5">이메일</label>
+                                <input id="f-email" type="email" name="email" inputmode="email" autocomplete="email"
+                                       class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">담당자명 *</label>
-                                <input type="text" name="contact_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label for="f-emp" class="block text-sm font-semibold text-gray-700 mb-1.5">임직원 수</label>
+                                    <select id="f-emp" name="employees" class="w-full h-12 px-3 text-base border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                                        <option value="">선택</option>
+                                        <option value="1-10">1-10명</option>
+                                        <option value="11-50">11-50명</option>
+                                        <option value="51-100">51-100명</option>
+                                        <option value="100+">100명 이상</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="f-pc" class="block text-sm font-semibold text-gray-700 mb-1.5">PC 수</label>
+                                    <select id="f-pc" name="pc_count" class="w-full h-12 px-3 text-base border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                                        <option value="">선택</option>
+                                        <option value="10대 이하">10대 이하</option>
+                                        <option value="11-30대">11-30대</option>
+                                        <option value="31-50대">31-50대</option>
+                                        <option value="50대 이상">50대 이상</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 mt-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">연락처 *</label>
-                                <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label for="f-server" class="block text-sm font-semibold text-gray-700 mb-1.5">서버·NAS</label>
+                                    <select id="f-server" name="server_nas" class="w-full h-12 px-3 text-base border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                                        <option value="">선택</option>
+                                        <option value="없음">없음</option>
+                                        <option value="서버만">서버만</option>
+                                        <option value="NAS만">NAS만</option>
+                                        <option value="서버와 NAS">서버+NAS</option>
+                                        <option value="모름">모름</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="f-time" class="block text-sm font-semibold text-gray-700 mb-1.5">희망 시간</label>
+                                    <select id="f-time" name="preferred_timing" class="w-full h-12 px-3 text-base border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                                        <option value="">선택</option>
+                                        <option value="오전(09-12시)">평일 오전</option>
+                                        <option value="오후(13-18시)">평일 오후</option>
+                                        <option value="협의">협의</option>
+                                    </select>
+                                </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">사업장 지역 *</label>
-                                <select name="region" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">선택하세요</option>
-                                    <option value="세종">세종</option>
-                                    <option value="대전">대전</option>
-                                    <option value="청주">청주</option>
-                                    <option value="천안">천안</option>
-                                    <option value="충청권 기타">충청권 기타</option>
-                                    <option value="그 외 지역">그 외 지역</option>
-                                </select>
+                                <label for="f-notes" class="block text-sm font-semibold text-gray-700 mb-1.5">추가 요청사항</label>
+                                <textarea id="f-notes" name="additional_notes" rows="3"
+                                          class="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                          placeholder="확인하고 싶은 부분을 적어주세요."></textarea>
                             </div>
                         </div>
+                    </details>
 
-                        <div class="mt-6">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">현재 가장 불편한 문제 *</label>
-                            <div class="space-y-2">
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="장애 반복" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">PC·서버 장애가 반복됩니다</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="백업 불안" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">백업이 제대로 되는지 모르겠습니다</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="담당자 부재" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">전산담당자가 없거나 퇴사했습니다</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="네트워크 문제" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">인터넷·사내망이 자주 불안정합니다</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="업체 불투명" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">기존 유지보수 업체의 보고가 불투명합니다</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="concerns" value="기타" class="mr-2 text-blue-600 concern-checkbox">
-                                    <span class="text-gray-700">기타 (추가 요청사항에 적어주세요)</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4 mt-10">선택 정보</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">이메일</label>
-                                <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">임직원 수</label>
-                                <select name="employees" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">선택하세요</option>
-                                    <option value="1-10">1-10명</option>
-                                    <option value="11-50">11-50명</option>
-                                    <option value="51-100">51-100명</option>
-                                    <option value="100+">100명 이상</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 mt-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">PC 수 (대략)</label>
-                                <select name="pc_count" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">선택하세요</option>
-                                    <option value="10대 이하">10대 이하</option>
-                                    <option value="11-30대">11-30대</option>
-                                    <option value="31-50대">31-50대</option>
-                                    <option value="50대 이상">50대 이상</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">서버·NAS 보유 여부</label>
-                                <select name="server_nas" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">선택하세요</option>
-                                    <option value="없음">없음 (클라우드만 사용)</option>
-                                    <option value="서버만">서버만 보유</option>
-                                    <option value="NAS만">NAS만 보유</option>
-                                    <option value="서버와 NAS">서버와 NAS 모두 보유</option>
-                                    <option value="모름">잘 모르겠음</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 mt-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">희망 상담 시간</label>
-                                <select name="preferred_timing" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">선택하세요</option>
-                                    <option value="오전(09-12시)">평일 오전 (09~12시)</option>
-                                    <option value="오후(13-18시)">평일 오후 (13~18시)</option>
-                                    <option value="협의">일정 협의</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mt-6">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">추가 요청사항</label>
-                            <textarea name="additional_notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="특별히 확인하고 싶은 부분이나 궁금한 점이 있으시면 적어주세요."></textarea>
-                        </div>
-
-                        <!-- 개인정보 수집·이용 동의 -->
-                        <div class="mt-10 bg-gray-50 border border-gray-200 rounded-xl p-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">개인정보 수집·이용 동의 (필수)</h3>
-                            <div class="text-sm text-gray-700 space-y-1 mb-4">
-                                <p>• 수집 목적: 전산 유지보수 상담 및 상담 일정 조율</p>
-                                <p>• 필수 항목: 회사명, 담당자명, 연락처, 사업장 지역</p>
+                    <!-- 개인정보 동의 -->
+                    <div class="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4">
+                        <label class="flex items-start font-medium text-gray-900 cursor-pointer">
+                            <input type="checkbox" id="privacyConsent" name="privacy_consent" aria-required="true" class="mr-2.5 mt-1 w-4 h-4 text-blue-600">
+                            <span>개인정보 수집·이용 동의 <span class="text-red-500">*</span>
+                                <span class="block text-sm font-normal text-gray-500 mt-0.5">목적: 상담·일정 조율 | 필수: 회사명·담당자명·연락처 | 보유: 상담 종료 후 3개월</span>
+                            </span>
+                        </label>
+                        <details class="mt-2 text-sm text-gray-600">
+                            <summary class="cursor-pointer text-blue-600 underline underline-offset-2 list-none">자세히 보기</summary>
+                            <div class="mt-2 space-y-1">
                                 <p>• 선택 항목: 이메일, 임직원 수, PC 수, 서버·NAS 보유 여부, 요청 사항</p>
-                                <p>• 보유 기간: 상담 종료 후 3개월, 계약 체결 시 계약 종료 후 관련 법령에 따른 기간</p>
-                                <p>• 동의를 거부할 수 있으나, 필수 항목에 동의하지 않으면 상담 신청이 제한될 수 있습니다.</p>
-                                <p class="pt-1"><a href="privacy.html" target="_blank" class="text-blue-600 underline">개인정보처리방침 전문 보기</a></p>
+                                <p>• 계약 체결 시 계약 종료 후 관련 법령에 따른 기간 동안 보관합니다.</p>
+                                <p>• 동의를 거부할 수 있으나, 필수 항목 미동의 시 상담 신청이 제한됩니다.</p>
+                                <p><a href="privacy.html" target="_blank" class="text-blue-600 underline">개인정보처리방침 전문 보기</a></p>
                             </div>
-                            <label class="flex items-center font-medium text-gray-900">
-                                <input type="checkbox" id="privacyConsent" name="privacy_consent" required class="mr-2 text-blue-600">
-                                위 내용을 확인했으며 개인정보 수집·이용에 동의합니다. *
-                            </label>
-                        </div>
-
-                        <div class="mt-8 text-center">
-                            <button type="submit" class="bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-lg">
-                                <i class="fas fa-comments mr-2"></i>
-                                사전 상담 신청하기
-                            </button>
-                            <p class="text-sm text-gray-500 mt-4">
-                                * 신청 후 영업일 기준 1일 내에 연락드려 상담 일정을 조율합니다.
-                            </p>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- FAQ -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h2 class="text-2xl font-bold mb-8 text-center text-gray-900">자주 묻는 질문</h2>
-
-                    <div class="space-y-6 max-w-4xl mx-auto">
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
-                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
-                                사전 상담은 정말 무료인가요?
-                            </h3>
-                            <p class="text-gray-700 pl-8">
-                                네, 전화·화상 사전 상담과 원격 기초 점검에는 비용이 발생하지 않습니다.
-                                상담 후 계약을 강요하지도 않습니다. 현장 진단이 필요한 경우에는
-                                지역과 장비 규모에 따른 비용을 사전에 안내드립니다.
-                            </p>
-                        </div>
-
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
-                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
-                                상담 시간은 얼마나 걸리나요?
-                            </h3>
-                            <p class="text-gray-700 pl-8">
-                                사전 상담은 약 15분입니다. 회사 규모와 현재 문제를 확인하고,
-                                지원 가능 여부와 다음 단계에서 준비할 자료를 안내합니다.
-                            </p>
-                        </div>
-
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
-                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
-                                어느 지역까지 방문 가능한가요?
-                            </h3>
-                            <p class="text-gray-700 pl-8">
-                                세종·대전·청주·천안 등 충청권이 기본 방문 지역입니다.
-                                그 외 지역은 원격 지원을 우선으로 하고, 방문이 필요한 경우
-                                일정과 조건을 별도로 협의합니다.
-                            </p>
-                        </div>
-
-                        <div class="pb-6">
-                            <h3 class="text-lg font-semibold mb-3 text-gray-900">
-                                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
-                                상담 전에 무엇을 준비하면 되나요?
-                            </h3>
-                            <p class="text-gray-700 pl-8">
-                                임직원 수, PC·서버·NAS 대략적인 수량, 현재 겪고 있는 문제만 알려주시면 됩니다.
-                                장비 목록이나 네트워크 구성도가 없어도 괜찮습니다. 계약 후 함께 정리합니다.
-                            </p>
-                        </div>
+                        </details>
+                        <p id="consentError" class="hidden text-sm text-red-600 mt-1.5">동의가 필요합니다.</p>
                     </div>
+
+                    <button type="submit" class="mt-6 w-full h-12 bg-blue-600 text-white rounded-xl text-lg font-bold hover:bg-blue-700 transition-colors">
+                        15분 상담 신청
+                    </button>
+                    <p class="text-center text-sm text-gray-500 mt-3">영업일 기준 1일 내 연락</p>
+                </form>
+            </div>
+
+            <!-- Process (compact) -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-center mb-4">진행 절차</h2>
+                <ol class="space-y-2.5">
+                    <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 shadow-sm">
+                        <span class="w-7 h-7 shrink-0 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="font-semibold">환경 확인</span>
+                            <span class="text-sm text-gray-500">전화·화상 15분</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 shadow-sm">
+                        <span class="w-7 h-7 shrink-0 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="font-semibold">지원 범위</span>
+                            <span class="text-sm text-gray-500">원격 가능 여부 · 방문 필요성</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 shadow-sm">
+                        <span class="w-7 h-7 shrink-0 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                        <div class="flex items-baseline gap-2 flex-wrap">
+                            <span class="font-semibold">견적 안내</span>
+                            <span class="text-sm text-gray-500">업무 범위 · 일정 · 비용</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- FAQ (compact) -->
+            <div>
+                <h2 class="text-xl font-bold text-center mb-4">자주 묻는 질문</h2>
+                <div class="space-y-2.5">
+                    <details class="faq-item group bg-white border border-gray-200 rounded-xl">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
+                            상담은 정말 무료인가요?
+                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                        </summary>
+                        <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                            네. 전화·화상 상담과 원격 기초 점검은 무료입니다.
+                            현장 진단이 필요한 경우에만 비용을 사전에 안내합니다.
+                        </p>
+                    </details>
+                    <details class="faq-item group bg-white border border-gray-200 rounded-xl">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
+                            상담 후 영업전화가 계속 오나요?
+                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                        </summary>
+                        <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                            아니요. 상담 결과 안내 외 마케팅 연락은 별도 동의 없이는 하지 않습니다.
+                            상담 정보는 종료 후 3개월 뒤 파기합니다.
+                        </p>
+                    </details>
+                    <details class="faq-item group bg-white border border-gray-200 rounded-xl">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
+                            무엇을 준비해야 하나요?
+                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                        </summary>
+                        <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                            임직원 수, 장비 대략 수량, 현재 문제만 알면 됩니다.
+                            장비 목록·구성도가 없어도 계약 후 함께 정리합니다.
+                        </p>
+                    </details>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-2xl font-bold text-blue-400 mb-4">SYSCARE</div>
-            <p class="text-gray-400 mb-4">세종·대전·충청권 중소기업의 전산 유지보수와 백업을 관리합니다.</p>
-            <div class="text-gray-500 text-sm">
-                <p class="mb-2"><a href="privacy.html" class="text-gray-400 hover:text-white underline">개인정보처리방침</a></p>
-                <p class="mb-2 text-xs">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</p>
-                <p>&copy; 2025 SYSCARE. All rights reserved.</p>
-            </div>
+    <footer class="bg-gray-900 text-gray-400 py-10 text-sm">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <div class="text-xl font-bold text-blue-400 mb-3">SYSCARE</div>
+            <p class="mb-4">세종·대전·충청권 중소기업 전산 유지보수</p>
+            <p class="mb-2"><a href="privacy.html" class="hover:text-white underline">개인정보처리방침</a></p>
+            <p class="text-xs text-gray-400 mb-1">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</p>
+            <p class="text-xs text-gray-400">&copy; 2025 SYSCARE. All rights reserved.</p>
         </div>
     </footer>
 
@@ -346,40 +302,41 @@
         const form = document.getElementById('diagnosisForm');
 
         // 전화번호 형식 처리
-        const phoneInput = document.querySelector('input[type="tel"]');
-        if (phoneInput) {
-            phoneInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/[^0-9]/g, '');
-                let formatted = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-                e.target.value = formatted;
-            });
-        }
+        const phoneInput = document.getElementById('f-phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            e.target.value = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        });
 
-        // Formspree로 폼 제출
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // 필수 확인: 불편한 문제 최소 1개 선택
+            // 브라우저 기본 검증 (novalidate이므로 직접 확인)
+            const concernError = document.getElementById('concernError');
+            const consentError = document.getElementById('consentError');
+            concernError.classList.add('hidden');
+            consentError.classList.add('hidden');
+
+            if (!form.reportValidity()) return;
+
             const checkedConcerns = form.querySelectorAll('.concern-checkbox:checked');
             if (checkedConcerns.length === 0) {
-                alert('현재 가장 불편한 문제를 하나 이상 선택해주세요.');
+                concernError.classList.remove('hidden');
+                document.getElementById('concernGroup').scrollIntoView({ block: 'center' });
                 return;
             }
 
-            // 필수 확인: 개인정보 동의
             if (!document.getElementById('privacyConsent').checked) {
-                alert('개인정보 수집·이용에 동의해주셔야 상담 신청이 가능합니다.');
+                consentError.classList.remove('hidden');
+                consentError.scrollIntoView({ block: 'center' });
                 return;
             }
 
             const button = form.querySelector('button[type="submit"]');
             const originalText = button.innerHTML;
-
-            // 로딩 상태 표시
             button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>처리 중...';
             button.disabled = true;
 
-            // GA4 이벤트 전송 - 폼 제출 시작
             if (typeof gtag === 'function') {
                 gtag('event', 'form_submit_start', {
                     'event_category': 'form_interaction',
@@ -389,7 +346,6 @@
             }
 
             try {
-                // 폼 데이터 수집
                 const formData = new FormData(form);
                 const concerns = Array.from(formData.getAll('concerns'));
 
@@ -407,84 +363,48 @@
                     additional_notes: formData.get('additional_notes') || '',
                     privacy_consent: '동의함',
                     submitted_at: new Date().toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        timeZone: 'Asia/Seoul'
+                        year: 'numeric', month: '2-digit', day: '2-digit',
+                        hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Seoul'
                     }),
                     form_type: 'consultation_request'
                 };
 
-                // Method 1: JSON 방식으로 전송
                 let response = await fetch('https://formspree.io/f/xldprrkd', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(payload)
                 });
 
-                // JSON이 실패하면 form-encoded 방식으로 재시도
                 if (!response.ok) {
                     const formEncodedData = new FormData();
-                    Object.keys(payload).forEach(key => {
-                        formEncodedData.append(key, payload[key]);
-                    });
-
+                    Object.keys(payload).forEach(key => formEncodedData.append(key, payload[key]));
                     response = await fetch('https://formspree.io/f/xldprrkd', {
                         method: 'POST',
-                        headers: {
-                            'Accept': 'application/json'
-                        },
+                        headers: { 'Accept': 'application/json' },
                         body: formEncodedData
                     });
                 }
 
                 if (response.ok) {
-                    // GA4 전환 이벤트 전송 - 상담 신청 완료
                     if (typeof gtag === 'function') {
                         gtag('event', 'generate_lead', {
                             'event_category': 'conversion',
                             'event_label': 'consultation_form_submission',
-                            'value': 1,
-                            'currency': 'KRW',
+                            'value': 1, 'currency': 'KRW',
                             'form_type': 'consultation_request'
                         });
                     }
-
                     button.innerHTML = '<i class="fas fa-check mr-2"></i>신청 완료!';
-                    button.className = 'bg-green-600 text-white px-10 py-4 rounded-lg text-xl font-semibold cursor-not-allowed';
-
-                    setTimeout(() => {
-                        window.location.href = 'diagnosis_success.html';
-                    }, 1000);
-
-                    form.reset();
-
+                    setTimeout(() => { window.location.href = 'diagnosis_success.html'; }, 800);
                 } else {
                     const errorText = await response.text();
                     throw new Error(`서버 응답 오류: ${response.status} - ${errorText}`);
                 }
-
             } catch (error) {
                 console.error('Form submission error:', error);
-                button.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>오류 발생';
-                button.className = 'bg-red-600 text-white px-10 py-4 rounded-lg text-xl font-semibold';
-
-                const errorMessage = error.message.includes('fetch')
-                    ? '네트워크 연결을 확인해주세요.'
-                    : `오류 상세: ${error.message}`;
-
-                alert(`상담 신청 중 오류가 발생했습니다.\n${errorMessage}\n\n잠시 후 다시 시도하시거나 전화(070-8015-8079)로 문의해주세요.`);
-
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.className = 'bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-lg';
-                    button.disabled = false;
-                }, 3000);
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert('상담 신청 중 오류가 발생했습니다.\n잠시 후 다시 시도하시거나 전화(070-8015-8079)로 문의해주세요.');
             }
         });
     });
