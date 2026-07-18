@@ -6,8 +6,9 @@ https://www.syscare.co.kr/*  https://syscare.co.kr/:splat  301!
 http://www.syscare.co.kr/*   https://syscare.co.kr/:splat  301!
 
 # Legacy 페이지를 새 페이지로 리디렉션
-/booking.html              /diagnosis.html           301
-/consultation.html         /diagnosis.html           301
+# 주의: 실제 파일이 배포에 존재하므로 강제(!)가 없으면 Netlify가 규칙을 무시함
+/booking.html              /diagnosis.html           301!
+/consultation.html         /diagnosis.html           301!
 
 # Trailing slash 처리 (선택사항 - 일관성 유지)
 # 슬래시 있는 URL을 슬래시 없는 URL로 통일
