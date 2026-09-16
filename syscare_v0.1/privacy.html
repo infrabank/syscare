@@ -3,30 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%232563eb%27/%3E%3Ctext x=%2750%27 y=%2772%27 font-size=%2764%27 font-weight=%27bold%27 font-family=%27sans-serif%27 fill=%27white%27 text-anchor=%27middle%27%3ES%3C/text%3E%3C/svg%3E">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>개인정보처리방침 - SYSCARE</title>
     <meta name="description" content="SYSCARE 개인정보처리방침. 상담 신청 시 수집하는 개인정보의 항목, 목적, 보유 기간과 정보주체의 권리를 안내합니다.">
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
-    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-    <!-- CSS Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
+    <!-- CSS: Tailwind static build -->
+    <link rel="stylesheet" href="css/tailwind.css">
 
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/privacy.html">
@@ -36,27 +23,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+    <!-- Header (sticky: Hero를 가리지 않음) -->
+    <header class="site-header sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="header-logo text-xl md:text-2xl font-bold text-blue-600 shrink-0">SYSCARE</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm text-gray-700" aria-label="주요 메뉴">
+                <a href="index.html#scope" class="hover:text-blue-600 transition-colors">관리 범위</a>
+                <a href="index.html#trust" class="hover:text-blue-600 transition-colors">신뢰 근거</a>
+                <a href="index.html#support" class="hover:text-blue-600 transition-colors">지원·비용</a>
+                <a href="index.html#faq" class="hover:text-blue-600 transition-colors">FAQ</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="tel:010-3861-8079" aria-label="전화 상담 010-3861-8079"
+                   class="header-phone flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 text-blue-600 hover:bg-blue-50 transition-colors">
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em]"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                </a>
+                <a href="diagnosis.html"
+                   class="header-cta flex items-center h-11 px-4 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap">
+                    15분 상담 신청
+                </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html#services" class="text-gray-700 hover:text-blue-600 transition-colors">관리 범위</a>
-                <a href="diagnosis.html" class="text-gray-700 hover:text-blue-600 transition-colors">상담 신청</a>
-                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
-            </div>
-            <a href="index.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                홈으로
-            </a>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
+    <main>
+        <div class="max-w-3xl mx-auto px-4 py-12 md:py-16">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10">
                 <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">개인정보처리방침</h1>
                 <p class="text-sm text-gray-500 mb-10">시행일: 2026-07-18</p>
 
@@ -193,14 +186,26 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-2xl font-bold text-blue-400 mb-4">SYSCARE</div>
-            <p class="text-gray-400 mb-4">세종·대전·충청권 중소기업의 전산 유지보수와 백업을 관리합니다.</p>
-            <div class="text-gray-500 text-sm">
-                <p class="mb-2 text-xs">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</p>
-                <p>&copy; 2025 SYSCARE. All rights reserved.</p>
-            </div>
+    <footer class="bg-gray-900 text-gray-400 py-10 text-sm">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <div class="text-xl font-bold text-blue-400 mb-3">SYSCARE</div>
+            <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-6">
+                <li><a href="diagnosis.html" class="hover:text-white transition-colors">상담 신청</a></li>
+                <li><a href="regular-checkup.html" class="hover:text-white transition-colors">서비스 비용</a></li>
+                <li><a href="security-report-sample.html" class="hover:text-white transition-colors">보고서 샘플</a></li>
+                <li><a href="system-check.html" class="hover:text-white transition-colors">자가진단</a></li>
+                <li><a href="privacy.html" class="hover:text-white transition-colors">개인정보처리방침</a></li>
+            </ul>
+            <p class="mb-1">010-3861-8079 (평일 09:00~18:00) · jhw@mlkit.co.kr</p>
+            <p class="mb-4">세종특별자치시 집현중앙7로 6, B동 609호(지식산업센터)</p>
+            <p class="mb-1">SYSCARE는 <a href="https://myloket.co.kr" target="_blank" rel="noopener" class="text-gray-300 hover:text-white underline">(주)마이로켓</a>이 운영하는 중소기업 전산 유지보수 서비스입니다.</p>
+            <p class="text-xs text-gray-400 mb-1">
+                상호: (주)마이로켓 | 대표자: 제현우 | 사업자등록번호: 216-88-00409 | 통신판매업신고: 2018-세종아름-0019
+            </p>
+            <p class="text-xs text-gray-400 mb-4">
+                주소: 세종특별자치시 집현중앙7로 6, 지식산업센터 B동 609호 (집현동) | 전화: 010-3861-8079 | 개인정보 보호책임자: 제현우 (jhw@mlkit.co.kr)
+            </p>
+            <p class="text-xs text-gray-400">&copy; 2025 SYSCARE. All rights reserved.</p>
         </div>
     </footer>
 </body>

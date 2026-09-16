@@ -3,33 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%232563eb%27/%3E%3Ctext x=%2750%27 y=%2772%27 font-size=%2764%27 font-weight=%27bold%27 font-family=%27sans-serif%27 fill=%27white%27 text-anchor=%27middle%27%3ES%3C/text%3E%3C/svg%3E">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>전산 상태 확인 - SYSCARE</title>
     <meta name="description" content="현재 전산 시스템의 상태를 온라인으로 확인해보세요. SYSCARE의 전문적인 진단 서비스">
-    
+
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
-    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    
-    <!-- CSS Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+    <!-- CSS: Tailwind static build -->
+    <link rel="stylesheet" href="css/tailwind.css">
 
     <!-- Chart.js for progress visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/system-check.html">
@@ -39,325 +26,344 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html" class="text-2xl font-bold text-blue-600">SYSCARE</a>
+    <!-- Header -->
+    <header class="site-header sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="header-logo text-xl md:text-2xl font-bold text-blue-600 shrink-0">SYSCARE</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm text-gray-700" aria-label="주요 메뉴">
+                <a href="index.html#scope" class="hover:text-blue-600 transition-colors">관리 범위</a>
+                <a href="index.html#trust" class="hover:text-blue-600 transition-colors">신뢰 근거</a>
+                <a href="index.html#support" class="hover:text-blue-600 transition-colors">지원·비용</a>
+                <a href="index.html#faq" class="hover:text-blue-600 transition-colors">FAQ</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="tel:010-3861-8079" aria-label="전화 상담 010-3861-8079"
+                   class="header-phone flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 text-blue-600 hover:bg-blue-50 transition-colors">
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em]"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                </a>
+                <a href="diagnosis.html"
+                   class="header-cta flex items-center h-11 px-4 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap">
+                    15분 상담 신청
+                </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html#services" class="text-gray-700 hover:text-blue-600 transition-colors">관리 범위</a>
-                <a href="diagnosis.html" class="text-gray-700 hover:text-blue-600 transition-colors">15분 상담 신청</a>
-                <a href="system-check.html" class="text-gray-700 hover:text-blue-600 transition-colors">상태 확인</a>
-                <a href="regular-checkup.html" class="text-gray-700 hover:text-blue-600 transition-colors">서비스비용</a>
-            </div>
-            <a href="index.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                홈으로
-            </a>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <!-- Header -->
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                        전산 상태 <span class="text-blue-600">확인</span>
-                    </h1>
-                    <p class="text-xl text-gray-700 mb-8">
-                        간단한 체크리스트로 현재 전산 시스템의 상태를 확인해보세요.
-                    </p>
-                </div>
+    <main class="pb-16 md:pb-20">
+        <div class="max-w-3xl mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-12 mt-12">
+                <h1 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                    전산 상태 <span class="text-blue-600">확인</span>
+                </h1>
+                <p class="text-xl text-gray-700 mb-8">
+                    간단한 체크리스트로 현재 전산 시스템의 상태를 확인해보세요.
+                </p>
+            </div>
 
-                <!-- Progress Bar -->
-                <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-semibold text-gray-900">진행 상황</h2>
-                        <span id="progressText" class="text-blue-600 font-semibold">0 / 0 완료</span>
+            <!-- Progress Bar -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold text-gray-900">진행 상황</h2>
+                    <span id="progressText" class="text-blue-600 font-semibold">0 / 0 완료</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div id="progressBar" class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Assessment Form -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                <form id="systemAssessment">
+                    <!-- Section 1: Basic Information -->
+                    <div class="assessment-section mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mr-2"><path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+                            기본 정보
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="f-employees" class="block text-sm font-semibold text-gray-700 mb-2">직원 수</label>
+                                <select id="f-employees" name="employees" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="1-10">1-10명</option>
+                                    <option value="11-50">11-50명</option>
+                                    <option value="51-100">51-100명</option>
+                                    <option value="100+">100명 이상</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="f-industry" class="block text-sm font-semibold text-gray-700 mb-2">업종</label>
+                                <select id="f-industry" name="industry" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="manufacturing">제조업</option>
+                                    <option value="retail">유통/소매</option>
+                                    <option value="service">서비스업</option>
+                                    <option value="finance">금융업</option>
+                                    <option value="healthcare">의료업</option>
+                                    <option value="education">교육업</option>
+                                    <option value="other">기타</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-4">
-                        <div id="progressBar" class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+
+                    <!-- Section 2: Current System -->
+                    <div class="assessment-section mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mr-2"><path d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"/></svg>
+                            현재 시스템 현황
+                        </h3>
+                        <div class="space-y-6">
+                            <fieldset>
+                                <legend class="block text-sm font-semibold text-gray-700 mb-3">사용 중인 운영체제 (복수 선택 가능)</legend>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="os" value="windows" class="mr-3 text-blue-600">
+                                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="inline-block align-[-0.125em] text-blue-500 mr-2"><path d="M3 3.75L11.25 2.5v9H3V3.75zm9.75-1.4L21 1v10.5h-8.25v-9zM3 12.75h8.25v9L3 20.25v-7.5zm9.75 0H21V22l-8.25-1.25v-8z"/></svg>
+                                        <span>Windows</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="os" value="linux" class="mr-3 text-blue-600">
+                                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="inline-block align-[-0.125em] text-gray-800 mr-2"><path d="M12 2a4 4 0 00-4 4v2.1A5.002 5.002 0 005 13v4a5 5 0 005 5h4a5 5 0 005-5v-4a5.002 5.002 0 00-3-4.9V6a4 4 0 00-4-4zm-1.5 6a1 1 0 112 0 1 1 0 01-2 0zm3 0a1 1 0 112 0 1 1 0 01-2 0zM9 16.5c0-.828 1.343-1.5 3-1.5s3 .672 3 1.5-1.343 1.5-3 1.5-3-.672-3-1.5z"/></svg>
+                                        <span>Linux</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="os" value="mac" class="mr-3 text-blue-600">
+                                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="inline-block align-[-0.125em] text-gray-600 mr-2"><path d="M16.365 1.43c0 1.14-.417 2.194-1.09 2.986-.834.937-2.187 1.65-3.32 1.556-.14-1.108.44-2.276 1.08-2.99.79-.879 2.19-1.55 3.33-1.552zM20.94 17.19c-.582 1.344-.858 1.944-1.605 3.137-1.04 1.658-2.507 3.72-4.323 3.735-1.614.015-2.03-1.05-4.223-1.037-2.193.012-2.65 1.058-4.264 1.043-1.816-.015-3.205-1.877-4.246-3.535C.404 17.94-.554 13.14 1.09 9.99c1.16-2.225 3.093-3.63 5.152-3.653 1.596-.03 3.1 1.075 4.076 1.075.975 0 2.798-1.33 4.717-1.135.804.033 3.06.325 4.51 2.45-.117.073-2.693 1.573-2.665 4.694.032 3.73 3.28 4.973 3.315 4.99-.026.088-.518 1.783-1.256 3.478z"/></svg>
+                                        <span>macOS</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <div>
+                                <label for="f-server" class="block text-sm font-semibold text-gray-700 mb-2">서버 보유 현황</label>
+                                <select id="f-server" name="server" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="none">서버 없음 (클라우드만 사용)</option>
+                                    <option value="1">1대</option>
+                                    <option value="2-5">2-5대</option>
+                                    <option value="6-10">6-10대</option>
+                                    <option value="10+">10대 이상</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="f-network" class="block text-sm font-semibold text-gray-700 mb-2">네트워크 구성</label>
+                                <select id="f-network" name="network" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="basic">기본 공유기 사용</option>
+                                    <option value="managed">관리형 스위치 사용</option>
+                                    <option value="enterprise">엔터프라이즈급 네트워크</option>
+                                    <option value="unsure">잘 모르겠음</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Assessment Form -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <form id="systemAssessment">
-                        <!-- Section 1: Basic Information -->
-                        <div class="assessment-section mb-12">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                                <i class="fas fa-info-circle text-blue-600 mr-2"></i>
-                                기본 정보
-                            </h3>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">직원 수</label>
-                                    <select name="employees" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="1-10">1-10명</option>
-                                        <option value="11-50">11-50명</option>
-                                        <option value="51-100">51-100명</option>
-                                        <option value="100+">100명 이상</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">업종</label>
-                                    <select name="industry" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="manufacturing">제조업</option>
-                                        <option value="retail">유통/소매</option>
-                                        <option value="service">서비스업</option>
-                                        <option value="finance">금융업</option>
-                                        <option value="healthcare">의료업</option>
-                                        <option value="education">교육업</option>
-                                        <option value="other">기타</option>
-                                    </select>
-                                </div>
+                    <!-- Section 3: Security & Backup -->
+                    <div class="assessment-section mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mr-2"><path d="M12 2.25c-3.14 1.938-6.75 3.036-6.75 3.036v6.402c0 5.058 3.109 8.492 6.75 9.812 3.641-1.32 6.75-4.754 6.75-9.812V5.286S15.14 4.188 12 2.25z"/></svg>
+                            보안 및 백업
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="f-backup" class="block text-sm font-semibold text-gray-700 mb-2">백업 주기</label>
+                                <select id="f-backup" name="backup" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="none">백업하지 않음</option>
+                                    <option value="manual">수동으로 가끔</option>
+                                    <option value="weekly">주 1회</option>
+                                    <option value="daily">매일</option>
+                                    <option value="realtime">실시간</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="f-security" class="block text-sm font-semibold text-gray-700 mb-2">보안 솔루션</label>
+                                <select id="f-security" name="security" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="none">특별한 보안 솔루션 없음</option>
+                                    <option value="basic">기본 백신만 사용</option>
+                                    <option value="firewall">방화벽 사용</option>
+                                    <option value="enterprise">엔터프라이즈 보안 솔루션</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="f-updates" class="block text-sm font-semibold text-gray-700 mb-2">업데이트 관리</label>
+                                <select id="f-updates" name="updates" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="none">업데이트 안 함</option>
+                                    <option value="manual">필요할 때만 수동으로</option>
+                                    <option value="scheduled">정기적으로 관리</option>
+                                    <option value="automated">자동 업데이트</option>
+                                </select>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Section 2: Current System -->
-                        <div class="assessment-section mb-12">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                                <i class="fas fa-server text-blue-600 mr-2"></i>
-                                현재 시스템 현황
-                            </h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-3">사용 중인 운영체제 (복수 선택 가능)</label>
-                                    <div class="grid md:grid-cols-3 gap-4">
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="os" value="windows" class="mr-3 text-blue-600">
-                                            <i class="fab fa-windows text-blue-500 mr-2"></i>
-                                            <span>Windows</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="os" value="linux" class="mr-3 text-blue-600">
-                                            <i class="fab fa-linux text-gray-800 mr-2"></i>
-                                            <span>Linux</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="os" value="mac" class="mr-3 text-blue-600">
-                                            <i class="fab fa-apple text-gray-600 mr-2"></i>
-                                            <span>macOS</span>
-                                        </label>
-                                    </div>
+                    <!-- Section 4: Current Issues -->
+                    <div class="assessment-section mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mr-2"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                            현재 문제점
+                        </h3>
+                        <div class="space-y-4">
+                            <fieldset>
+                                <legend class="block text-sm font-semibold text-gray-700 mb-3">현재 겪고 있는 문제 (복수 선택 가능)</legend>
+                                <div class="space-y-3">
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="slow" class="mr-3 text-blue-600">
+                                        <span>시스템이 느려짐</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="crash" class="mr-3 text-blue-600">
+                                        <span>자주 다운되거나 오류 발생</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="security" class="mr-3 text-blue-600">
+                                        <span>보안이 걱정됨</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="data" class="mr-3 text-blue-600">
+                                        <span>데이터 손실 우려</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="management" class="mr-3 text-blue-600">
+                                        <span>관리하기 어려움</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                        <input type="checkbox" name="issues" value="none" class="mr-3 text-blue-600">
+                                        <span>특별한 문제 없음</span>
+                                    </label>
                                 </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">서버 보유 현황</label>
-                                    <select name="server" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="none">서버 없음 (클라우드만 사용)</option>
-                                        <option value="1">1대</option>
-                                        <option value="2-5">2-5대</option>
-                                        <option value="6-10">6-10대</option>
-                                        <option value="10+">10대 이상</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">네트워크 구성</label>
-                                    <select name="network" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="basic">기본 공유기 사용</option>
-                                        <option value="managed">관리형 스위치 사용</option>
-                                        <option value="enterprise">엔터프라이즈급 네트워크</option>
-                                        <option value="unsure">잘 모르겠음</option>
-                                    </select>
-                                </div>
+                            </fieldset>
+
+                            <div>
+                                <label for="f-manager" class="block text-sm font-semibold text-gray-700 mb-2">전산 관리 담당자</label>
+                                <select id="f-manager" name="manager" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <option value="">선택하세요</option>
+                                    <option value="none">전담 담당자 없음</option>
+                                    <option value="part-time">겸임 담당자</option>
+                                    <option value="full-time">전담 담당자 있음</option>
+                                    <option value="external">외부 업체 의존</option>
+                                </select>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Section 3: Security & Backup -->
-                        <div class="assessment-section mb-12">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                                <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
-                                보안 및 백업
-                            </h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">백업 주기</label>
-                                    <select name="backup" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="none">백업하지 않음</option>
-                                        <option value="manual">수동으로 가끔</option>
-                                        <option value="weekly">주 1회</option>
-                                        <option value="daily">매일</option>
-                                        <option value="realtime">실시간</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">보안 솔루션</label>
-                                    <select name="security" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="none">특별한 보안 솔루션 없음</option>
-                                        <option value="basic">기본 백신만 사용</option>
-                                        <option value="firewall">방화벽 사용</option>
-                                        <option value="enterprise">엔터프라이즈 보안 솔루션</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">업데이트 관리</label>
-                                    <select name="updates" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="none">업데이트 안 함</option>
-                                        <option value="manual">필요할 때만 수동으로</option>
-                                        <option value="scheduled">정기적으로 관리</option>
-                                        <option value="automated">자동 업데이트</option>
-                                    </select>
-                                </div>
+                    <!-- Section 5: Contact Information -->
+                    <div class="assessment-section mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mr-2"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                            연락처 정보 (선택)
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            상담 연결을 원하시는 경우에만 입력해주세요. 입력하신 정보는 상담 목적으로만 사용하며,
+                            자세한 내용은 <a href="privacy.html" target="_blank" rel="noopener" class="text-blue-600 underline">개인정보처리방침</a>을 확인해주세요.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="f-company" class="block text-sm font-semibold text-gray-700 mb-2">회사명</label>
+                                <input id="f-company" type="text" name="company" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="f-name" class="block text-sm font-semibold text-gray-700 mb-2">담당자명</label>
+                                <input id="f-name" type="text" name="name" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="f-phone" class="block text-sm font-semibold text-gray-700 mb-2">연락처</label>
+                                <input id="f-phone" type="tel" name="phone" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="f-email" class="block text-sm font-semibold text-gray-700 mb-2">이메일</label>
+                                <input id="f-email" type="email" name="email" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Section 4: Current Issues -->
-                        <div class="assessment-section mb-12">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                                <i class="fas fa-exclamation-triangle text-blue-600 mr-2"></i>
-                                현재 문제점
-                            </h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-3">현재 겪고 있는 문제 (복수 선택 가능)</label>
-                                    <div class="space-y-3">
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="slow" class="mr-3 text-blue-600">
-                                            <span>시스템이 느려짐</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="crash" class="mr-3 text-blue-600">
-                                            <span>자주 다운되거나 오류 발생</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="security" class="mr-3 text-blue-600">
-                                            <span>보안이 걱정됨</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="data" class="mr-3 text-blue-600">
-                                            <span>데이터 손실 우려</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="management" class="mr-3 text-blue-600">
-                                            <span>관리하기 어려움</span>
-                                        </label>
-                                        <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                                            <input type="checkbox" name="issues" value="none" class="mr-3 text-blue-600">
-                                            <span>특별한 문제 없음</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">전산 관리 담당자</label>
-                                    <select name="manager" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                        <option value="">선택하세요</option>
-                                        <option value="none">전담 담당자 없음</option>
-                                        <option value="part-time">겸임 담당자</option>
-                                        <option value="full-time">전담 담당자 있음</option>
-                                        <option value="external">외부 업체 의존</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Section 5: Contact Information -->
-                        <div class="assessment-section mb-8">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-3">
-                                <i class="fas fa-user text-blue-600 mr-2"></i>
-                                연락처 정보 (선택)
-                            </h3>
-                            <p class="text-sm text-gray-600 mb-4">
-                                상담 연결을 원하시는 경우에만 입력해주세요. 입력하신 정보는 상담 목적으로만 사용하며,
-                                자세한 내용은 <a href="privacy.html" target="_blank" class="text-blue-600 underline">개인정보처리방침</a>을 확인해주세요.
-                            </p>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">회사명</label>
-                                    <input type="text" name="company" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">담당자명</label>
-                                    <input type="text" name="name" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">연락처</label>
-                                    <input type="tel" name="phone" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">이메일</label>
-                                    <input type="email" name="email" class="assessment-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="text-center">
-                            <button type="submit" id="submitBtn" class="bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed">
-                                <i class="fas fa-chart-line mr-2"></i>
-                                진단 결과 확인하기
-                            </button>
-                            <p class="text-sm text-gray-500 mt-4">
-                                진단 결과는 즉시 화면에서 확인하실 수 있습니다.
-                            </p>
-                        </div>
-                    </form>
-                </div>
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" id="submitBtn" class="bg-blue-600 text-white px-10 py-4 rounded-lg text-xl font-semibold hover:bg-blue-700 transition-all shadow-sm disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2"><path d="M3 13.125L7.5 8.625l4.125 4.125L21 3.75M21 3.75h-4.5M21 3.75v4.5"/></svg>
+                            진단 결과 확인하기
+                        </button>
+                        <p class="text-sm text-gray-500 mt-4">
+                            진단 결과는 즉시 화면에서 확인하실 수 있습니다.
+                        </p>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
 
     <!-- Results Modal -->
-    <div id="resultsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl max-w-4xl w-full max-h-90vh overflow-y-auto">
-            <div class="p-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold mb-4 text-gray-900">전산 상태 진단 결과</h2>
-                    <div class="flex justify-center mb-6">
-                        <div class="relative w-48 h-48">
-                            <canvas id="scoreChart"></canvas>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="text-center">
-                                    <div id="totalScore" class="text-4xl font-bold text-blue-600">0</div>
-                                    <div class="text-sm text-gray-600">점</div>
-                                </div>
+    <dialog id="resultsModal" aria-labelledby="resultsHeading"
+            class="fixed inset-0 m-auto w-[calc(100%-2rem)] max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border-0 p-0 shadow-sm backdrop:bg-black/50">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-end mb-2">
+                <button type="button" id="modalCloseBtn" aria-label="결과 창 닫기"
+                        class="flex items-center justify-center w-11 h-11 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors">
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em]"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="text-center mb-8">
+                <h2 id="resultsHeading" class="text-3xl font-bold mb-4 text-gray-900">전산 상태 진단 결과</h2>
+                <div class="flex justify-center mb-6">
+                    <div class="relative w-48 h-48">
+                        <canvas id="scoreChart"></canvas>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div id="totalScore" class="text-4xl font-bold text-blue-600">0</div>
+                                <div class="text-sm text-gray-600">점</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div id="resultsContent" class="space-y-6">
-                    <!-- Results will be populated here -->
-                </div>
-                
-                <div class="text-center mt-8 space-y-4">
-                    <button onclick="closeModal()" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors mr-4">
-                        닫기
-                    </button>
-                    <a href="diagnosis.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-block">
-                        15분 상담 신청
-                    </a>
-                </div>
+            </div>
+
+            <div id="resultsContent" class="space-y-6">
+                <!-- Results will be populated here -->
+            </div>
+
+            <div class="text-center mt-8 space-y-4">
+                <button type="button" id="modalCloseBtnBottom" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors mr-4">
+                    닫기
+                </button>
+                <a href="diagnosis.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-block">
+                    15분 상담 신청
+                </a>
             </div>
         </div>
-    </div>
+    </dialog>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-2xl font-bold text-blue-400 mb-4">SYSCARE</div>
-            <p class="text-gray-400 mb-4">세종·대전·충청권 중소기업의 전산 유지보수와 백업을 관리합니다.</p>
-            <div class="text-gray-500 text-sm">
-                <p class="mb-2"><a href="privacy.html" class="text-gray-400 hover:text-white underline">개인정보처리방침</a></p>
-                <p class="mb-2 text-xs">SYSCARE는 (주)마이로켓(대표 제현우, 사업자등록번호 216-88-00409)이 운영하는 서비스입니다.</p>
-                <p>&copy; 2025 SYSCARE. All rights reserved.</p>
-            </div>
+    <footer class="bg-gray-900 text-gray-400 py-10 text-sm">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <div class="text-xl font-bold text-blue-400 mb-3">SYSCARE</div>
+            <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-6">
+                <li><a href="diagnosis.html" class="hover:text-white transition-colors">상담 신청</a></li>
+                <li><a href="regular-checkup.html" class="hover:text-white transition-colors">서비스 비용</a></li>
+                <li><a href="security-report-sample.html" class="hover:text-white transition-colors">보고서 샘플</a></li>
+                <li><a href="system-check.html" class="hover:text-white transition-colors">자가진단</a></li>
+                <li><a href="privacy.html" class="hover:text-white transition-colors">개인정보처리방침</a></li>
+            </ul>
+            <p class="mb-1">010-3861-8079 (평일 09:00~18:00) · jhw@mlkit.co.kr</p>
+            <p class="mb-4">세종특별자치시 집현중앙7로 6, B동 609호(지식산업센터)</p>
+            <p class="mb-1">SYSCARE는 <a href="https://myloket.co.kr" target="_blank" rel="noopener" class="text-gray-300 hover:text-white underline">(주)마이로켓</a>이 운영하는 중소기업 전산 유지보수 서비스입니다.</p>
+            <p class="text-xs text-gray-400 mb-1">
+                상호: (주)마이로켓 | 대표자: 제현우 | 사업자등록번호: 216-88-00409 | 통신판매업신고: 2018-세종아름-0019
+            </p>
+            <p class="text-xs text-gray-400 mb-4">
+                주소: 세종특별자치시 집현중앙7로 6, 지식산업센터 B동 609호 (집현동) | 전화: 010-3861-8079 | 개인정보 보호책임자: 제현우 (jhw@mlkit.co.kr)
+            </p>
+            <p class="text-xs text-gray-400">&copy; 2025 SYSCARE. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="js/system-check.js"></script>
+    <script defer src="js/system-check.js"></script>
 </body>
 </html>

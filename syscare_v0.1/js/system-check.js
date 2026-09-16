@@ -11,6 +11,8 @@ function initializeAssessment() {
     const inputs = document.querySelectorAll('.assessment-input, input[type="checkbox"]');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultsModal = document.getElementById('resultsModal');
 
     const questionNames = Array.from(new Set(Array.from(inputs)
         .map(input => input.name)
@@ -43,13 +45,8 @@ function initializeAssessment() {
         }
 
         // Enable submit button when all required fields are filled
-        const submitBtn = document.getElementById('submitBtn');
-        if (uniqueNames.length >= completionThreshold) { // At least 75% questions answered
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('disabled:bg-gray-400', 'disabled:cursor-not-allowed');
-        } else {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('disabled:bg-gray-400', 'disabled:cursor-not-allowed');
+        if (submitBtn) {
+            submitBtn.disabled = uniqueNames.length < completionThreshold; // At least 75% questions answered
         }
     }
     
@@ -81,7 +78,33 @@ function initializeAssessment() {
         e.preventDefault();
         processAssessment();
     });
-    
+
+    // Results modal: focus management + close handling
+    if (resultsModal) {
+        resultsModal.addEventListener('close', function() {
+            document.body.classList.remove('overflow-hidden');
+            if (submitBtn) {
+                submitBtn.focus();
+            }
+        });
+
+        // Click on the backdrop (the dialog element itself, outside its content box) closes it
+        resultsModal.addEventListener('click', function(e) {
+            if (e.target === resultsModal) {
+                closeModal();
+            }
+        });
+
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeModal);
+        }
+        const modalCloseBtnBottom = document.getElementById('modalCloseBtnBottom');
+        if (modalCloseBtnBottom) {
+            modalCloseBtnBottom.addEventListener('click', closeModal);
+        }
+    }
+
     // Phone number formatting
     const phoneInput = document.querySelector('input[type="tel"]');
     if (phoneInput) {
@@ -304,7 +327,12 @@ function displayResults(results, data) {
             riskDescription = '즉시 개선이 필요한 부분들이 있습니다.';
             break;
     }
-    
+
+    const alertTone = results.riskLevel === 'high'
+        ? { box: 'bg-red-50 border-red-200', heading: 'text-red-800', list: 'text-red-700' }
+        : { box: 'bg-yellow-50 border-yellow-200', heading: 'text-yellow-800', list: 'text-yellow-700' };
+    const alertIcon = '<svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>';
+
     contentElement.innerHTML = `
         <div class="bg-gray-50 p-6 rounded-xl">
             <div class="text-center mb-6">
@@ -315,7 +343,7 @@ function displayResults(results, data) {
             ${results.score >= 80 ? `
                 <div class="bg-green-50 border border-green-200 p-4 rounded-lg">
                     <h4 class="font-semibold text-green-800 mb-2">
-                        <i class="fas fa-check-circle mr-2"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2"><path d="M9 12.75l2.25 2.25L15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         우수한 전산 관리 상태
                     </h4>
                     <p class="text-green-700 text-sm">
@@ -324,12 +352,12 @@ function displayResults(results, data) {
                     </p>
                 </div>
             ` : `
-                <div class="bg-${results.riskLevel === 'high' ? 'red' : 'yellow'}-50 border border-${results.riskLevel === 'high' ? 'red' : 'yellow'}-200 p-4 rounded-lg">
-                    <h4 class="font-semibold text-${results.riskLevel === 'high' ? 'red' : 'yellow'}-800 mb-2">
-                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                <div class="${alertTone.box} border p-4 rounded-lg">
+                    <h4 class="font-semibold ${alertTone.heading} mb-2">
+                        ${alertIcon}
                         개선 권장 사항
                     </h4>
-                    <ul class="text-${results.riskLevel === 'high' ? 'red' : 'yellow'}-700 text-sm space-y-1">
+                    <ul class="${alertTone.list} text-sm space-y-1">
                         ${results.recommendations.map(rec => `<li>• ${rec}</li>`).join('')}
                     </ul>
                 </div>
@@ -339,13 +367,13 @@ function displayResults(results, data) {
         <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border p-6 rounded-xl">
                 <h4 class="font-semibold mb-4 text-gray-900">
-                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-yellow-500 mr-2"><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
                     맞춤 개선 방안
                 </h4>
                 <div class="space-y-3 text-sm">
                     ${generateCustomRecommendations(data, results).map(rec => `
                         <div class="flex items-start">
-                            <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2 text-xs"></i>
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-500 mt-1 mr-2 text-xs"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                             <span class="text-gray-700">${rec}</span>
                         </div>
                     `).join('')}
@@ -354,7 +382,7 @@ function displayResults(results, data) {
             
             <div class="bg-white border p-6 rounded-xl">
                 <h4 class="font-semibold mb-4 text-gray-900">
-                    <i class="fas fa-calendar-check text-green-500 mr-2"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-green-500 mr-2"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-13.5-3l1.5 1.5 3-3.75"/></svg>
                     권장 실행 순서
                 </h4>
                 <div class="space-y-3 text-sm">
@@ -370,7 +398,7 @@ function displayResults(results, data) {
         
         <div class="bg-blue-50 p-6 rounded-xl">
             <h4 class="font-semibold mb-4 text-blue-900">
-                <i class="fas fa-info-circle mr-2"></i>
+                <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2"><path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
                 SYSCARE 서비스 추천
             </h4>
             <p class="text-blue-800 mb-4">
@@ -378,26 +406,56 @@ function displayResults(results, data) {
             </p>
             <div class="grid md:grid-cols-3 gap-4">
                 <div class="bg-white p-4 rounded-lg text-center">
-                    <i class="fas fa-shield-alt text-blue-600 text-2xl mb-2"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 text-2xl mb-2"><path d="M12 2.25c-3.14 1.938-6.75 3.036-6.75 3.036v6.402c0 5.058 3.109 8.492 6.75 9.812 3.641-1.32 6.75-4.754 6.75-9.812V5.286S15.14 4.188 12 2.25z"/></svg>
                     <h5 class="font-semibold text-gray-900 mb-1">예방 점검</h5>
                     <p class="text-xs text-gray-600">정기적인 시스템 점검</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg text-center">
-                    <i class="fas fa-rotate-left text-green-600 text-2xl mb-2"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-green-600 text-2xl mb-2"><path d="M16.023 9.348h4.992v-4.992M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
                     <h5 class="font-semibold text-gray-900 mb-1">백업 복구검증</h5>
                     <p class="text-xs text-gray-600">백업 점검과 복구 테스트</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg text-center">
-                    <i class="fas fa-tools text-orange-600 text-2xl mb-2"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-orange-600 text-2xl mb-2"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/></svg>
                     <h5 class="font-semibold text-gray-900 mb-1">유지보수</h5>
                     <p class="text-xs text-gray-600">전문 기술 지원</p>
                 </div>
             </div>
         </div>
     `;
-    
+
     // Show modal
-    modal.classList.remove('hidden');
+    openModal(modal);
+}
+
+function openModal(modal) {
+    if (!modal) return;
+    document.body.classList.add('overflow-hidden');
+    if (typeof modal.showModal === 'function') {
+        modal.showModal();
+    } else {
+        // Fallback for browsers without <dialog> support
+        modal.setAttribute('open', '');
+    }
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    if (modalCloseBtn) {
+        modalCloseBtn.focus();
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('resultsModal');
+    if (!modal) return;
+    if (typeof modal.close === 'function' && modal.open) {
+        modal.close(); // fires the 'close' event, which handles focus + scroll-lock cleanup
+    } else {
+        modal.removeAttribute('open');
+        document.body.classList.remove('overflow-hidden');
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.focus();
+        }
+    }
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
@@ -406,10 +464,18 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     };
 }
 
+let scoreChartInstance = null;
+
 function createScoreChart(score) {
-    const ctx = document.getElementById('scoreChart').getContext('2d');
-    
-    new Chart(ctx, {
+    const canvas = document.getElementById('scoreChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    if (scoreChartInstance) {
+        scoreChartInstance.destroy();
+    }
+
+    scoreChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
             datasets: [{
@@ -486,8 +552,4 @@ function generatePriorityActions(results) {
     actions.push('장기 발전 계획 수립');
     
     return actions.slice(0, 5);
-}
-
-function closeModal() {
-    document.getElementById('resultsModal').classList.add('hidden');
 }

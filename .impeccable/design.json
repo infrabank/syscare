@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T00:00:00Z",
+  "title": "Design System: SYSCARE",
+  "extensions": {
+    "colorMeta": {
+      "brand-blue": { "role": "primary", "displayName": "Brand Blue", "canonical": "#2563eb" },
+      "brand-blue-hover": { "role": "primary", "displayName": "Brand Blue Hover", "canonical": "#1d4ed8" },
+      "brand-blue-deep": { "role": "primary", "displayName": "Brand Blue Deep", "canonical": "#1e3a8a" },
+      "neutral-canvas": { "role": "neutral", "displayName": "Canvas", "canonical": "#f9fafb" },
+      "neutral-surface": { "role": "neutral", "displayName": "Surface", "canonical": "#ffffff" },
+      "neutral-border": { "role": "neutral", "displayName": "Border", "canonical": "#e5e7eb" },
+      "neutral-text-muted": { "role": "neutral", "displayName": "Text Muted", "canonical": "#6b7280" },
+      "neutral-text-primary": { "role": "neutral", "displayName": "Text Primary", "canonical": "#111827" },
+      "report-navy": { "role": "secondary", "displayName": "Report Navy", "canonical": "#1e293b" },
+      "status-ok": { "role": "secondary", "displayName": "Status OK", "canonical": "#15803d" },
+      "status-watch": { "role": "secondary", "displayName": "Status Watch", "canonical": "#475569" },
+      "status-warn": { "role": "secondary", "displayName": "Status Warn", "canonical": "#a16207" },
+      "status-action": { "role": "secondary", "displayName": "Status Action", "canonical": "#c2410c" },
+      "status-crit": { "role": "secondary", "displayName": "Status Crit", "canonical": "#b91c1c" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "히어로 H1 전용, 화면당 1회." },
+      "title": { "displayName": "Title", "purpose": "섹션 H2, 중앙 정렬." },
+      "body": { "displayName": "Body", "purpose": "본문 기본 텍스트." },
+      "label": { "displayName": "Label", "purpose": "카드 설명, 폼 라벨, 메타 정보. 가장 많이 쓰는 스타일." }
+    },
+    "shadows": [
+      { "name": "card-sm", "value": "0 1px 2px 0 rgba(0,0,0,0.05)", "purpose": "흰 카드가 회색 섹션 배경과 구분되어야 할 때만 쓰는 유일한 그림자 단계." }
+    ],
+    "motion": [
+      { "name": "color-transition", "value": "background-color .15s ease, color .15s ease", "purpose": "버튼·링크 hover의 유일한 전환 효과. 이동·확대 애니메이션은 쓰지 않는다." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "주요 CTA. 화면당 1회 배치, 44~48px 높이.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">15분 상담 신청</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; background: #2563eb; color: #ffffff; border-radius: 12px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: background-color .15s ease; } .ds-btn-primary:hover { background: #1d4ed8; } .ds-btn-primary:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button (Outline)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "전화 상담 등 2순위 행동. 배경을 채우지 않는다.",
+      "html": "<a href=\"tel:010-3861-8079\" class=\"ds-btn-secondary\">전화 상담</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 24px; background: transparent; color: #1d4ed8; border: 1px solid #2563eb; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: background-color .15s ease; } .ds-btn-secondary:hover { background: #eff6ff; }"
+    },
+    {
+      "name": "Info Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "관리 범위·지원 방식 등 2열 그리드에 쓰는 기본 카드. 그림자 한 단계만 쓴다.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">서버</h3><p class=\"ds-card-desc\">Windows · Linux · 가상화</p></div>",
+      "css": ".ds-card { background: #ffffff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); } .ds-card-title { margin: 0 0 4px; font-size: 1rem; font-weight: 700; color: #111827; } .ds-card-desc { margin: 0; font-size: 0.875rem; color: #6b7280; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "폼 입력 필드. 48px 높이, id/for 라벨 짝, 파란 포커스 링 하나만 쓴다.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-name\" class=\"ds-label\">담당자명 *</label><input id=\"ds-name\" type=\"text\" class=\"ds-input\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; } .ds-label { font-size: 0.875rem; font-weight: 600; color: #374151; } .ds-input { height: 48px; padding: 0 16px; font-size: 1rem; background: #ffffff; color: #374151; border: 1px solid #d1d5db; border-radius: 8px; } .ds-input:focus { outline: none; box-shadow: 0 0 0 2px #3b82f6; border-color: transparent; }"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "sticky 헤더. 로고 + 4개 앵커 내비게이션 + 전화 아이콘 + Primary CTA.",
+      "html": "<header class=\"ds-header\"><a href=\"index.html\" class=\"ds-logo\">SYSCARE</a><nav class=\"ds-nav\"><a href=\"#\">관리 범위</a><a href=\"#\">신뢰 근거</a><a href=\"#\">지원·비용</a><a href=\"#\">FAQ</a></nav><div class=\"ds-header-actions\"><a href=\"tel:010-3861-8079\" class=\"ds-icon-btn\" aria-label=\"전화 상담\">☎</a><a href=\"#\" class=\"ds-btn-primary\">15분 상담 신청</a></div></header>",
+      "css": ".ds-header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 56px; padding: 0 16px; background: rgba(255,255,255,0.95); border-bottom: 1px solid #f3f4f6; } .ds-logo { font-size: 1.25rem; font-weight: 700; color: #2563eb; text-decoration: none; } .ds-nav { display: flex; gap: 24px; font-size: 0.875rem; } .ds-nav a { color: #374151; text-decoration: none; transition: color .15s ease; } .ds-nav a:hover { color: #2563eb; } .ds-header-actions { display: flex; align-items: center; gap: 8px; } .ds-icon-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #e5e7eb; border-radius: 8px; color: #2563eb; text-decoration: none; } .ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 16px; background: #2563eb; color: #ffffff; border-radius: 8px; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }"
+    },
+    {
+      "name": "FAQ Accordion Item",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "네이티브 details/summary 아코디언. 화살표는 group-open에서 회전.",
+      "html": "<details class=\"ds-faq-item\"><summary class=\"ds-faq-summary\">단발 장애도 지원하나요?<span class=\"ds-faq-chevron\">⌄</span></summary><p class=\"ds-faq-body\">가능합니다. 장애 내용과 환경을 확인한 뒤 지원 범위와 비용을 먼저 안내합니다.</p></details>",
+      "css": ".ds-faq-item { border: 1px solid #e5e7eb; border-radius: 12px; } .ds-faq-item summary::-webkit-details-marker { display: none; } .ds-faq-summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; padding: 14px 16px; font-weight: 600; color: #111827; } .ds-faq-chevron { color: #9ca3af; font-size: 0.875rem; transition: transform .2s ease; } .ds-faq-item[open] .ds-faq-chevron { transform: rotate(180deg); } .ds-faq-body { margin: 0; padding: 0 16px 16px; font-size: 0.875rem; color: #4b5563; line-height: 1.6; }"
+    },
+    {
+      "name": "Mobile CTA Bar",
+      "kind": "custom",
+      "refersTo": "mobile-cta-bar",
+      "description": "모바일 전용 하단 고정 2버튼 바. 이 시스템의 시그니처 컴포넌트.",
+      "html": "<nav class=\"ds-mobile-cta-bar\"><a href=\"tel:010-3861-8079\" class=\"ds-btn-secondary\">☎ 전화 상담</a><a href=\"#\" class=\"ds-btn-primary\">15분 상담 신청</a></nav>",
+      "css": ".ds-mobile-cta-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; display: flex; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,0.96); border-top: 1px solid rgba(0,0,0,0.08); } .ds-mobile-cta-bar .ds-btn-secondary, .ds-mobile-cta-bar .ds-btn-primary { flex: 1; height: 48px; border-radius: 12px; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "custom",
+      "refersTo": "status-badge",
+      "description": "Read 모드(월간 보고서) 전용. 색 + 글리프 + 텍스트를 항상 함께 쓴다.",
+      "html": "<span class=\"ds-badge ds-badge-warn\">! 주의</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px; border: 1px solid transparent; } .ds-badge-warn { color: #a16207; background: #fefce8; border-color: #fde68a; } .ds-badge-ok { color: #15803d; background: #f0fdf4; border-color: #bbf7d0; } .ds-badge-crit { color: #b91c1c; background: #fef2f2; border-color: #fecaca; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "증빙 서류함(The Verifiable Ledger)",
+    "overview": "SYSCARE는 세종·대전·충청권 중소기업을 상대로 전산 유지보수를 판매하는 서비스다. 2026년 7월 신뢰성 개편 이후, 이 사이트의 시각 언어는 설득의 화려함이 아니라 확인 가능성을 앞세운다. 가짜 실시간 카운터, 남은 슬롯 게이지, 검증 불가능한 만족도 수치, 가상 후기를 걷어낸 자리에 남은 것은 짧은 명사형 카드, 44px 터치 타겟, 옅은 그림자 한 겹뿐인 표면이다. 이 시스템은 하나의 표면 안에서도 세 가지 모드로 갈라진다. index.html과 regular-checkup.html은 설득 모드로 신뢰 근거와 CTA를 배치하고, diagnosis.html과 system-check.html은 운영 모드로 입력과 진행에 집중하며, privacy.html과 security-report-sample.html은 읽기 모드로 밀도 높은 문서를 그대로 화면에 올린다.",
+    "keyCharacteristics": [
+      "신뢰는 장식이 아니라 절제로 표현한다: 그림자는 shadow-sm 한 단계, 색은 파란색 하나에 회색조",
+      "44px 이상의 터치 타겟과 keep-all 줄바꿈으로 모바일 우선을 지킨다",
+      "같은 파란색(#2563eb)이 버튼 문법(Tailwind)과 문서 문법(CSS 변수) 모두의 앵커다",
+      "Read 모드(보고서, 약관)만 예외적으로 밀도 높은 문서 레이아웃과 상태 배지 색을 쓴다",
+      "라이트 모드 고정은 결함이 아니라 문서 가독성을 위한 결정이다"
+    ],
+    "rules": [
+      { "name": "The One Blue Rule", "body": "강조색은 brand-blue 하나다. 새 화면에 두 번째 강조색을 추가하지 않는다. 색으로 위계를 더 만들고 싶으면 회색 명도를 옮긴다.", "section": "colors" },
+      { "name": "The Color-Plus-Glyph Rule", "body": "상태를 색으로만 구분하지 않는다. 보고서 배지는 색, 아이콘 글리프, 텍스트 라벨을 항상 함께 쓴다.", "section": "colors" },
+      { "name": "The Keep-All Rule", "body": "body, h1~h6에 word-break: keep-all이 전역으로 걸려 있다. 한글 문장이 어절 중간에서 끊기지 않는다.", "section": "typography" },
+      { "name": "The Noun-Phrase Rule", "body": "카드 설명은 서술형 문장이 아니라 짧은 명사구로 쓴다.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "표면은 그림자 없이 시작한다. shadow-sm은 화이트 카드가 회색 배경과 구분돼야 할 때만 쓴다.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do 강조색은 brand-blue(#2563eb) 하나로 유지한다.",
+      "Do 모든 인터랙티브 요소를 44px 이상의 터치 타겟으로 만든다.",
+      "Do 카드 설명은 짧은 명사구로 쓰고, 카드마다 개별 CTA를 넣지 않는다.",
+      "Do 헤더는 position: sticky를 유지한다.",
+      "Do Read 모드 새 화면에서는 CSS 커스텀 프로퍼티를 그대로 재사용한다.",
+      "Do 상태 표시는 색 + 아이콘 글리프 + 텍스트 세 가지를 항상 함께 쓴다."
+    ],
+    "donts": [
+      "Don't 실시간 카운터, 남은 슬롯 게이지, 이탈 의도 팝업 등 긴급성을 조작하는 컴포넌트를 만들지 않는다.",
+      "Don't 검증 불가능한 수치·후기·인증 배지를 새 화면에 넣지 않는다.",
+      "Don't shadow-lg, shadow-md 같은 강한 그림자나 큰 상승·확대 애니메이션을 재사용하지 않는다.",
+      "Don't 다크 모드를 추가하지 않는다.",
+      "Don't 헤더를 position: fixed로 바꾸지 않는다.",
+      "Don't 강조색을 두 개 이상 쓰지 않는다."
+    ]
+  }
+}

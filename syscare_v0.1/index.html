@@ -9,24 +9,11 @@
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
-    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-    <!-- CSS Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
+    <!-- CSS: Tailwind static build -->
+    <link rel="stylesheet" href="css/tailwind.css">
 
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/">
@@ -115,7 +102,7 @@
             <div class="flex items-center gap-2">
                 <a href="tel:010-3861-8079" aria-label="전화 상담 010-3861-8079"
                    class="header-phone flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 text-blue-600 hover:bg-blue-50 transition-colors">
-                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em]"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
                 </a>
                 <a href="diagnosis.html"
                    class="header-cta flex items-center h-11 px-4 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap">
@@ -135,7 +122,7 @@
                 <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-3">
                     중소기업<br class="md:hidden"> 전산 통합관리
                 </h1>
-                <p class="text-lg md:text-xl opacity-90 mb-6">PC·서버·네트워크·백업</p>
+                <p class="text-lg md:text-xl mb-6">PC·서버·네트워크·백업</p>
 
                 <ul class="flex flex-wrap justify-center gap-2 mb-8 text-sm" aria-label="신뢰 근거">
                     <li class="bg-white/15 rounded-full px-3.5 py-1.5">25년 실무경력</li>
@@ -148,10 +135,10 @@
                         15분 상담 신청
                     </a>
                     <a href="tel:010-3861-8079" class="flex items-center justify-center h-12 px-8 bg-white/15 border border-white/40 text-white rounded-xl text-lg font-semibold hover:bg-white/25 transition-colors flex-1">
-                        <i class="fas fa-phone mr-2 text-base" aria-hidden="true"></i>전화 상담
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2 text-base"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>전화 상담
                     </a>
                 </div>
-                <p class="mt-4 text-sm opacity-80">환경 확인 · 지원 범위 · 견적 기준</p>
+                <p class="mt-4 text-sm text-blue-100">환경 확인 · 지원 범위 · 견적 기준</p>
             </div>
         </section>
 
@@ -177,22 +164,22 @@
 
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-white rounded-xl p-4 shadow-sm">
-                        <i class="fas fa-desktop text-blue-600 mb-2" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mb-2"><path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
                         <h3 class="font-bold mb-1">업무환경</h3>
                         <p class="text-sm text-gray-500">PC · 계정 · 프린터</p>
                     </div>
                     <div class="bg-white rounded-xl p-4 shadow-sm">
-                        <i class="fas fa-server text-blue-600 mb-2" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mb-2"><path d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z"/></svg>
                         <h3 class="font-bold mb-1">서버</h3>
                         <p class="text-sm text-gray-500">Windows · Linux · 가상화</p>
                     </div>
                     <div class="bg-white rounded-xl p-4 shadow-sm">
-                        <i class="fas fa-network-wired text-blue-600 mb-2" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="inline-block align-[-0.125em] text-blue-600 mb-2"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="18" r="2.25"/><circle cx="12" cy="6" r="2.25"/><path d="M12 8.25v3m0 0L7.5 15.75M12 11.25l4.5 4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <h3 class="font-bold mb-1">네트워크</h3>
                         <p class="text-sm text-gray-500">방화벽 · 스위치 · VPN</p>
                     </div>
                     <div class="bg-white rounded-xl p-4 shadow-sm">
-                        <i class="fas fa-hdd text-blue-600 mb-2" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mb-2"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 3.75c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
                         <h3 class="font-bold mb-1">백업</h3>
                         <p class="text-sm text-gray-500">NAS · VM · 복구검증</p>
                     </div>
@@ -207,21 +194,21 @@
 
                 <div class="space-y-3 mb-8">
                     <div class="flex items-start gap-4 border border-gray-100 rounded-xl p-4">
-                        <i class="fas fa-user-cog text-blue-600 mt-1" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mt-1"><path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         <div>
                             <h3 class="font-bold">25년 실무경력</h3>
                             <p class="text-sm text-gray-500">기업 인프라 · 공공기관 · 연구기관</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 border border-gray-100 rounded-xl p-4">
-                        <i class="fas fa-headset text-blue-600 mt-1" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mt-1"><path d="M3 18v-6a9 9 0 1118 0v6m-18 0a2.25 2.25 0 002.25 2.25H6a1.5 1.5 0 001.5-1.5v-3A1.5 1.5 0 006 14.25H3zm18 0a2.25 2.25 0 01-2.25 2.25H18a1.5 1.5 0 01-1.5-1.5v-3a1.5 1.5 0 011.5-1.5h3z"/></svg>
                         <div>
                             <h3 class="font-bold">책임 엔지니어</h3>
                             <p class="text-sm text-gray-500">상담 · 진단 · 작업 · 보고</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 border border-gray-100 rounded-xl p-4">
-                        <i class="fas fa-file-lines text-blue-600 mt-1" aria-hidden="true"></i>
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-blue-600 mt-1"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12h-6.75m6.75 3h-6.75m4.5-6H8.25M6 3.75v16.5c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H6z"/></svg>
                         <div>
                             <h3 class="font-bold">문서 기반 관리</h3>
                             <p class="text-sm text-gray-500">점검표 · 구성도 · 장애보고서</p>
@@ -323,7 +310,7 @@
                     <details class="faq-item group border border-gray-200 rounded-xl">
                         <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
                             단발 장애도 지원하나요?
-                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-gray-400 text-sm transition-transform group-open:rotate-180"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
                         </summary>
                         <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
                             가능합니다. 장애 내용과 환경을 확인한 뒤 지원 범위와 비용을 먼저 안내합니다.
@@ -333,7 +320,7 @@
                     <details class="faq-item group border border-gray-200 rounded-xl">
                         <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
                             방문 가능 지역은 어디인가요?
-                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-gray-400 text-sm transition-transform group-open:rotate-180"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
                         </summary>
                         <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
                             세종·대전·청주·천안 등 충청권이 기본 방문 지역입니다.
@@ -343,7 +330,7 @@
                     <details class="faq-item group border border-gray-200 rounded-xl">
                         <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
                             기존 업체에서 어떻게 전환하나요?
-                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-gray-400 text-sm transition-transform group-open:rotate-180"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
                         </summary>
                         <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
                             장비 목록, 계정 정보, 백업 구성을 확인하는 인수인계 절차를 먼저 진행하고,
@@ -353,7 +340,7 @@
                     <details class="faq-item group border border-gray-200 rounded-xl">
                         <summary class="flex items-center justify-between cursor-pointer list-none px-4 py-3.5 font-semibold">
                             야간·휴일 장애는요?
-                            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] text-gray-400 text-sm transition-transform group-open:rotate-180"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
                         </summary>
                         <p class="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
                             기본 지원은 평일 09:00~18:00입니다. 야간·휴일 대응은 계약 단계에서
@@ -368,19 +355,19 @@
         <section class="py-14 md:py-20 bg-gradient-to-br from-blue-700 to-indigo-800 text-white" id="cta">
             <div class="max-w-md mx-auto px-4 text-center">
                 <h2 class="text-2xl md:text-3xl font-bold mb-2">현재 환경을 설명해 주세요</h2>
-                <p class="opacity-90 mb-8">회사 규모 · 장비 수 · 불편한 문제</p>
+                <p class="text-blue-100 mb-8">회사 규모 · 장비 수 · 불편한 문제</p>
                 <div class="space-y-3">
                     <a href="diagnosis.html" class="flex items-center justify-center h-12 bg-white text-blue-700 rounded-xl text-lg font-bold hover:bg-gray-100 transition-colors">
                         15분 상담 신청
                     </a>
                     <a href="tel:010-3861-8079" class="flex items-center justify-center h-12 bg-white/15 border border-white/40 rounded-xl text-lg font-semibold hover:bg-white/25 transition-colors">
-                        <i class="fas fa-phone mr-2 text-base" aria-hidden="true"></i>전화 상담
+                        <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2 text-base"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>전화 상담
                     </a>
-                    <a href="security-report-sample.html" class="inline-block text-sm underline underline-offset-4 opacity-80 hover:opacity-100 pt-1">
+                    <a href="security-report-sample.html" class="inline-block text-sm underline underline-offset-4 text-blue-100 hover:text-white pt-1">
                         보고서 샘플 보기
                     </a>
                 </div>
-                <p class="mt-6 text-sm opacity-80">계약 강요 없음 · 원격 확인 우선</p>
+                <p class="mt-6 text-sm text-blue-100">계약 강요 없음 · 원격 확인 우선</p>
             </div>
         </section>
     </main>
@@ -412,7 +399,7 @@
     <!-- 모바일 하단 고정 CTA -->
     <nav class="mobile-cta-bar md:hidden" aria-label="빠른 상담">
         <a href="tel:010-3861-8079" class="flex items-center justify-center h-12 flex-1 border border-blue-600 text-blue-700 rounded-xl font-semibold bg-white">
-            <i class="fas fa-phone mr-2 text-sm" aria-hidden="true"></i>전화 상담
+            <svg aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline-block align-[-0.125em] mr-2 text-sm"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372a1.125 1.125 0 00-.852-1.09l-4.423-1.107a1.125 1.125 0 00-1.173.417l-.97 1.293a.75.75 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143.75.75 0 01.38-1.21l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>전화 상담
         </a>
         <a href="diagnosis.html" class="flex items-center justify-center h-12 flex-1 bg-blue-600 text-white rounded-xl font-bold">
             15분 상담 신청

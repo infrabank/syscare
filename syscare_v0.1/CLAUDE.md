@@ -57,11 +57,11 @@ npx serve .
 
 ## Technical Stack
 
-### Dependencies (CDN-based)
-- **Tailwind CSS** - Main styling framework (CDN config in each HTML file)
-- **Chart.js** - Data visualizations (cost comparison bar charts, risk analysis charts)
-- **Font Awesome 6.4.0** - Icons
-- **Pretendard Font** - Korean-optimized web font
+### Dependencies
+- **Tailwind CSS** - Statically built at `css/tailwind.css` via `npm run build:css` (root `tailwind.config.js`), not the CDN runtime. Regenerate and commit it after any markup or class change. `security-report-sample.html` does not use Tailwind and keeps its own `<style>` block.
+- **Chart.js** - Pinned to `chart.js@4` via jsDelivr with `defer` (system-check.html only)
+- **Icons** - Inline hand-written SVG (24 viewBox, line/solid to match source), no icon font. Font Awesome has been removed from every active page.
+- **Pretendard Variable** - Korean-optimized variable font, loaded as the dynamic subset (`pretendardvariable-dynamic-subset.min.css`) instead of the static per-weight build
 
 ### Backend Integration - Dual Submission Strategy
 

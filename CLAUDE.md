@@ -26,7 +26,7 @@ npm test -- calculateScore.test.js
 ```
 
 ### Local Development
-The web application requires no build process. To run locally:
+The web application itself requires no build process, but its Tailwind CSS is compiled ahead of time (see below). To run locally:
 ```bash
 cd syscare_v0.1
 
@@ -36,6 +36,14 @@ npx serve .
 
 # Then open http://localhost:8000
 ```
+
+### Building CSS
+Run from the repo root whenever HTML markup or JS template classes change:
+```bash
+npm run build:css   # one-time build, writes syscare_v0.1/css/tailwind.css
+npm run watch:css   # rebuild on change while editing
+```
+`syscare_v0.1/css/tailwind.css` is a committed build artifact, not a CDN script. Netlify has no build step for this repo, so the compiled file must be regenerated and committed any time markup or class names change.
 
 ## Architecture
 
@@ -114,38 +122,16 @@ When adding tests for new features in `syscare_v0.1/`:
 
 ## Analytics Implementation
 
-### Status: ✅ Fully Implemented (2025-01-15)
+### Status: Not Loaded (2026-07 신뢰성 개편에서 제거, commit 26311cc)
 
-The SYSCARE website now has comprehensive analytics tracking:
+GA4는 사이트에서 로드하지 않는다. `syscare_v0.1/CLAUDE.md`의 "Current Security State" 절이 이 사안의 기준 문서다.
 
-**Google Analytics 4 (GA4)**:
-- Tracking code installed in all HTML files
-- Custom events: `generate_lead`, `cta_click`, `assessment_completed`, `form_submit_start`
-- Enhanced measurement enabled for form interactions, scrolls, outbound clicks
-- Location: `syscare_v0.1/` - all HTML files have GA4 in `<head>` section
+- 어떤 HTML 파일에도 `gtag.js` 스크립트나 Measurement ID가 없다.
+- `js/main.js`, `js/system-check.js`, `diagnosis.html`의 `gtag('event', ...)` 호출은 `typeof gtag === 'function'` 가드 뒤에 남아 있어, gtag가 없으면 아무 동작도 하지 않는다. 코드를 지우지 않고 재활성화 지점으로만 남겨둔 상태다.
+- Search Console 인증 메타 태그도 placeholder 상태로 실제 배포에 넣지 않는다.
 
-**Google Search Console**:
-- Verification meta tag ready in all HTML files (replace placeholder with actual code)
-- [sitemap.xml](syscare_v0.1/sitemap.xml) created with all active pages
-- [robots.txt](syscare_v0.1/robots.txt) configured to exclude admin/legacy pages
+분석 도구를 다시 넣으려면 동의 배너와 기본 거부(default-denied) 설계, 정확한 개인정보 처리방침 고지를 먼저 갖춘 뒤에만 진행한다.
 
-**Key Files Modified**:
-- `syscare_v0.1/index.html` - GA4 + GSC verification tag added
-- `syscare_v0.1/diagnosis.html` - GA4 + conversion tracking (`generate_lead`)
-- `syscare_v0.1/system-check.html` - GA4 tracking
-- `syscare_v0.1/js/main.js` - CTA click tracking added to `initCTAButtons()`
-- `syscare_v0.1/js/system-check.js` - Assessment completion tracking in `processAssessment()`
-- All other HTML files updated with GA4 + GSC tags
-
-**Next Steps** (After deployment):
-1. Create GA4 property at [analytics.google.com](https://analytics.google.com)
-2. Replace `G-XXXXXXXXXX` with actual Measurement ID in all HTML files
-3. Enable Enhanced Measurement in GA4 console
-4. Mark `generate_lead` as conversion event in GA4
-5. Verify site ownership in [Google Search Console](https://search.google.com/search-console)
-6. Replace `PASTE_YOUR_VERIFICATION_CODE_HERE` with actual GSC verification code
-7. Submit sitemap: `https://yourdomain.com/sitemap.xml` to GSC
-
-**Documentation**:
-- [ANALYTICS_IMPLEMENTATION_GUIDE.md](ANALYTICS_IMPLEMENTATION_GUIDE.md) - Complete setup and optimization guide
-- [syscare_v0.1/CLAUDE.md](syscare_v0.1/CLAUDE.md) - Analytics section with technical details
+**참고 문서**:
+- [syscare_v0.1/CLAUDE.md](syscare_v0.1/CLAUDE.md) - Current Security State, Analytics 관련 세부 사항
+- [ANALYTICS_IMPLEMENTATION_GUIDE.md](ANALYTICS_IMPLEMENTATION_GUIDE.md) - 재도입 시 참고할 설정 가이드(현재 미적용 상태 기준으로 다시 검토 필요)

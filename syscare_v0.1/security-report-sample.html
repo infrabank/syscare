@@ -9,8 +9,8 @@
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Pretendard Font -->
-    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
     <!-- SEO: Canonical URL -->
     <link rel="canonical" href="https://syscare.co.kr/security-report-sample.html">
@@ -36,7 +36,7 @@
         * { box-sizing: border-box; }
         body {
             margin: 0;
-            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
             background: var(--bg);
             color: var(--ink);
             line-height: 1.5;
@@ -532,8 +532,8 @@
         <section class="report-page detail-sec">
             <h2 class="sec-title">3. 점검 대상과 자산 현황</h2>
             <p class="sec-caption">SYSCARE가 이번 달 점검·관리한 범위입니다.</p>
-            <button type="button" class="sec-toggle web-only">자산 현황 상세 펼치기</button>
-            <div class="sec-body">
+            <button type="button" class="sec-toggle web-only" aria-expanded="false" aria-controls="sec-body-assets">자산 현황 상세 펼치기</button>
+            <div class="sec-body" id="sec-body-assets">
             <h3 class="sub-title">3.1 관리 대상 요약</h3>
             <div class="avoid-break"><table>
                 <thead><tr><th>자산 유형</th><th class="num">수량</th><th class="num">점검 대상</th><th>비고</th></tr></thead>
@@ -555,8 +555,8 @@
         <section class="report-page detail-sec">
             <h2 class="sec-title">4. 인프라 상태 상세</h2>
             <p class="sec-caption">${m.inspection_basis}</p>
-            <button type="button" class="sec-toggle web-only">인프라 상태 상세 펼치기</button>
-            <div class="sec-body">
+            <button type="button" class="sec-toggle web-only" aria-expanded="false" aria-controls="sec-body-infra">인프라 상태 상세 펼치기</button>
+            <div class="sec-body" id="sec-body-infra">
             <h3 class="sub-title">4.1 서버·가상화</h3>
             <table class="resp">
                 <thead><tr><th style="width:20%">대상</th><th style="width:14%" class="ctr">상태</th><th class="num" style="width:10%">CPU</th><th class="num" style="width:12%">메모리</th><th class="num" style="width:14%">디스크</th><th>핵심 내용</th></tr></thead>
@@ -641,8 +641,8 @@
         <section class="report-page detail-sec">
             <h2 class="sec-title">6. 수명·만료·예산 계획</h2>
             <p class="sec-caption">예산 등급: 즉시 · 3개월 이내 · 6개월 이내 · 차년도 계획 (가격 미확정 항목은 "견적 필요")</p>
-            <button type="button" class="sec-toggle web-only">수명·만료 상세 펼치기</button>
-            <div class="sec-body">
+            <button type="button" class="sec-toggle web-only" aria-expanded="false" aria-controls="sec-body-lifecycle">수명·만료 상세 펼치기</button>
+            <div class="sec-body" id="sec-body-lifecycle">
             <table class="resp">
                 <thead><tr><th style="width:14%">항목</th><th style="width:12%">대상</th><th style="width:13%">예정일</th><th style="width:18%">영향</th><th style="width:13%">권고 시점</th><th>예상 조치</th></tr></thead>
                 <tbody>${d.lifecycle.map(r => `<tr>
@@ -709,7 +709,10 @@
         // 웹: 접힌 기술 상세 섹션 펼치기
         document.getElementById('report').addEventListener('click', e => {
             const btn = e.target.closest('.sec-toggle');
-            if (btn) btn.closest('.detail-sec').classList.add('open');
+            if (btn) {
+                btn.closest('.detail-sec').classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
         });
     }
 
